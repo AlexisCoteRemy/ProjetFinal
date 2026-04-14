@@ -29,6 +29,8 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 		{
 			Vector2i mousePos = Mouse::getPosition(window);
 
+			// ==== MENU ====
+
 			if (_state == 0)
 			{
 				for (int i = 0; i < _buttons.size(); i++)
@@ -57,6 +59,9 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 					}
 				}
 			}
+
+			// ==== JEU ====
+
 			else if (_state == 1)
 			{
 				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
@@ -85,6 +90,9 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 					}
 				}
 			}
+
+			// ==== LEADERBOARD ====
+
 			else if (_state == 2)
 			{
 				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
@@ -92,6 +100,9 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 					_state = 0;
 				}
 			}
+
+			// ==== HOW TO PLAY ====
+
 			else if (_state == 3)
 			{
 				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
@@ -129,7 +140,7 @@ void Game::hover(sf::RenderWindow& window)
 			{
 				// Insérer le texte de victoire joueur 1
 			}
-			else
+			elseS
 			{
 				// Insérer le texte de victoire du joueur 2
 			}
@@ -146,7 +157,6 @@ void Game::hover(sf::RenderWindow& window)
 	}
 	else if (_state == 2)
 	{
-		//window.draw(leaderboard)
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 		{
 			_backButton.setFillColor(Color::Green);
@@ -158,7 +168,6 @@ void Game::hover(sf::RenderWindow& window)
 	}
 	else if (_state == 3)
 	{
-		//window.draw(howtoplay)
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 		{
 			_backButton.setFillColor(Color::Green);
