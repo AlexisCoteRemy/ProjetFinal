@@ -1,25 +1,30 @@
 #include "button.h"
 
-button::button(Color colorText, Color colorButton, Color colorOutline, int w, int h, int thickness, int bX, int bY, int tX, int tY, int charSize, std::string nom)
+Button::Button(int bX, int bY, int tX, int tY, std::string nom)
 {
 	_font.loadFromFile("arial.ttf");
 
-	_button.setSize(Vector2f(w, h));
-	_button.setFillColor(colorButton);
-	_button.setOutlineColor(colorOutline);
-	_button.setOutlineThickness(thickness);
+	_button.setSize(Vector2f(200,150));
+	_button.setFillColor(Color::White);
+	_button.setOutlineColor(Color::Red);
+	_button.setOutlineThickness(2);
 	_button.setPosition(bX, bY);
 
-	_texte.setCharacterSize(charSize);
+	_texte.setCharacterSize(40);
 	_texte.setString(nom);
-	_texte.setFillColor(colorText);
+	_texte.setFillColor(Color::Black);
 	_texte.setPosition(tX, tY);
 	_texte.setFont(_font);
 }
 
-void button::draw(RenderWindow& window) const
+void Button::draw(RenderWindow& window) const
 {
 	window.draw(_button);
 	window.draw(_texte);
 	
+}
+
+FloatRect Button::getGlobalBounds() const
+{
+	return _button.getGlobalBounds();
 }

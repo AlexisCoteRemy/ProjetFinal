@@ -3,12 +3,14 @@
 
 using namespace sf;
 
-class button
+class Button
 {
 public:
-	button(Color colorText, Color colorButton, Color colorOutline, int w, int h, int thickness, int bX, int bY, int tX, int tY, int charSize, std::string nom);
-	~button() = default;
+	Button(int bX, int bY, int tX, int tY, std::string nom);
+	~Button() = default;
+
 	void draw(RenderWindow& window) const;
+	FloatRect getGlobalBounds() const;
 
 private:
 	RectangleShape _button;
