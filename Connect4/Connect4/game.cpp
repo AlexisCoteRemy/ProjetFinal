@@ -124,7 +124,7 @@ void Game::hover(sf::RenderWindow& window)
 		{
 			if (_buttons[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
 			{
-				_buttons[i].setFillColor(Color::Green);
+				_buttons[i].setFillColor(Color::Yellow);
 			}
 			else
 			{
@@ -148,7 +148,7 @@ void Game::hover(sf::RenderWindow& window)
 
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 		{
-			_backButton.setFillColor(Color::Green);
+			_backButton.setFillColor(Color::Yellow);
 		}
 		else
 		{
@@ -159,7 +159,7 @@ void Game::hover(sf::RenderWindow& window)
 	{
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 		{
-			_backButton.setFillColor(Color::Green);
+			_backButton.setFillColor(Color::Yellow);
 		}
 		else
 		{
@@ -170,7 +170,7 @@ void Game::hover(sf::RenderWindow& window)
 	{
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 		{
-			_backButton.setFillColor(Color::Green);
+			_backButton.setFillColor(Color::Yellow);
 		}
 		else
 		{
