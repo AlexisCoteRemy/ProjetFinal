@@ -6,15 +6,15 @@ using namespace sf;
 class Button
 {
 public:
-	Button(int bX, int bY, int tX, int tY, std::string nom);
+	Button(int bX, int bY, int tX, int tY, std::string nom, Font& font);
 	~Button() = default;
 
 	void draw(RenderWindow& window) const;
+	void setFillColor(Color color);
 	FloatRect getGlobalBounds() const;
 
 private:
 	RectangleShape _button;
 	Text _texte;
-	Font _font;
 };
 
