@@ -4,9 +4,9 @@ Button::Button()
 {
 }
 
-Button::Button(int bX, int bY, int tX, int tY, std::string nom, Font& font)
+Button::Button(int bX, int bY, int tX, int tY, int w, int h, std::string nom, Font& font)
 {
-	_button.setSize(Vector2f(350,50));
+	_button.setSize(Vector2f(w,h));
 	_button.setFillColor(Color::White);
 	_button.setOutlineColor(Color::Red);
 	_button.setOutlineThickness(2);

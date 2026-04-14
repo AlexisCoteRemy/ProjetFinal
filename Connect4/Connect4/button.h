@@ -7,7 +7,7 @@ class Button
 {
 public:
 	Button();
-	Button(int bX, int bY, int tX, int tY, std::string nom, Font& font);
+	Button(int bX, int bY, int tX, int tY, int w, int h, std::string nom, Font& font);
 	~Button() = default;
 
 	void draw(RenderWindow& window) const;
