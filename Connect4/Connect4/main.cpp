@@ -8,7 +8,7 @@ using namespace sf;
 
 int main() {
 
-	Button playButton(150, 150, 175, 175, "Play");
+	Button playButton(150, 150, 210, 150, "Play");
 
 	RenderWindow window;
 	window.create(VideoMode(800, 608), "Connect4");

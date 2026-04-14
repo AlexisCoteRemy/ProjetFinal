@@ -4,7 +4,7 @@ Button::Button(int bX, int bY, int tX, int tY, std::string nom)
 {
 	_font.loadFromFile("arial.ttf");
 
-	_button.setSize(Vector2f(200,150));
+	_button.setSize(Vector2f(200,50));
 	_button.setFillColor(Color::White);
 	_button.setOutlineColor(Color::Red);
 	_button.setOutlineThickness(2);
