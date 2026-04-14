@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include "game.h"
 
-int main() {
+int main() 
+{
 	return 0;
 }
