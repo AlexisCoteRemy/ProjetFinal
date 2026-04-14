@@ -2,8 +2,10 @@
 #include <SFML/Audio.hpp>
 #include "game.h"
 
+<<<<<<< HEAD
 int main() 
 {
+=======
 using namespace sf;
 
 int main() {
@@ -26,5 +28,6 @@ int main() {
 		window.display();
 	}
 
+>>>>>>> f7277f3677b70495cfb64fba7a02c266e67ae0d9
 	return 0;
 }
