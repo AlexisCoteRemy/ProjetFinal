@@ -134,6 +134,7 @@ void Grid::hoverColumn(int col, int joueurActuel)
 		else
 		{
 			_boutons[i].setFillColor(sf::Color::White);
+			_boutons[i].setOutlineThickness(0);
 		}
 	}
 }

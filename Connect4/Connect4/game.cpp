@@ -23,7 +23,7 @@ Game::Game()
 	_winText.setFont(_font);
 	_winText.setCharacterSize(30);
 	_winText.setFillColor(Color::White);
-	_winText.setPosition(290, 20);
+	_winText.setPosition(290, 10);
 
     _grid.initializeGrid();
 }
