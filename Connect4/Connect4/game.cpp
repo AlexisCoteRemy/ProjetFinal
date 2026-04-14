@@ -18,6 +18,7 @@ Game::Game()
 	_joueurActuel = 1;
 	_winner = 0;
 	_gameOver = false;
+	_blinkState = false;
 
 	_winText.setFont(_font);
 	_winText.setCharacterSize(30);
@@ -167,6 +168,9 @@ void Game::hover(sf::RenderWindow& window)
 
 void Game::draw(sf::RenderWindow& window)
 {
+	Clock clock;
+	Time time;
+
 	if (_state == 0)
 	{
 		for (int i = 0; i < _buttons.size(); i++)
@@ -181,8 +185,16 @@ void Game::draw(sf::RenderWindow& window)
 
 		if (_gameOver)
 		{
-			_winText.setFillColor(Color::Green);
-			window.draw(_winText);
+			if (_blink.getElapsedTime().asMilliseconds() >= 300)
+			{
+				_blinkState = !_blinkState;
+				_blink.restart();
+			}
+
+			if (_blinkState)
+				_winText.setFillColor(Color::Green);
+			else
+				_winText.setFillColor(Color::White);
 		}
 
 		_backButton.draw(window);

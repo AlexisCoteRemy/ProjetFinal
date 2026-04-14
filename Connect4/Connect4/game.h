@@ -20,7 +20,9 @@ private:
     int _state;
     int _joueurActuel;
     int _winner;
+
     bool _gameOver;
+    bool _blinkState;
 
     sf::Font _font;
 
@@ -28,4 +30,6 @@ private:
     Button _backButton;
 
     sf::Text _winText;
+
+    Clock _blink;
 };
