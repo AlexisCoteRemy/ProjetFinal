@@ -214,9 +214,13 @@ void Game::draw(sf::RenderWindow& window)
 			}
 
 			if (_blinkState)
+			{
 				_winText.setFillColor(Color::Green);
+			}
 			else
+			{
 				_winText.setFillColor(Color::White);
+			}
 		}
 
 		_backButton.draw(window);
