@@ -140,7 +140,7 @@ void Game::hover(sf::RenderWindow& window)
 			{
 				// Insérer le texte de victoire joueur 1
 			}
-			elseS
+			else
 			{
 				// Insérer le texte de victoire du joueur 2
 			}
