@@ -1,5 +1,8 @@
 #include "game.h"
 
+using namespace std;
+
+
 Game::Game()
 {
     _font.loadFromFile("arial.ttf");
@@ -15,6 +18,11 @@ Game::Game()
 	_joueurActuel = 1;
 	_winner = 0;
 	_gameOver = false;
+
+	_winText.setFont(_font);
+	_winText.setCharacterSize(30);
+	_winText.setFillColor(Color::White);
+	_winText.setPosition(300, 20);
 
     _grid.initializeGrid();
 }
@@ -43,6 +51,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 							_grid.initializeGrid();
 							_gameOver = false;
 							_joueurActuel = 1;
+							_winText.setString("Player " + to_string(_joueurActuel) + "'s turn");
 						}
 						if (i == 1)
 						{
@@ -81,10 +90,20 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 							if (_winner != 0)
 							{
 								_gameOver = true;
+
+								if (_winner == 1)
+								{
+									_winText.setString("Player 1 wins!");
+								}
+								else
+								{
+									_winText.setString("Player 2 wins!");
+								}
 							}
 							else
 							{
 								_joueurActuel = 3 - _joueurActuel;
+								_winText.setString("Player " + to_string(_joueurActuel) + "'s turn");
 							}
 						}
 					}
@@ -132,42 +151,9 @@ void Game::hover(sf::RenderWindow& window)
 			}
 		}
 	}
-	else if (_state == 1)
+	else if (_state == 1 || _state == 2 || _state == 3)
 	{
-		if (_gameOver)
-		{
-			if (_winner == 1)
-			{
-				// Insérer le texte de victoire joueur 1
-			}
-			else
-			{
-				// Insérer le texte de victoire du joueur 2
-			}
-		}
 
-		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
-		{
-			_backButton.setFillColor(Color::Yellow);
-		}
-		else
-		{
-			_backButton.setFillColor(Color::White);
-		}
-	}
-	else if (_state == 2)
-	{
-		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
-		{
-			_backButton.setFillColor(Color::Yellow);
-		}
-		else
-		{
-			_backButton.setFillColor(Color::White);
-		}
-	}
-	else if (_state == 3)
-	{
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 		{
 			_backButton.setFillColor(Color::Yellow);
@@ -190,18 +176,13 @@ void Game::draw(sf::RenderWindow& window)
 	}
 	else if (_state == 1)
 	{
+		window.draw(_winText);
 		_grid.draw(window);
 
 		if (_gameOver)
 		{
-			if (_winner == 1)
-			{
-				// Dessiner le texte de victoire joueur 1
-			}
-			else
-			{
-				// Dessiner le texte de victoire du joueur 2
-			}
+			_winText.setFillColor(Color::Green);
+			window.draw(_winText);
 		}
 
 		_backButton.draw(window);

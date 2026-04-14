@@ -26,4 +26,6 @@ private:
 
     std::vector<Button> _buttons;
     Button _backButton;
+
+    sf::Text _winText;
 };
