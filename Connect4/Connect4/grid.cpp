@@ -115,6 +115,21 @@ int Grid::clicked(sf::Vector2i mousePos)
 	return -1;
 }
 
+void Grid::hoverColumn(int col)
+{
+	for (int i = 0; i < _boutons.size(); i++)
+	{
+		if (i == col)
+		{
+			_boutons[i].setFillColor(sf::Color::Green);
+		}
+		else
+		{
+			_boutons[i].setFillColor(sf::Color::White);
+		}
+	}
+}
+
 int Grid::getWinner() const
 {
 	for (int i = 0; i < 6; i++)

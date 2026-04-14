@@ -152,7 +152,29 @@ void Game::hover(sf::RenderWindow& window)
 			}
 		}
 	}
-	else if (_state == 1 || _state == 2 || _state == 3)
+	else if (_state == 1)
+	{
+		int col = _grid.clicked(mousePos);
+
+		if (col != -1)
+		{
+			_grid.hoverColumn(col);
+		}
+		else
+		{
+			_grid.hoverColumn(-1);
+		}
+
+		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+		{
+			_backButton.setFillColor(Color::Yellow);
+		}
+		else
+		{
+			_backButton.setFillColor(Color::White);
+		}
+	}
+	else if (_state == 2 || _state == 3)
 	{
 
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
