@@ -6,6 +6,7 @@ using namespace sf;
 class Button
 {
 public:
+	Button();
 	Button(int bX, int bY, int tX, int tY, std::string nom, Font& font);
 	~Button() = default;
 

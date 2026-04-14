@@ -1,5 +1,9 @@
 #include "button.h"
 
+Button::Button()
+{
+}
+
 Button::Button(int bX, int bY, int tX, int tY, std::string nom, Font& font)
 {
 	_button.setSize(Vector2f(350,50));

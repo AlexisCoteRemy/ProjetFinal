@@ -1,11 +1,25 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
+
 class Grid
 {
 public:
-	Grid();
-	~Grid();
+
+	void initializeGrid();
+	void draw(sf::RenderWindow& window);
+
+	bool drop(int col, int joueur);
+
+	int clicked(sf::Vector2i mousePos);
+
+	int getWinner() const;
 
 private:
-
+	static const int ROWS = 6;
+	static const int COLS = 7;
+	int _cellSize = 60;
+	int _grille[6][7];
+	std::vector<sf::CircleShape> _boutons;
 };
