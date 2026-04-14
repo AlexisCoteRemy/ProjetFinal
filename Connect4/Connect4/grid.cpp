@@ -115,13 +115,21 @@ int Grid::clicked(sf::Vector2i mousePos)
 	return -1;
 }
 
-void Grid::hoverColumn(int col)
+void Grid::hoverColumn(int col, int joueurActuel)
 {
 	for (int i = 0; i < _boutons.size(); i++)
 	{
 		if (i == col)
 		{
-			_boutons[i].setFillColor(sf::Color::Green);
+			if (joueurActuel == 1)
+			{
+				_boutons[i].setFillColor(sf::Color::Red);
+			}
+			else
+			{
+				_boutons[i].setFillColor(sf::Color::Yellow);
+			}
+			
 		}
 		else
 		{

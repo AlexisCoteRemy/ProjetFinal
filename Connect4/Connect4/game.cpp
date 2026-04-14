@@ -7,12 +7,12 @@ Game::Game()
 {
     _font.loadFromFile("arial.ttf");
 
-    _buttons.push_back(Button(250, 150, 250, 150, 350, 50, "Play", _font));
-    _buttons.push_back(Button(250, 210, 250, 210, 350, 50, "Leaderboard", _font));
-    _buttons.push_back(Button(250, 270, 250, 270, 350, 50, "How to play", _font));
-    _buttons.push_back(Button(250, 330, 250, 330, 350, 50, "Quit", _font));
+    _buttons.push_back(Button(250, 150, 250, 150, 300, 50, "Jouer", _font));
+    _buttons.push_back(Button(250, 210, 250, 210, 300, 50, "Classement", _font));
+    _buttons.push_back(Button(250, 270, 250, 270, 300, 50, "Comment jouer", _font));
+    _buttons.push_back(Button(250, 330, 250, 330, 300, 50, "Quitter", _font));
 
-	_backButton = Button(10, 500, 10, 500, 100, 50, "Back", _font);
+	_backButton = Button(10, 500, 10, 500, 125, 50, "Retour", _font);
 
 	_state = 0;
 	_joueurActuel = 1;
@@ -23,7 +23,7 @@ Game::Game()
 	_winText.setFont(_font);
 	_winText.setCharacterSize(30);
 	_winText.setFillColor(Color::White);
-	_winText.setPosition(300, 20);
+	_winText.setPosition(290, 20);
 
     _grid.initializeGrid();
 }
@@ -52,7 +52,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 							_grid.initializeGrid();
 							_gameOver = false;
 							_joueurActuel = 1;
-							_winText.setString("Player " + to_string(_joueurActuel) + "'s turn");
+							_winText.setString("Tour du joueur " + to_string(_joueurActuel));
 						}
 						if (i == 1)
 						{
@@ -94,17 +94,17 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 
 								if (_winner == 1)
 								{
-									_winText.setString("Player 1 wins!");
+									_winText.setString("Joueur 1 a gagne!");
 								}
 								else
 								{
-									_winText.setString("Player 2 wins!");
+									_winText.setString("Joueur 2 a gagne!");
 								}
 							}
 							else
 							{
 								_joueurActuel = 3 - _joueurActuel;
-								_winText.setString("Player " + to_string(_joueurActuel) + "'s turn");
+								_winText.setString("Tour du joueur " + to_string(_joueurActuel));
 							}
 						}
 					}
@@ -158,11 +158,11 @@ void Game::hover(sf::RenderWindow& window)
 
 		if (col != -1)
 		{
-			_grid.hoverColumn(col);
+			_grid.hoverColumn(col, _joueurActuel);
 		}
 		else
 		{
-			_grid.hoverColumn(-1);
+			_grid.hoverColumn(-1, _joueurActuel);
 		}
 
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))

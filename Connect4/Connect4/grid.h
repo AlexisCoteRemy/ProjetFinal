@@ -14,7 +14,7 @@ public:
 
 	int clicked(sf::Vector2i mousePos);
 
-	void hoverColumn(int col);
+	void hoverColumn(int col, int joueurActuel);
 
 	int getWinner() const;
 
