@@ -17,6 +17,7 @@ Game::Game()
 	_joueurActuel = 1;
 	_winner = 0;
 	_gameOver = false;
+	_gameStarted = false;
 	_blinkState = false;
 
 	_winText.setFont(_font);
@@ -64,10 +65,15 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 							_clickSound.play();
 
 							_state = 1;
-							_grid.initializeGrid();
-							_gameOver = false;
-							_joueurActuel = 1;
-							_winText.setString("Tour du joueur " + to_string(_joueurActuel));
+							
+							if (!_gameStarted)
+							{
+								_grid.initializeGrid();
+								_gameOver = false;
+								_joueurActuel = 1;
+								_winText.setString("Tour du joueur " + to_string(_joueurActuel));
+								_gameStarted = true;
+							}
 						}
 						if (i == 1)
 						{
@@ -112,6 +118,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 							if (_winner != 0 || _grid.isFull())
 							{
 								_gameOver = true;
+								_gameStarted = false;
 
 								if (_winner == 1)
 								{

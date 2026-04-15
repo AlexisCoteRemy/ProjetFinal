@@ -23,6 +23,7 @@ private:
     int _winner;
 
     bool _gameOver;
+    bool _gameStarted;
     bool _blinkState;
 
     sf::Font _font;
