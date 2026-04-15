@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "button.h"
 
 
 class Grid
@@ -25,5 +26,5 @@ private:
 	static const int COLS = 7;
 	int _cellSize = 60;
 	int _grille[6][7];
-	std::vector<sf::CircleShape> _boutons;
+	std::vector<Button> _boutons;
 };

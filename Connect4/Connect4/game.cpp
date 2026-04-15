@@ -120,7 +120,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 								}
 								else
 								{
-									_winText.setString("Partie nulle!");
+									_winText.setString("Joueur 2 a gagne!");
 								}
 							}
 							else

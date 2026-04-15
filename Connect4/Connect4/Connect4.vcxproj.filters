@@ -24,7 +24,7 @@
     <ClCompile Include="game.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="mesFonctions.cpp">
+    <ClCompile Include="mesConstantes.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="button.cpp">
@@ -38,7 +38,7 @@
     <ClInclude Include="game.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="mesFonctions.h">
+    <ClInclude Include="mesConstantes.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="button.h">

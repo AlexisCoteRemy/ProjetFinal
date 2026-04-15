@@ -4,6 +4,15 @@ Button::Button()
 {
 }
 
+Button::Button(int x, int y, int r)
+{
+	_circle.setRadius(r);
+	_circle.setPosition(x, y);
+	_circle.setFillColor(Color::White);
+
+	_isCircle = true;
+}
+
 Button::Button(int bX, int bY, int tX, int tY, int w, int h, std::string nom, Font& font)
 {
 	_button.setSize(Vector2f(w,h));
@@ -20,22 +29,44 @@ Button::Button(int bX, int bY, int tX, int tY, int w, int h, std::string nom, Fo
 
 	_wasHovered = false;
 	_wasClicked = false;
+	_isCircle = false;
 }
 
 void Button::draw(RenderWindow& window) const
 {
-	window.draw(_button);
-	window.draw(_texte);
+	if (_isCircle)
+	{
+		window.draw(_circle);
+	}
+	else
+	{
+		window.draw(_button);
+		window.draw(_texte);
+	}
 }
 
 void Button::setFillColor(Color color)
 {
-	_button.setFillColor(color);
+	if (_isCircle)
+	{
+		_circle.setFillColor(color);
+	}
+	else
+	{
+		_button.setFillColor(color);
+	}
 }
 
 FloatRect Button::getGlobalBounds() const
 {
-	return _button.getGlobalBounds();
+	if (_isCircle)
+	{
+		return _circle.getGlobalBounds();
+	}
+	else
+	{
+		return _button.getGlobalBounds();
+	}
 }
 
 bool Button::wasHovered() const

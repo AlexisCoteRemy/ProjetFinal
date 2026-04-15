@@ -1,4 +1,5 @@
 #include "grid.h"
+#include "mesConstantes.h"
 #include <vector>
 
 using namespace std;
@@ -6,15 +7,6 @@ using namespace sf;
 
 void Grid::initializeGrid()
 {
-	int gridWidth = COLS * _cellSize;
-	int gridHeight = ROWS * _cellSize;
-
-	int windowWidth = 800;
-	int windowHeight = 608;
-
-	int x = (windowWidth - gridWidth) / 2;
-	int y = (windowHeight - gridHeight) / 2;
-
 	for (int i = 0; i < ROWS; i++)
 	{
 		for (int j = 0; j < COLS; j++)
@@ -27,10 +19,7 @@ void Grid::initializeGrid()
 
 	for (int i = 0; i < 7; i++)
 	{
-		CircleShape bouton(_cellSize / 2 - 5);
-
-		bouton.setPosition(x + i * _cellSize + 5, y - _cellSize);
-		bouton.setFillColor(Color::White);
+		Button bouton(CENTER_X + i * CELLSIZE + 5, CENTER_Y - CELLSIZE, CELLSIZE / 2 - 5);
 
 		_boutons.push_back(bouton);
 	}
@@ -38,22 +27,13 @@ void Grid::initializeGrid()
 
 void Grid::draw(sf::RenderWindow& window)
 {
-	int gridWidth = COLS * _cellSize;
-	int gridHeight = ROWS * _cellSize;
-
-	int windowWidth = 800;
-	int windowHeight = 608;
-
-	int x = (windowWidth - gridWidth) / 2;
-	int y = (windowHeight - gridHeight) / 2;
-
 	for (int i = 0; i < _boutons.size(); i++)
 	{
-		window.draw(_boutons[i]);
+		_boutons[i].draw(window);
 	}
 
-	RectangleShape board(Vector2f(COLS * _cellSize, ROWS * _cellSize));
-	board.setPosition(x, y);
+	RectangleShape board(Vector2f(GRID_WIDTH, GRID_HEIGHT));
+	board.setPosition(CENTER_X, CENTER_Y);
 	board.setFillColor(Color::Blue);
 	window.draw(board);
 
@@ -61,8 +41,8 @@ void Grid::draw(sf::RenderWindow& window)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			CircleShape hole(_cellSize / 2 - 5);
-			hole.setPosition(x + j * _cellSize + 5, y + i * _cellSize + 5);
+			CircleShape hole(CELLSIZE / 2 - 5);
+			hole.setPosition(CENTER_X + j * CELLSIZE + 5, CENTER_Y + i * CELLSIZE + 5);
 			hole.setFillColor(Color::Black);
 
 			window.draw(hole);
@@ -75,8 +55,8 @@ void Grid::draw(sf::RenderWindow& window)
 		{
 			if (_grille[i][j] != 0)
 			{
-				CircleShape jeton(_cellSize / 2 - 10);
-				jeton.setPosition(x + j * _cellSize + 10, y + i * _cellSize + 10);
+				CircleShape jeton(CELLSIZE / 2 - 10);
+				jeton.setPosition(CENTER_X + j * CELLSIZE + 10, CENTER_Y + i * CELLSIZE + 10);
 
 				if (_grille[i][j] == 1)
 					jeton.setFillColor(Color::Red);

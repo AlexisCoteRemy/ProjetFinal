@@ -7,6 +7,7 @@ class Button
 {
 public:
 	Button();
+	Button(int x, int y, int r);
 	Button(int bX, int bY, int tX, int tY, int w, int h, std::string nom, Font& font);
 	~Button() = default;
 
@@ -17,8 +18,10 @@ public:
 	void setWasHovered(bool state);
 
 private:
+	CircleShape _circle;
 	RectangleShape _button;
 	Text _texte;
+	bool _isCircle;
 	bool _wasHovered;
 	bool _wasClicked;
 };

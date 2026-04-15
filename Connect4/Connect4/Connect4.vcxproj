@@ -129,13 +129,13 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mesFonctions.cpp" />
+    <ClCompile Include="mesConstantes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="button.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="grid.h" />
-    <ClInclude Include="mesFonctions.h" />
+    <ClInclude Include="mesConstantes.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
