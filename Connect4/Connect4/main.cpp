@@ -14,6 +14,15 @@ int main() {
 	RenderWindow window(VideoMode(800, 608), "Connect4");
 	window.setFramerateLimit(60);
 
+	SoundBuffer mainMusicBuffer;
+	mainMusicBuffer.loadFromFile("mainMusic.wav");
+
+	Sound mainMusic;
+	mainMusic.setBuffer(mainMusicBuffer);
+	mainMusic.setVolume(10);
+	mainMusic.setLoop(true);
+	mainMusic.play();
+
 	Game game;
 
 	while (window.isOpen())

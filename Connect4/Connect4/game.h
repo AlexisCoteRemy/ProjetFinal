@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include "grid.h"
 #include "button.h"
@@ -32,4 +33,14 @@ private:
     sf::Text _winText;
 
     Clock _blink;
+
+    Texture _backgroundImage;
+
+    Sprite _backgroundSprite;
+
+    SoundBuffer _hoverBuffer;
+    SoundBuffer _clickBuffer;
+
+    Sound _hoverSound;
+    Sound _clickSound;
 };

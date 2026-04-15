@@ -53,4 +53,20 @@
       <Filter>Fichiers sources</Filter>
     </Font>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="c4.jpg">
+      <Filter>Fichiers sources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="hoverSound.wav">
+      <Filter>Fichiers sources</Filter>
+    </Media>
+    <Media Include="clickSound.wav">
+      <Filter>Fichiers sources</Filter>
+    </Media>
+    <Media Include="mainMusic.wav">
+      <Filter>Fichiers sources</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

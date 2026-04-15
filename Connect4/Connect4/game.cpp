@@ -25,6 +25,16 @@ Game::Game()
 	_winText.setFillColor(Color::White);
 	_winText.setPosition(290, 10);
 
+	_backgroundImage.loadFromFile("c4.jpg");
+	_backgroundSprite.setTexture(_backgroundImage);
+	_backgroundSprite.setColor(Color(255,255,255,75));
+
+	_hoverBuffer.loadFromFile("hoverSound.wav");
+	_hoverSound.setBuffer(_hoverBuffer);
+
+	_clickBuffer.loadFromFile("clickSound.wav");
+	_clickSound.setBuffer(_clickBuffer);
+
     _grid.initializeGrid();
 }
 
@@ -44,10 +54,14 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 			{
 				for (int i = 0; i < _buttons.size(); i++)
 				{
-					if (_buttons[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
+					bool isClicked = _buttons[i].getGlobalBounds().contains(mousePos.x, mousePos.y);
+
+					if (isClicked)
 					{
 						if (i == 0)
 						{
+							_clickSound.play();
+
 							_state = 1;
 							_grid.initializeGrid();
 							_gameOver = false;
@@ -56,14 +70,17 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 						}
 						if (i == 1)
 						{
+							_clickSound.play();
 							_state = 2;
 						}
 						if (i == 2)
 						{
+							_clickSound.play();
 							_state = 3;
 						}
 						if (i == 3)
 						{
+							_clickSound.play();
 							window.close();
 						}
 					}
@@ -76,6 +93,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 			{
 				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 				{
+					_clickSound.play();
 					_state = 0;
 				}
 				else if (!_gameOver)
@@ -117,6 +135,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 			{
 				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 				{
+					_clickSound.play();
 					_state = 0;
 				}
 			}
@@ -127,6 +146,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 			{
 				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 				{
+					_clickSound.play();
 					_state = 0;
 				}
 			}
@@ -142,14 +162,23 @@ void Game::hover(sf::RenderWindow& window)
 	{
 		for (int i = 0; i < _buttons.size(); i++)
 		{
-			if (_buttons[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
+			bool isHovered = _buttons[i].getGlobalBounds().contains(mousePos.x, mousePos.y);
+
+			if (isHovered)
 			{
 				_buttons[i].setFillColor(Color::Yellow);
+
+				if (!_buttons[i].wasHovered())
+				{
+					_hoverSound.play();
+				}
 			}
 			else
 			{
 				_buttons[i].setFillColor(Color::White);
 			}
+
+			_buttons[i].setWasHovered(isHovered);
 		}
 	}
 	else if (_state == 1)
@@ -165,33 +194,49 @@ void Game::hover(sf::RenderWindow& window)
 			_grid.hoverColumn(-1, _joueurActuel);
 		}
 
-		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+		bool isHovered = _backButton.getGlobalBounds().contains(mousePos.x, mousePos.y);
+
+		if (isHovered)
 		{
 			_backButton.setFillColor(Color::Yellow);
+
+			if (!_backButton.wasHovered())
+			{
+				_hoverSound.play();
+			}
 		}
 		else
 		{
 			_backButton.setFillColor(Color::White);
 		}
+
+		_backButton.setWasHovered(isHovered);
 	}
 	else if (_state == 2 || _state == 3)
 	{
+		bool isHovered = _backButton.getGlobalBounds().contains(mousePos.x, mousePos.y);
 
-		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+		if (isHovered)
 		{
 			_backButton.setFillColor(Color::Yellow);
+
+			if (!_backButton.wasHovered())
+			{
+				_hoverSound.play();
+			}
 		}
 		else
 		{
 			_backButton.setFillColor(Color::White);
 		}
+
+		_backButton.setWasHovered(isHovered);
 	}
 }
 
 void Game::draw(sf::RenderWindow& window)
 {
-	Clock clock;
-	Time time;
+	window.draw(_backgroundSprite);
 
 	if (_state == 0)
 	{

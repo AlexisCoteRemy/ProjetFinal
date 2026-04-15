@@ -13,9 +13,13 @@ public:
 	void draw(RenderWindow& window) const;
 	void setFillColor(Color color);
 	FloatRect getGlobalBounds() const;
+	bool wasHovered() const;
+	void setWasHovered(bool state);
 
 private:
 	RectangleShape _button;
 	Text _texte;
+	bool _wasHovered;
+	bool _wasClicked;
 };
 

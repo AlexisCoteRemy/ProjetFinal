@@ -17,6 +17,9 @@ Button::Button(int bX, int bY, int tX, int tY, int w, int h, std::string nom, Fo
 	_texte.setFillColor(Color::Black);
 	_texte.setPosition(tX, tY);
 	_texte.setFont(font);
+
+	_wasHovered = false;
+	_wasClicked = false;
 }
 
 void Button::draw(RenderWindow& window) const
@@ -33,4 +36,14 @@ void Button::setFillColor(Color color)
 FloatRect Button::getGlobalBounds() const
 {
 	return _button.getGlobalBounds();
+}
+
+bool Button::wasHovered() const
+{
+	return _wasHovered;
+}
+
+void Button::setWasHovered(bool state)
+{
+	_wasHovered = state;
 }
