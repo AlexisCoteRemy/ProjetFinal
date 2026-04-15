@@ -18,6 +18,8 @@ public:
 
 	int getWinner() const;
 
+	bool isFull() const;
+
 private:
 	static const int ROWS = 6;
 	static const int COLS = 7;

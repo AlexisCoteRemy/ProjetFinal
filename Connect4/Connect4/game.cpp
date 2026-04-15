@@ -106,7 +106,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 						{
 							_winner = _grid.getWinner();
 
-							if (_winner != 0)
+							if (_winner != 0 || _grid.isFull())
 							{
 								_gameOver = true;
 
@@ -114,9 +114,13 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 								{
 									_winText.setString("Joueur 1 a gagne!");
 								}
-								else
+								else if (_winner == 2)
 								{
 									_winText.setString("Joueur 2 a gagne!");
+								}
+								else
+								{
+									_winText.setString("Partie nulle!");
 								}
 							}
 							else

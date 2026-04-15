@@ -194,3 +194,18 @@ int Grid::getWinner() const
 
 	return 0;
 }
+
+bool Grid::isFull() const
+{
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 7; j++)
+		{
+			if (_grille[i][j] == 0)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
