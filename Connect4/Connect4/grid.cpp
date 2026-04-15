@@ -1,12 +1,11 @@
 #include "grid.h"
 #include "mesConstantes.h"
-#include <vector>
 
-using namespace std;
 using namespace sf;
 
 void Grid::initializeGrid()
 {
+
 	for (int i = 0; i < ROWS; i++)
 	{
 		for (int j = 0; j < COLS; j++)
@@ -17,7 +16,7 @@ void Grid::initializeGrid()
 
 	_boutons.clear();
 
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < COLS; i++)
 	{
 		Button bouton(CENTER_X + i * CELLSIZE + 5, CENTER_Y - CELLSIZE, CELLSIZE / 2 - 5);
 
@@ -71,7 +70,7 @@ void Grid::draw(sf::RenderWindow& window)
 
 bool Grid::drop(int col, int joueur)
 {
-	for (int i = 5; i >= 0; i--)
+	for (int i = ROWS - 1; i >= 0; i--)
 	{
 		if (_grille[i][col] == 0)
 		{
@@ -177,9 +176,9 @@ int Grid::getWinner() const
 
 bool Grid::isFull() const
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < ROWS; i++)
 	{
-		for (int j = 0; j < 7; j++)
+		for (int j = 0; j < COLS; j++)
 		{
 			if (_grille[i][j] == 0)
 			{

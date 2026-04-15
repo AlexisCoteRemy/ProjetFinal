@@ -6,7 +6,7 @@ using namespace sf;
 class Button
 {
 public:
-	Button();
+	Button() = default;
 	Button(int x, int y, int r);
 	Button(int bX, int bY, int tX, int tY, int w, int h, std::string nom, Font& font);
 	~Button() = default;
@@ -23,6 +23,5 @@ private:
 	Text _texte;
 	bool _isCircle;
 	bool _wasHovered;
-	bool _wasClicked;
 };
 

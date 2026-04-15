@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 Game::Game()
 {
     _font.loadFromFile("arial.ttf");
@@ -31,9 +30,11 @@ Game::Game()
 
 	_hoverBuffer.loadFromFile("hoverSound.wav");
 	_hoverSound.setBuffer(_hoverBuffer);
+	_hoverSound.setVolume(10);
 
 	_clickBuffer.loadFromFile("clickSound.wav");
 	_clickSound.setBuffer(_clickBuffer);
+	_clickSound.setVolume(10);
 
     _grid.initializeGrid();
 }
@@ -102,6 +103,8 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 
 					if (col != -1)
 					{
+						_clickSound.play();
+
 						if (_grid.drop(col, _joueurActuel))
 						{
 							_winner = _grid.getWinner();

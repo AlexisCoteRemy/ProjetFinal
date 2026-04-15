@@ -1,9 +1,5 @@
 #include "button.h"
 
-Button::Button()
-{
-}
-
 Button::Button(int x, int y, int r)
 {
 	_circle.setRadius(r);
@@ -11,6 +7,7 @@ Button::Button(int x, int y, int r)
 	_circle.setFillColor(Color::White);
 
 	_isCircle = true;
+	_wasHovered = false;
 }
 
 Button::Button(int bX, int bY, int tX, int tY, int w, int h, std::string nom, Font& font)
@@ -28,7 +25,6 @@ Button::Button(int bX, int bY, int tX, int tY, int w, int h, std::string nom, Fo
 	_texte.setFont(font);
 
 	_wasHovered = false;
-	_wasClicked = false;
 	_isCircle = false;
 }
 

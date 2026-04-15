@@ -22,9 +22,6 @@ public:
 	bool isFull() const;
 
 private:
-	static const int ROWS = 6;
-	static const int COLS = 7;
-	int _cellSize = 60;
 	int _grille[6][7];
 	std::vector<Button> _boutons;
 };
