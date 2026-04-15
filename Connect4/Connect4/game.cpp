@@ -7,10 +7,10 @@ Game::Game()
 {
     _font.loadFromFile("arial.ttf");
 
-    _buttons.push_back(Button(250, 150, 250, 150, 300, 50, "Jouer", _font));
-    _buttons.push_back(Button(250, 210, 250, 210, 300, 50, "Classement", _font));
-    _buttons.push_back(Button(250, 270, 250, 270, 300, 50, "Comment jouer", _font));
-    _buttons.push_back(Button(250, 330, 250, 330, 300, 50, "Quitter", _font));
+    _buttons.push_back(Button(250, 150, 255, 150, 300, 50, "Jouer", _font));
+    _buttons.push_back(Button(250, 210, 255, 210, 300, 50, "Classement", _font));
+    _buttons.push_back(Button(250, 270, 255, 270, 300, 50, "Comment jouer", _font));
+    _buttons.push_back(Button(250, 330, 255, 330, 300, 50, "Quitter", _font));
 
 	_backButton = Button(10, 500, 10, 500, 125, 50, "Retour", _font);
 
