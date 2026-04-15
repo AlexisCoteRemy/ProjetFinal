@@ -12,8 +12,8 @@ void Grid::initializeGrid()
 	int windowWidth = 800;
 	int windowHeight = 600;
 
-	int centerX = (windowWidth - gridWidth) / 2;
-	int centerY = (windowHeight - gridHeight) / 2;
+	int x = (windowWidth - gridWidth) / 2;
+	int y = (windowHeight - gridHeight) / 2;
 
 	for (int i = 0; i < ROWS; i++)
 	{
@@ -29,7 +29,7 @@ void Grid::initializeGrid()
 	{
 		CircleShape bouton(_cellSize / 2 - 5);
 
-		bouton.setPosition(centerX + i * _cellSize + 5, centerY - _cellSize);
+		bouton.setPosition(x + i * _cellSize + 5, y - _cellSize);
 		bouton.setFillColor(Color::White);
 
 		_boutons.push_back(bouton);
@@ -44,8 +44,8 @@ void Grid::draw(sf::RenderWindow& window)
 	int windowWidth = 800;
 	int windowHeight = 600;
 
-	int centerX = (windowWidth - gridWidth) / 2;
-	int centerY = (windowHeight - gridHeight) / 2;
+	int x = (windowWidth - gridWidth) / 2;
+	int y = (windowHeight - gridHeight) / 2;
 
 	for (int i = 0; i < _boutons.size(); i++)
 	{
@@ -53,7 +53,7 @@ void Grid::draw(sf::RenderWindow& window)
 	}
 
 	RectangleShape board(Vector2f(COLS * _cellSize, ROWS * _cellSize));
-	board.setPosition(centerX, centerY);
+	board.setPosition(x, y);
 	board.setFillColor(Color::Blue);
 	window.draw(board);
 
@@ -62,7 +62,7 @@ void Grid::draw(sf::RenderWindow& window)
 		for (int j = 0; j < COLS; j++)
 		{
 			CircleShape hole(_cellSize / 2 - 5);
-			hole.setPosition(centerX + j * _cellSize + 5, centerY + i * _cellSize + 5);
+			hole.setPosition(x + j * _cellSize + 5, y + i * _cellSize + 5);
 			hole.setFillColor(Color::Black);
 
 			window.draw(hole);
@@ -76,7 +76,7 @@ void Grid::draw(sf::RenderWindow& window)
 			if (_grille[i][j] != 0)
 			{
 				CircleShape jeton(_cellSize / 2 - 10);
-				jeton.setPosition(centerX + j * _cellSize+ 10, centerY + i * _cellSize + 10);
+				jeton.setPosition(x + j * _cellSize + 10, y + i * _cellSize + 10);
 
 				if (_grille[i][j] == 1)
 					jeton.setFillColor(Color::Red);
