@@ -134,14 +134,15 @@ void Grid::hoverColumn(int col, int joueurActuel)
 		else
 		{
 			_boutons[i].setFillColor(sf::Color::White);
-			_boutons[i].setOutlineThickness(0);
 		}
 	}
 }
 
 int Grid::getWinner() const
 {
-	for (int i = 0; i < 6; i++)
+	// Horizontalement
+
+	for (int i = 0; i < 6; i++) 
 	{
 		for (int j = 0; j < 4; j++)
 		{
@@ -151,6 +152,8 @@ int Grid::getWinner() const
 			}
 		}
 	}
+
+	// Verticalement
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -163,6 +166,8 @@ int Grid::getWinner() const
 		}
 	}
 
+	// Diagonale bas droite
+
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 4; j++)
@@ -173,6 +178,8 @@ int Grid::getWinner() const
 			}
 		}
 	}
+
+	// Diagonale haut droite
 
 	for (int i = 3; i < 6; i++)
 	{
