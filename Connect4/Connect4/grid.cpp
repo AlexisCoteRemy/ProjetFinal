@@ -10,7 +10,7 @@ void Grid::initializeGrid()
 	int gridHeight = ROWS * _cellSize;
 
 	int windowWidth = 800;
-	int windowHeight = 600;
+	int windowHeight = 608;
 
 	int x = (windowWidth - gridWidth) / 2;
 	int y = (windowHeight - gridHeight) / 2;
@@ -42,7 +42,7 @@ void Grid::draw(sf::RenderWindow& window)
 	int gridHeight = ROWS * _cellSize;
 
 	int windowWidth = 800;
-	int windowHeight = 600;
+	int windowHeight = 608;
 
 	int x = (windowWidth - gridWidth) / 2;
 	int y = (windowHeight - gridHeight) / 2;
