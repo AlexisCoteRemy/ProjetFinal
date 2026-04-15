@@ -41,7 +41,9 @@ private:
 
     SoundBuffer _hoverBuffer;
     SoundBuffer _clickBuffer;
+    SoundBuffer _victoryBuffer;
 
     Sound _hoverSound;
     Sound _clickSound;
+    Sound _victorySound;
 };

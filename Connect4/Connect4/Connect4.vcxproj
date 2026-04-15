@@ -150,6 +150,7 @@
     <Media Include="clickSound.wav" />
     <Media Include="hoverSound.wav" />
     <Media Include="mainMusic.wav" />
+    <Media Include="victorySound.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

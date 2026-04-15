@@ -37,6 +37,10 @@ Game::Game()
 	_clickSound.setBuffer(_clickBuffer);
 	_clickSound.setVolume(10);
 
+	_victoryBuffer.loadFromFile("victorySound.wav");
+	_victorySound.setBuffer(_victoryBuffer);
+	_victorySound.setVolume(10);
+
     _grid.initializeGrid();
 }
 
@@ -117,6 +121,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 
 							if (_winner != 0 || _grid.isFull())
 							{
+								_victorySound.play();
 								_gameOver = true;
 								_gameStarted = false;
 

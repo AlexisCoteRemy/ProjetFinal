@@ -68,5 +68,8 @@
     <Media Include="mainMusic.wav">
       <Filter>Fichiers sources</Filter>
     </Media>
+    <Media Include="victorySound.wav">
+      <Filter>Fichiers sources</Filter>
+    </Media>
   </ItemGroup>
 </Project>
