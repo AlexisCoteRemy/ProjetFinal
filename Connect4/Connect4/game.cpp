@@ -1,5 +1,7 @@
 #include "game.h"
 
+#include "mesConstantes.h"
+
 using namespace std;
 
 Game::Game()
@@ -19,7 +21,7 @@ Game::Game()
     _buttons.push_back(Button(250, 270, 255, 270, 300, 50, "Comment jouer", _font));
     _buttons.push_back(Button(250, 330, 255, 330, 300, 50, "Quitter", _font));
 
-	_backButton = Button(10, 500, 10, 500, 125, 50, "Retour", _font);
+	_backButton = Button((WINDOW_WIDTH - 125) / 2, 500, (WINDOW_WIDTH - 125) / 2, 500, 125, 50, "Retour", _font);
 
 	_state = 0;
 	_joueurActuel = 1;
@@ -31,6 +33,24 @@ Game::Game()
 	_winText.setFont(_font);
 	_winText.setCharacterSize(40);
 	_winText.setPosition(250, 0);
+
+	_howTitle.setFont(_font);
+	_howTitle.setCharacterSize(60);
+	_howTitle.setPosition(200, 0);
+	_howTitle.setFillColor(Color::White);
+	_howTitle.setOutlineColor(Color::Red);
+	_howTitle.setOutlineThickness(2);
+	_howTitle.setString("Comment jouer");
+
+	_howTo.setFont(_font);
+	_howTo.setCharacterSize(20);
+	_howTo.setPosition(Vector2f((WINDOW_WIDTH - 590) / 2, (WINDOW_HEIGHT - 375) / 2));
+	_howTo.setFillColor(Color::Black);
+	
+
+	_textBox.setSize(Vector2f(600, 375));
+	_textBox.setFillColor(Color(255, 255, 255, 175));
+	_textBox.setPosition(Vector2f((WINDOW_WIDTH - 600) / 2, (WINDOW_HEIGHT - 375) / 2));
 
 	_backgroundImage.loadFromFile("c4.jpg");
 	_backgroundSprite.setTexture(_backgroundImage);
@@ -187,11 +207,13 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 
 			else if (_state == 3)
 			{
+
 				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 				{
 					_clickSound.play();
 					_state = 0;
 				}
+
 			}
 		}
 	}
@@ -341,6 +363,10 @@ void Game::draw(sf::RenderWindow& window)
 	else
 	{
 		//window.draw(howtoplay)
+		window.draw(_textBox);
+		window.draw(_howTitle);
+		_howTo.setString("\nAppuyez sur les cercles blancs en haut de la grille pour faire \ntomber un jeton.\n\nLes jetons rouges sont pour le premier joueur, et les jetons\njaunes sont pour le deuxieme joueur.\n\nLe premier joueur à aligner quatre jetons dans n'importe\nquelle direction gagne!\n\nBonne chance, et rappelez-vous, c'est un jeu!");
+		window.draw(_howTo);
 		_backButton.draw(window);
 	}
 }

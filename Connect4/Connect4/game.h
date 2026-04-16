@@ -33,6 +33,8 @@ private:
 
     Text _winText;
     Text _gameTitle;
+    Text _howTitle;
+    Text _howTo;
 
     Clock _blink;
 
@@ -47,4 +49,8 @@ private:
     Sound _hoverSound;
     Sound _clickSound;
     Sound _victorySound;
+
+    RectangleShape _textBox;
+
+
 };
