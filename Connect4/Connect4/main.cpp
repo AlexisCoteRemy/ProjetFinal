@@ -11,7 +11,7 @@ using namespace sf;
 using namespace std;
 
 int main() {
-	RenderWindow window(VideoMode(800, 608), "Connect4");
+	RenderWindow window(VideoMode(800, 588), "Connect4");
 	window.setFramerateLimit(60);
 
 	SoundBuffer mainMusicBuffer;

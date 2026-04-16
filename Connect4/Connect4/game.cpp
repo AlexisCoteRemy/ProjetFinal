@@ -29,8 +29,8 @@ Game::Game()
 	_blinkState = false;
 
 	_winText.setFont(_font);
-	_winText.setCharacterSize(50);
-	_winText.setPosition(220, 0);
+	_winText.setCharacterSize(40);
+	_winText.setPosition(250, 0);
 
 	_backgroundImage.loadFromFile("c4.jpg");
 	_backgroundSprite.setTexture(_backgroundImage);
