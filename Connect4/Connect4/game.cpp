@@ -29,9 +29,8 @@ Game::Game()
 	_blinkState = false;
 
 	_winText.setFont(_font);
-	_winText.setCharacterSize(30);
-	_winText.setFillColor(Color::White);
-	_winText.setPosition(290, 10);
+	_winText.setCharacterSize(50);
+	_winText.setPosition(220, 0);
 
 	_backgroundImage.loadFromFile("c4.jpg");
 	_backgroundSprite.setTexture(_backgroundImage);
@@ -85,6 +84,10 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 								_joueurActuel = 1;
 								_winText.setString("Tour du joueur " + to_string(_joueurActuel));
 								_gameStarted = true;
+								_blinkState = false;
+								_winText.setFillColor(Color::White);
+								_winText.setOutlineColor(Color::Red);
+								_winText.setOutlineThickness(2);
 							}
 						}
 						if (i == 1)
@@ -135,21 +138,29 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 
 								if (_winner == 1)
 								{
-									_winText.setString("Joueur 1 a gagne!");
-								}
-								else if (_winner == 2)
-								{
-									_winText.setString("Joueur 2 a gagne!");
+									_winText.setString("Victoire joueur 1!");
 								}
 								else
 								{
-									_winText.setString("Joueur 2 a gagne!");
+									_winText.setString("Victoire joueur 2!");
 								}
 							}
 							else
 							{
 								_joueurActuel = 3 - _joueurActuel;
-								_winText.setString("Tour du joueur " + to_string(_joueurActuel));
+								if (_joueurActuel == 1)
+								{
+									_winText.setString("Tour du joueur " + to_string(_joueurActuel));
+									_winText.setOutlineColor(Color::Red);
+									_winText.setOutlineThickness(2);
+								}
+								else
+								{
+									_winText.setString("Tour du joueur " + to_string(_joueurActuel));
+									_winText.setOutlineColor(Color::Yellow);
+									_winText.setOutlineThickness(2);
+								}
+								
 							}
 						}
 					}
@@ -292,10 +303,14 @@ void Game::draw(sf::RenderWindow& window)
 				if (_joueurActuel == 1)
 				{
 					_winText.setFillColor(Color::Red);
+					_winText.setOutlineColor(Color::Yellow);
+					_winText.setOutlineThickness(2);
 				}
 				else
 				{
 					_winText.setFillColor(Color::Yellow);
+					_winText.setOutlineColor(Color::Red);
+					_winText.setOutlineThickness(2);
 				}
 				
 			}
