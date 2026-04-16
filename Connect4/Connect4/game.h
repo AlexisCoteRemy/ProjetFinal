@@ -34,6 +34,7 @@ private:
     Text _winText;
     Text _title;
     Text _howTo;
+    Text _player;
 
     Clock _blink;
 
@@ -51,5 +52,5 @@ private:
 
     RectangleShape _textBox;
 
-
+    sf::String _playerName;
 };

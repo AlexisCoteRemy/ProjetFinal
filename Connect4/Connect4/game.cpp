@@ -89,7 +89,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 						{
 							_clickSound.play();
 
-							_state = 1;
+							_state = 4;
 							
 							if (!_gameStarted)
 							{
@@ -209,6 +209,38 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 				}
 
 			}
+			else
+			{
+				if (event.type == Event::KeyPressed)
+				{
+					if (event.key.code == Keyboard::Enter)
+					{
+						_state = 1;
+					}
+				}
+				if (event.type == sf::Event::TextEntered)
+				{
+					if (event.text.unicode == 8)
+					{
+						if (!_playerName.isEmpty())
+						{
+							_playerName.erase(_playerName.getSize());
+						}
+						else if (event.text.unicode < 128 && event.text.unicode >= 32)
+						{
+							_playerName += event.text.unicode;
+							_player.setString(_playerName);
+						}
+					}
+				}
+
+				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+				{
+					_clickSound.play();
+					_state = 0;
+				}
+
+			}
 		}
 	}
 }
@@ -271,7 +303,7 @@ void Game::hover(sf::RenderWindow& window)
 
 		_backButton.setWasHovered(isHovered);
 	}
-	else if (_state == 2 || _state == 3)
+	else if (_state == 2 || _state == 3 || _state == 4)
 	{
 		bool isHovered = _backButton.getGlobalBounds().contains(mousePos.x, mousePos.y);
 
@@ -362,7 +394,7 @@ void Game::draw(sf::RenderWindow& window)
 		window.draw(_textBox);
 		_backButton.draw(window);
 	}
-	else
+	else if (_state == 3)
 	{
 		//window.draw(howtoplay)
 		window.draw(_textBox);
@@ -371,6 +403,11 @@ void Game::draw(sf::RenderWindow& window)
 		window.draw(_title);
 		_howTo.setString("\nAppuyez sur les cercles blancs en haut de la grille pour faire \ntomber un jeton.\n\nLes jetons rouges sont pour le premier joueur, et les jetons\njaunes sont pour le deuxieme joueur.\n\nLe premier joueur à aligner quatre jetons dans n'importe\nquelle direction gagne!\n\nBonne chance, et rappelez-vous, c'est un jeu!");
 		window.draw(_howTo);
+		_backButton.draw(window);
+	}
+	else
+	{
+		window.draw(_player);
 		_backButton.draw(window);
 	}
 }
