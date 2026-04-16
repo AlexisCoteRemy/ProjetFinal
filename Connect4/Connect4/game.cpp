@@ -160,11 +160,6 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 								_winText.setFillColor(Color::White);
 								_winText.setOutlineColor(Color::Red);
 								_winText.setOutlineThickness(2);
-								_textBox.setSize(Vector2f(780, 50));
-								_textBox.setFillColor(Color(255, 255, 255, 175));
-								_textBox.setPosition(Vector2f(10, 200));
-								_textBox.setOutlineColor(Color::Red);
-								_textBox.setOutlineThickness(2);
 							}
 						}
 						if (i == 1)
@@ -228,6 +223,8 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 								else
 								{
 									_winText.setString("Partie nulle :( !");
+									FloatRect bounds = _winText.getLocalBounds();
+									_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
 									_joueurActuel = 3;
 								}
 							}
@@ -454,7 +451,6 @@ void Game::draw(sf::RenderWindow& window)
 		_title.setPosition(180, 5);
 		_title.setString("Entrez vos noms\n    d'utilisateurs");
 		window.draw(_title);
-		window.draw(_textBox);
 		if (_currentInputPlayer == 1)
 		{
 			_prompt.setString("Nom du joueur 1:");
