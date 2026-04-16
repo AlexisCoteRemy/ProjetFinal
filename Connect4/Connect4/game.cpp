@@ -279,7 +279,15 @@ void Game::draw(sf::RenderWindow& window)
 
 			if (_blinkState)
 			{
-				_winText.setFillColor(Color::Green);
+				if (_joueurActuel == 1)
+				{
+					_winText.setFillColor(Color::Red);
+				}
+				else
+				{
+					_winText.setFillColor(Color::Yellow);
+				}
+				
 			}
 			else
 			{
