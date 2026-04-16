@@ -27,6 +27,7 @@ Game::Game()
 	_gameOver = false;
 	_gameStarted = false;
 	_blinkState = false;
+	_currentInputPlayer = 1;
 
 	_winText.setFont(_font);
 	_winText.setCharacterSize(40);
