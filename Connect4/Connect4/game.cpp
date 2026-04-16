@@ -140,9 +140,14 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 								{
 									_winText.setString("Victoire joueur 1!");
 								}
-								else
+								else if (_winner == 2)
 								{
 									_winText.setString("Victoire joueur 2!");
+								}
+								else
+								{
+									_winText.setString("Partie nulle :( !");
+									_joueurActuel = 3;
 								}
 							}
 							else
@@ -306,10 +311,16 @@ void Game::draw(sf::RenderWindow& window)
 					_winText.setOutlineColor(Color::Yellow);
 					_winText.setOutlineThickness(2);
 				}
-				else
+				else if (_joueurActuel == 2)
 				{
 					_winText.setFillColor(Color::Yellow);
 					_winText.setOutlineColor(Color::Red);
+					_winText.setOutlineThickness(2);
+				}
+				else
+				{
+					_winText.setFillColor(Color::Black);
+					_winText.setOutlineColor(Color::Green);
 					_winText.setOutlineThickness(2);
 				}
 				
