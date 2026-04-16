@@ -32,8 +32,7 @@ private:
     Button _backButton;
 
     Text _winText;
-    Text _gameTitle;
-    Text _howTitle;
+    Text _title;
     Text _howTo;
 
     Clock _blink;

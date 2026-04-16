@@ -8,13 +8,11 @@ Game::Game()
 {
     _font.loadFromFile("arial.ttf");
 
-	_gameTitle.setFont(_font);
-	_gameTitle.setCharacterSize(60);
-	_gameTitle.setFillColor(Color::White);
-	_gameTitle.setOutlineColor(Color::Red);
-	_gameTitle.setOutlineThickness(2);
-	_gameTitle.setString("Connect4");
-	_gameTitle.setPosition(265, 50);
+	_title.setFont(_font);
+	_title.setCharacterSize(60);
+	_title.setFillColor(Color::White);
+	_title.setOutlineColor(Color::Red);
+	_title.setOutlineThickness(2);
 
     _buttons.push_back(Button(250, 150, 255, 150, 300, 50, "Jouer", _font));
     _buttons.push_back(Button(250, 210, 255, 210, 300, 50, "Classement", _font));
@@ -34,23 +32,19 @@ Game::Game()
 	_winText.setCharacterSize(40);
 	_winText.setPosition(250, 0);
 
-	_howTitle.setFont(_font);
-	_howTitle.setCharacterSize(60);
-	_howTitle.setPosition(200, 0);
-	_howTitle.setFillColor(Color::White);
-	_howTitle.setOutlineColor(Color::Red);
-	_howTitle.setOutlineThickness(2);
-	_howTitle.setString("Comment jouer");
-
 	_howTo.setFont(_font);
 	_howTo.setCharacterSize(20);
 	_howTo.setPosition(Vector2f((WINDOW_WIDTH - 590) / 2, (WINDOW_HEIGHT - 375) / 2));
 	_howTo.setFillColor(Color::Black);
+	_howTo.setOutlineColor(Color::White);
+	_howTo.setOutlineThickness(0.5);
 	
 
 	_textBox.setSize(Vector2f(600, 375));
 	_textBox.setFillColor(Color(255, 255, 255, 175));
 	_textBox.setPosition(Vector2f((WINDOW_WIDTH - 600) / 2, (WINDOW_HEIGHT - 375) / 2));
+	_textBox.setOutlineColor(Color::Red);
+	_textBox.setOutlineThickness(2);
 
 	_backgroundImage.loadFromFile("c4.jpg");
 	_backgroundSprite.setTexture(_backgroundImage);
@@ -231,7 +225,7 @@ void Game::hover(sf::RenderWindow& window)
 
 			if (isHovered)
 			{
-				_buttons[i].setFillColor(Color::Yellow);
+				_buttons[i].setFillColor(Color(255, 255, 0, 225));
 
 				if (!_buttons[i].wasHovered())
 				{
@@ -240,7 +234,7 @@ void Game::hover(sf::RenderWindow& window)
 			}
 			else
 			{
-				_buttons[i].setFillColor(Color::White);
+				_buttons[i].setFillColor(Color(255, 255, 255, 175));
 			}
 
 			_buttons[i].setWasHovered(isHovered);
@@ -263,7 +257,7 @@ void Game::hover(sf::RenderWindow& window)
 
 		if (isHovered)
 		{
-			_backButton.setFillColor(Color::Yellow);
+			_backButton.setFillColor(Color(255, 255, 0, 225));
 
 			if (!_backButton.wasHovered())
 			{
@@ -272,7 +266,7 @@ void Game::hover(sf::RenderWindow& window)
 		}
 		else
 		{
-			_backButton.setFillColor(Color::White);
+			_backButton.setFillColor(Color(255, 255, 255, 175));
 		}
 
 		_backButton.setWasHovered(isHovered);
@@ -283,7 +277,7 @@ void Game::hover(sf::RenderWindow& window)
 
 		if (isHovered)
 		{
-			_backButton.setFillColor(Color::Yellow);
+			_backButton.setFillColor(Color(255, 255, 0, 225));
 
 			if (!_backButton.wasHovered())
 			{
@@ -292,7 +286,7 @@ void Game::hover(sf::RenderWindow& window)
 		}
 		else
 		{
-			_backButton.setFillColor(Color::White);
+			_backButton.setFillColor(Color(255, 255, 255, 175));
 		}
 
 		_backButton.setWasHovered(isHovered);
@@ -305,7 +299,11 @@ void Game::draw(sf::RenderWindow& window)
 
 	if (_state == 0)
 	{
-		window.draw(_gameTitle);
+		
+
+		_title.setString("Connect4");
+		_title.setPosition(265, 50);
+		window.draw(_title);
 
 		for (int i = 0; i < _buttons.size(); i++)
 		{
@@ -358,13 +356,19 @@ void Game::draw(sf::RenderWindow& window)
 	else if (_state == 2)
 	{
 		//window.draw(leaderboard)
+		_title.setPosition(250, 5);
+		_title.setString("Classement");
+		window.draw(_title);
+		window.draw(_textBox);
 		_backButton.draw(window);
 	}
 	else
 	{
 		//window.draw(howtoplay)
 		window.draw(_textBox);
-		window.draw(_howTitle);
+		_title.setPosition(200, 5);
+		_title.setString("Comment jouer");
+		window.draw(_title);
 		_howTo.setString("\nAppuyez sur les cercles blancs en haut de la grille pour faire \ntomber un jeton.\n\nLes jetons rouges sont pour le premier joueur, et les jetons\njaunes sont pour le deuxieme joueur.\n\nLe premier joueur à aligner quatre jetons dans n'importe\nquelle direction gagne!\n\nBonne chance, et rappelez-vous, c'est un jeu!");
 		window.draw(_howTo);
 		_backButton.draw(window);
