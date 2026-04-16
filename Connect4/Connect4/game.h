@@ -21,6 +21,7 @@ private:
     int _state;
     int _joueurActuel;
     int _winner;
+    int _currentInputPlayer;
 
     bool _gameOver;
     bool _gameStarted;
@@ -35,6 +36,7 @@ private:
     Text _title;
     Text _howTo;
     Text _player;
+    Text _prompt;
 
     Clock _blink;
 
@@ -53,4 +55,6 @@ private:
     RectangleShape _textBox;
 
     sf::String _playerName;
+    sf::String _player1Name;
+    sf::String _player2Name;
 };

@@ -30,7 +30,7 @@ Game::Game()
 
 	_winText.setFont(_font);
 	_winText.setCharacterSize(40);
-	_winText.setPosition(250, 0);
+	_winText.setPosition(WINDOW_WIDTH / 2.0f, 0);
 
 	_howTo.setFont(_font);
 	_howTo.setCharacterSize(20);
@@ -39,12 +39,21 @@ Game::Game()
 	_howTo.setOutlineColor(Color::White);
 	_howTo.setOutlineThickness(0.5);
 	
-
 	_textBox.setSize(Vector2f(600, 375));
 	_textBox.setFillColor(Color(255, 255, 255, 175));
 	_textBox.setPosition(Vector2f((WINDOW_WIDTH - 600) / 2, (WINDOW_HEIGHT - 375) / 2));
 	_textBox.setOutlineColor(Color::Red);
 	_textBox.setOutlineThickness(2);
+
+	_player.setFont(_font);
+	_player.setCharacterSize(40);
+	_player.setFillColor(Color::Black);
+	_player.setPosition(325, 200);
+
+	_prompt.setFont(_font);
+	_prompt.setCharacterSize(40);
+	_prompt.setFillColor(Color::Black);
+	_prompt.setPosition(10, 200);
 
 	_backgroundImage.loadFromFile("c4.jpg");
 	_backgroundSprite.setTexture(_backgroundImage);
@@ -69,6 +78,46 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 {
 	if (event.type == Event::Closed)
 		window.close();
+	if (_state == 4)
+	{
+		if (event.type == Event::KeyPressed)
+		{
+			if (event.key.code == Keyboard::Enter)
+			{
+				if (_currentInputPlayer == 1)
+				{
+					_player1Name = _playerName;
+					_playerName = "";
+					_currentInputPlayer = 2;
+				}
+				else
+				{
+					_player2Name = _playerName;
+					_state = 1;
+					_joueurActuel = 1;
+					_winText.setString("Tour de " + _player1Name);
+					FloatRect bounds = _winText.getLocalBounds();
+					_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
+				}
+			}
+		}
+		if (event.type == sf::Event::TextEntered)
+		{
+			if (event.text.unicode == 8)
+			{
+				if (!_playerName.isEmpty())
+				{
+					_playerName.erase(_playerName.getSize() - 1);
+				}
+			}
+			else if (event.text.unicode < 128 && event.text.unicode >= 32)
+			{
+				_playerName += event.text.unicode;
+			}
+
+			_player.setString(_playerName);
+		}
+	}
 	if (event.type == Event::MouseButtonPressed)
 	{
 		if (event.mouseButton.button == Mouse::Left)
@@ -89,19 +138,32 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 						{
 							_clickSound.play();
 
-							_state = 4;
+							if (_player1Name.isEmpty() || _player2Name.isEmpty())
+							{
+								_state = 4;
+							}
+							else
+							{
+								_state = 1;
+							}
 							
 							if (!_gameStarted)
 							{
 								_grid.initializeGrid();
 								_gameOver = false;
 								_joueurActuel = 1;
-								_winText.setString("Tour du joueur " + to_string(_joueurActuel));
+								_currentInputPlayer = 1;
+								_winText.setString("Tour de " + _player1Name);
 								_gameStarted = true;
 								_blinkState = false;
 								_winText.setFillColor(Color::White);
 								_winText.setOutlineColor(Color::Red);
 								_winText.setOutlineThickness(2);
+								_textBox.setSize(Vector2f(780, 50));
+								_textBox.setFillColor(Color(255, 255, 255, 175));
+								_textBox.setPosition(Vector2f(10, 200));
+								_textBox.setOutlineColor(Color::Red);
+								_textBox.setOutlineThickness(2);
 							}
 						}
 						if (i == 1)
@@ -152,11 +214,15 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 
 								if (_winner == 1)
 								{
-									_winText.setString("Victoire joueur 1!");
+									_winText.setString("Victoire de " + _player1Name);
+									FloatRect bounds = _winText.getLocalBounds();
+									_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
 								}
 								else if (_winner == 2)
 								{
-									_winText.setString("Victoire joueur 2!");
+									_winText.setString("Victoire de " + _player2Name);
+									FloatRect bounds = _winText.getLocalBounds();
+									_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
 								}
 								else
 								{
@@ -169,15 +235,19 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 								_joueurActuel = 3 - _joueurActuel;
 								if (_joueurActuel == 1)
 								{
-									_winText.setString("Tour du joueur " + to_string(_joueurActuel));
+									_winText.setString("Tour de " +  _player1Name);
 									_winText.setOutlineColor(Color::Red);
 									_winText.setOutlineThickness(2);
+									FloatRect bounds = _winText.getLocalBounds();
+									_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
 								}
 								else
 								{
-									_winText.setString("Tour du joueur " + to_string(_joueurActuel));
+									_winText.setString("Tour de " + _player2Name);
 									_winText.setOutlineColor(Color::Yellow);
 									_winText.setOutlineThickness(2);
+									FloatRect bounds = _winText.getLocalBounds();
+									_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
 								}
 								
 							}
@@ -201,45 +271,20 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 
 			else if (_state == 3)
 			{
-
 				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 				{
 					_clickSound.play();
 					_state = 0;
 				}
-
 			}
+
 			else
 			{
-				if (event.type == Event::KeyPressed)
-				{
-					if (event.key.code == Keyboard::Enter)
-					{
-						_state = 1;
-					}
-				}
-				if (event.type == sf::Event::TextEntered)
-				{
-					if (event.text.unicode == 8)
-					{
-						if (!_playerName.isEmpty())
-						{
-							_playerName.erase(_playerName.getSize());
-						}
-						else if (event.text.unicode < 128 && event.text.unicode >= 32)
-						{
-							_playerName += event.text.unicode;
-							_player.setString(_playerName);
-						}
-					}
-				}
-
 				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 				{
 					_clickSound.play();
 					_state = 0;
 				}
-
 			}
 		}
 	}
@@ -331,8 +376,6 @@ void Game::draw(sf::RenderWindow& window)
 
 	if (_state == 0)
 	{
-		
-
 		_title.setString("Connect4");
 		_title.setPosition(265, 50);
 		window.draw(_title);
@@ -407,6 +450,19 @@ void Game::draw(sf::RenderWindow& window)
 	}
 	else
 	{
+		_title.setPosition(180, 5);
+		_title.setString("Entrez vos noms\n    d'utilisateurs");
+		window.draw(_title);
+		window.draw(_textBox);
+		if (_currentInputPlayer == 1)
+		{
+			_prompt.setString("Nom du joueur 1:");
+		}
+		else
+		{
+			_prompt.setString("Nom du joueur 2:");
+		}
+		window.draw(_prompt);
 		window.draw(_player);
 		_backButton.draw(window);
 	}
