@@ -72,4 +72,9 @@
       <Filter>Fichiers sources</Filter>
     </Media>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="classement.txt">
+      <Filter>Fichiers sources</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

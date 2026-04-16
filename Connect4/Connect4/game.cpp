@@ -2,6 +2,8 @@
 
 #include "mesConstantes.h"
 
+#include <fstream>
+
 using namespace std;
 
 Game::Game()
