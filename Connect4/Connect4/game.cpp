@@ -456,10 +456,14 @@ void Game::draw(sf::RenderWindow& window)
 		if (_currentInputPlayer == 1)
 		{
 			_prompt.setString("Nom du joueur 1:");
+			_prompt.setFillColor(Color::White);
+			_prompt.setOutlineThickness(2);
 		}
 		else
 		{
 			_prompt.setString("Nom du joueur 2:");
+			_prompt.setFillColor(Color::White);
+			_prompt.setOutlineThickness(2);
 		}
 		window.draw(_prompt);
 		window.draw(_player);
