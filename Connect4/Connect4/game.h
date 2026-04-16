@@ -26,12 +26,13 @@ private:
     bool _gameStarted;
     bool _blinkState;
 
-    sf::Font _font;
+    Font _font;
 
     std::vector<Button> _buttons;
     Button _backButton;
 
-    sf::Text _winText;
+    Text _winText;
+    Text _gameTitle;
 
     Clock _blink;
 

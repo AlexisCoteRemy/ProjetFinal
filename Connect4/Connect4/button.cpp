@@ -4,7 +4,6 @@ Button::Button(int x, int y, int r)
 {
 	_circle.setRadius(r);
 	_circle.setPosition(x, y);
-	_circle.setFillColor(Color::White);
 
 	_isCircle = true;
 	_wasHovered = false;

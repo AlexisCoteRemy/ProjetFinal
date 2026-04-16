@@ -6,6 +6,14 @@ Game::Game()
 {
     _font.loadFromFile("arial.ttf");
 
+	_gameTitle.setFont(_font);
+	_gameTitle.setCharacterSize(60);
+	_gameTitle.setFillColor(Color::White);
+	_gameTitle.setOutlineColor(Color::Red);
+	_gameTitle.setOutlineThickness(2);
+	_gameTitle.setString("Connect4");
+	_gameTitle.setPosition(265, 50);
+
     _buttons.push_back(Button(250, 150, 255, 150, 300, 50, "Jouer", _font));
     _buttons.push_back(Button(250, 210, 255, 210, 300, 50, "Classement", _font));
     _buttons.push_back(Button(250, 270, 255, 270, 300, 50, "Comment jouer", _font));
@@ -259,6 +267,8 @@ void Game::draw(sf::RenderWindow& window)
 
 	if (_state == 0)
 	{
+		window.draw(_gameTitle);
+
 		for (int i = 0; i < _buttons.size(); i++)
 		{
 			_buttons[i].draw(window);
