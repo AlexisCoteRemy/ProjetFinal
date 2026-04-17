@@ -1,6 +1,7 @@
 #include "game.h"
 
 #include "mesConstantes.h"
+#include "mesFonctions.h"
 
 #include <fstream>
 
@@ -42,9 +43,9 @@ Game::Game()
 	_howTo.setOutlineColor(Color::White);
 	_howTo.setOutlineThickness(0.5);
 	
-	_textBox.setSize(Vector2f(600, 375));
+	_textBox.setSize(Vector2f(TEXTBOX_W, TEXTBOX_Y));
 	_textBox.setFillColor(Color(255, 255, 255, 175));
-	_textBox.setPosition(Vector2f((WINDOW_WIDTH - 600) / 2, (WINDOW_HEIGHT - 375) / 2));
+	_textBox.setPosition(Vector2f((WINDOW_WIDTH - TEXTBOX_W) / 2, (WINDOW_HEIGHT - TEXTBOX_Y) / 2));
 	_textBox.setOutlineColor(Color::Red);
 	_textBox.setOutlineThickness(2);
 
@@ -378,7 +379,7 @@ void Game::draw(sf::RenderWindow& window)
 	if (_state == 0)
 	{
 		_title.setString("Connect4");
-		_title.setPosition(265, 50);
+		centerText(_title, WINDOW_WIDTH / 2.0f, 80);
 		window.draw(_title);
 
 		for (int i = 0; i < _buttons.size(); i++)
@@ -431,9 +432,8 @@ void Game::draw(sf::RenderWindow& window)
 	}
 	else if (_state == 2)
 	{
-		//window.draw(leaderboard)
-		_title.setPosition(250, 5);
 		_title.setString("Classement");
+		centerText(_title, WINDOW_WIDTH / 2.0f, 10);
 		window.draw(_title);
 		window.draw(_textBox);
 		_backButton.draw(window);
@@ -442,10 +442,13 @@ void Game::draw(sf::RenderWindow& window)
 	{
 		//window.draw(howtoplay)
 		window.draw(_textBox);
-		_title.setPosition(200, 5);
 		_title.setString("Comment jouer");
+		centerText(_title, WINDOW_WIDTH / 2.0f, 10);
 		window.draw(_title);
+
 		_howTo.setString("\nAppuyez sur les cercles blancs en haut de la grille pour faire \ntomber un jeton.\n\nLes jetons rouges sont pour le premier joueur, et les jetons\njaunes sont pour le deuxieme joueur.\n\nLe premier joueur à aligner quatre jetons dans n'importe\nquelle direction gagne!\n\nBonne chance, et rappelez-vous, c'est un jeu!");
+		_howTo.setOutlineColor(Color::White);
+		_howTo.setOutlineThickness(2);
 		window.draw(_howTo);
 		_backButton.draw(window);
 	}

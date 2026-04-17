@@ -9,3 +9,5 @@ static const int GRID_WIDTH = COLS * CELLSIZE;
 static const int GRID_HEIGHT = ROWS * CELLSIZE;
 static const int CENTER_X = (WINDOW_WIDTH - GRID_WIDTH) / 2;
 static const int CENTER_Y = (WINDOW_HEIGHT - GRID_HEIGHT) / 2;
+static const int TEXTBOX_W = 600;
+static const int TEXTBOX_Y = 375;
