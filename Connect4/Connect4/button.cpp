@@ -17,7 +17,7 @@ Button::Button(int bX, int bY, int tX, int tY, int w, int h, std::string nom, Fo
 	_button.setOutlineThickness(2);
 	_button.setPosition(bX, bY);
 
-	_texte.setCharacterSize(40);
+	_texte.setCharacterSize(35);
 	_texte.setString(nom);
 	_texte.setFillColor(Color::Black);
 	_texte.setPosition(tX, tY);
