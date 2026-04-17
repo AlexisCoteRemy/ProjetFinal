@@ -4,12 +4,13 @@
 #include "mesFonctions.h"
 
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
 Game::Game()
 {
-    _font.loadFromFile("arial.ttf");
+	_font.loadFromFile("arial.ttf");
 
 	_title.setFont(_font);
 	_title.setCharacterSize(60);
@@ -17,10 +18,12 @@ Game::Game()
 	_title.setOutlineColor(Color::Red);
 	_title.setOutlineThickness(2);
 
-    _buttons.push_back(Button(250, 150, 255, 150, 300, 50, "Jouer", _font));
-    _buttons.push_back(Button(250, 210, 255, 210, 300, 50, "Classement", _font));
-    _buttons.push_back(Button(250, 270, 255, 270, 300, 50, "Comment jouer", _font));
-    _buttons.push_back(Button(250, 330, 255, 330, 300, 50, "Quitter", _font));
+	std::vector<string> labels = { "Jouer", "Classement", "Comment joueur", "Quitter" };
+
+	for (int i = 0; i < labels.size(); i++)
+	{
+		_buttons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX, START_Y_MAIN_BUTTON +SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labels[i], _font));
+	}
 
 	_backButton = Button((WINDOW_WIDTH - 125) / 2, 500, (WINDOW_WIDTH - 125) / 2, 500, 125, 50, "Retour", _font);
 
@@ -34,7 +37,6 @@ Game::Game()
 
 	_winText.setFont(_font);
 	_winText.setCharacterSize(40);
-	_winText.setPosition(WINDOW_WIDTH / 2.0f, 0);
 
 	_howTo.setFont(_font);
 	_howTo.setCharacterSize(20);
@@ -101,8 +103,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 					_state = 1;
 					_joueurActuel = 1;
 					_winText.setString("Tour de " + _player1Name);
-					FloatRect bounds = _winText.getLocalBounds();
-					_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
+					centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
 				}
 			}
 		}
@@ -159,6 +160,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 								_joueurActuel = 1;
 								_currentInputPlayer = 1;
 								_winText.setString("Tour de " + _player1Name);
+								centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
 								_gameStarted = true;
 								_blinkState = false;
 								_winText.setFillColor(Color::White);
@@ -215,20 +217,17 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 								if (_winner == 1)
 								{
 									_winText.setString("Victoire de " + _player1Name);
-									FloatRect bounds = _winText.getLocalBounds();
-									_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
+									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
 								}
 								else if (_winner == 2)
 								{
 									_winText.setString("Victoire de " + _player2Name);
-									FloatRect bounds = _winText.getLocalBounds();
-									_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
+									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
 								}
 								else
 								{
 									_winText.setString("Partie nulle :( !");
-									FloatRect bounds = _winText.getLocalBounds();
-									_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
+									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
 									_joueurActuel = 3;
 								}
 							}
@@ -240,16 +239,14 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 									_winText.setString("Tour de " +  _player1Name);
 									_winText.setOutlineColor(Color::Red);
 									_winText.setOutlineThickness(2);
-									FloatRect bounds = _winText.getLocalBounds();
-									_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
+									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
 								}
 								else
 								{
 									_winText.setString("Tour de " + _player2Name);
 									_winText.setOutlineColor(Color::Yellow);
 									_winText.setOutlineThickness(2);
-									FloatRect bounds = _winText.getLocalBounds();
-									_winText.setOrigin(bounds.left + bounds.width / 2.0f, 0);
+									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
 								}
 								
 							}
@@ -440,7 +437,6 @@ void Game::draw(sf::RenderWindow& window)
 	}
 	else if (_state == 3)
 	{
-		//window.draw(howtoplay)
 		window.draw(_textBox);
 		_title.setString("Comment jouer");
 		centerText(_title, WINDOW_WIDTH / 2.0f, 10);
