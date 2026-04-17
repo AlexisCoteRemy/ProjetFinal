@@ -94,12 +94,14 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 				if (_currentInputPlayer == 1)
 				{
 					_player1Name = _playerName;
+					addUser("classement.txt", _playerName);
 					_playerName = "";
 					_currentInputPlayer = 2;
 				}
 				else
 				{
 					_player2Name = _playerName;
+					addUser("classement.txt", _playerName);
 					_state = 1;
 					_joueurActuel = 1;
 					_winText.setString("Tour de " + _player1Name);
@@ -218,11 +220,13 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 								{
 									_winText.setString("Victoire de " + _player1Name);
 									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
+									updateVictory("classement.txt", _player1Name);
 								}
 								else if (_winner == 2)
 								{
 									_winText.setString("Victoire de " + _player2Name);
 									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
+									updateVictory("classement.txt", _player2Name);
 								}
 								else
 								{
