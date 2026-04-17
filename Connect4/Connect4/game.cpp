@@ -50,7 +50,8 @@ Game::Game()
 
 	_player.setFont(_font);
 	_player.setCharacterSize(40);
-	_player.setFillColor(Color::Black);
+	_player.setFillColor(Color::White);
+	_player.setOutlineThickness(2);
 	_player.setPosition(325, 200);
 
 	_prompt.setFont(_font);
