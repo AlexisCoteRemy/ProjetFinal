@@ -454,8 +454,8 @@ void Game::draw(sf::RenderWindow& window)
 	}
 	else
 	{
-		_title.setPosition(180, 5);
 		_title.setString("Entrez vos noms\n    d'utilisateurs");
+		centerText(_title, WINDOW_WIDTH / 2, 10);
 		window.draw(_title);
 		if (_currentInputPlayer == 1)
 		{
