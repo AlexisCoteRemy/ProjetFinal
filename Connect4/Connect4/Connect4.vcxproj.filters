@@ -33,6 +33,24 @@
     <ClCompile Include="mesFonctions.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Classement.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CommentJouer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Jeu.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Joueur.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NameInput.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grid.h">
@@ -50,37 +68,58 @@
     <ClInclude Include="mesFonctions.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Classement.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CommentJouer.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Jeu.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Joueur.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="NameInput.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="clickSound.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="hoverSound.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="mainMusic.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="victorySound.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
     <Font Include="arial.ttf">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers de ressources</Filter>
     </Font>
   </ItemGroup>
   <ItemGroup>
     <Image Include="c4.jpg">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="hoverSound.wav">
-      <Filter>Fichiers sources</Filter>
-    </Media>
-    <Media Include="clickSound.wav">
-      <Filter>Fichiers sources</Filter>
-    </Media>
-    <Media Include="mainMusic.wav">
-      <Filter>Fichiers sources</Filter>
-    </Media>
-    <Media Include="victorySound.wav">
-      <Filter>Fichiers sources</Filter>
-    </Media>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="classement.txt">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers de ressources</Filter>
     </Text>
   </ItemGroup>
 </Project>

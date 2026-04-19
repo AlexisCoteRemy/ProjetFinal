@@ -126,18 +126,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="button.cpp" />
+    <ClCompile Include="Classement.cpp" />
+    <ClCompile Include="CommentJouer.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="grid.cpp" />
+    <ClCompile Include="Jeu.cpp" />
+    <ClCompile Include="Joueur.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="mesConstantes.cpp" />
     <ClCompile Include="mesFonctions.cpp" />
+    <ClCompile Include="NameInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="button.h" />
+    <ClInclude Include="Classement.h" />
+    <ClInclude Include="CommentJouer.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="grid.h" />
+    <ClInclude Include="Jeu.h" />
+    <ClInclude Include="Joueur.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="mesConstantes.h" />
     <ClInclude Include="mesFonctions.h" />
+    <ClInclude Include="NameInput.h" />
+    <ClInclude Include="State.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,42 +1,45 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include <vector>
-#include <iostream>
-
-#include "button.h"
-#include "game.h"
-#include "grid.h"
-
-using namespace sf;
-using namespace std;
+#include "Game.h"
 
 int main() {
-	RenderWindow window(VideoMode(800, 588), "Connect4");
+	sf::RenderWindow window(sf::VideoMode(800, 608), "Ma fenêtre");
 	window.setFramerateLimit(60);
 
-	SoundBuffer mainMusicBuffer;
-	mainMusicBuffer.loadFromFile("mainMusic.wav");
+	sf::Texture backgroudImage;
+	backgroudImage.loadFromFile("c4.jpg");
 
-	Sound mainMusic;
-	mainMusic.setBuffer(mainMusicBuffer);
-	mainMusic.setVolume(10);
+	sf::Sprite backgroundSprite;
+	backgroundSprite.setTexture(backgroudImage);
+	backgroundSprite.setColor(sf::Color(255, 255, 255, 75));
+
+	sf::SoundBuffer mainBuffer;
+	mainBuffer.loadFromFile("mainMusic.wav");
+
+	sf::Sound mainMusic;
+	mainMusic.setBuffer(mainBuffer);
 	mainMusic.setLoop(true);
+	mainMusic.setVolume(10);
 	mainMusic.play();
 
 	Game game;
 
 	while (window.isOpen())
 	{
-		Event event;
+		sf::Event event;
+
 		while (window.pollEvent(event))
 		{
 			game.handleEvent(event, window);
 		}
 
-		window.clear(Color::Black);
+		window.clear();
+		window.draw(backgroundSprite);
 		game.hover(window);
 		game.draw(window);
 		window.display();
 	}
-	return 0;
+
+
 }
+

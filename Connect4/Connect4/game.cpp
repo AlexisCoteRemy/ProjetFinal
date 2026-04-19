@@ -1,476 +1,85 @@
-#include "game.h"
+#include "Game.h"
 
-#include "mesConstantes.h"
-#include "mesFonctions.h"
-
-#include <fstream>
-#include <vector>
-
+using namespace sf;
 using namespace std;
 
-Game::Game()
+Game::Game() : _nameInput(_joueur), _jeu(_joueur)
 {
-	_font.loadFromFile("arial.ttf");
-
-	_title.setFont(_font);
-	_title.setCharacterSize(60);
-	_title.setFillColor(Color::White);
-	_title.setOutlineColor(Color::Red);
-	_title.setOutlineThickness(2);
-
-	std::vector<string> labels = { "Jouer", "Classement", "Comment joueur", "Quitter" };
-
-	for (int i = 0; i < labels.size(); i++)
-	{
-		_buttons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX, START_Y_MAIN_BUTTON +SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labels[i], _font));
-	}
-
-	_backButton = Button((WINDOW_WIDTH - 125) / 2, 500, (WINDOW_WIDTH - 125) / 2, 500, 125, 50, "Retour", _font);
-
-	_state = 0;
-	_joueurActuel = 1;
-	_winner = 0;
-	_gameOver = false;
-	_gameStarted = false;
-	_blinkState = false;
-	_currentInputPlayer = 1;
-
-	_winText.setFont(_font);
-	_winText.setCharacterSize(40);
-
-	_howTo.setFont(_font);
-	_howTo.setCharacterSize(20);
-	_howTo.setPosition(Vector2f((WINDOW_WIDTH - 590) / 2, (WINDOW_HEIGHT - 375) / 2));
-	_howTo.setFillColor(Color::Black);
-	_howTo.setOutlineColor(Color::White);
-	_howTo.setOutlineThickness(0.5);
-	
-	_textBox.setSize(Vector2f(TEXTBOX_W, TEXTBOX_Y));
-	_textBox.setFillColor(Color(255, 255, 255, 175));
-	_textBox.setPosition(Vector2f((WINDOW_WIDTH - TEXTBOX_W) / 2, (WINDOW_HEIGHT - TEXTBOX_Y) / 2));
-	_textBox.setOutlineColor(Color::Red);
-	_textBox.setOutlineThickness(2);
-
-	_player.setFont(_font);
-	_player.setCharacterSize(40);
-	_player.setFillColor(Color::White);
-	_player.setOutlineThickness(2);
-	_player.setPosition(325, 200);
-
-	_prompt.setFont(_font);
-	_prompt.setCharacterSize(40);
-	_prompt.setFillColor(Color::Black);
-	_prompt.setPosition(10, 200);
-
-	_backgroundImage.loadFromFile("c4.jpg");
-	_backgroundSprite.setTexture(_backgroundImage);
-	_backgroundSprite.setColor(Color(255,255,255,75));
-
-	_hoverBuffer.loadFromFile("hoverSound.wav");
-	_hoverSound.setBuffer(_hoverBuffer);
-	_hoverSound.setVolume(10);
-
-	_clickBuffer.loadFromFile("clickSound.wav");
-	_clickSound.setBuffer(_clickBuffer);
-	_clickSound.setVolume(10);
-
-	_victoryBuffer.loadFromFile("victorySound.wav");
-	_victorySound.setBuffer(_victoryBuffer);
-	_victorySound.setVolume(10);
-
-    _grid.initializeGrid();
 }
 
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 {
-	if (event.type == Event::Closed)
-		window.close();
-	if (_state == 4)
-	{
-		if (event.type == Event::KeyPressed)
-		{
-			if (event.key.code == Keyboard::Enter)
-			{
-				if (_currentInputPlayer == 1)
-				{
-					_player1Name = _playerName;
-					addUser("classement.txt", _playerName);
-					_playerName = "";
-					_currentInputPlayer = 2;
-				}
-				else
-				{
-					_player2Name = _playerName;
-					addUser("classement.txt", _playerName);
-					_state = 1;
-					_joueurActuel = 1;
-					_winText.setString("Tour de " + _player1Name);
-					centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
-				}
-			}
-		}
-		if (event.type == sf::Event::TextEntered)
-		{
-			if (event.text.unicode == 8)
-			{
-				if (!_playerName.isEmpty())
-				{
-					_playerName.erase(_playerName.getSize() - 1);
-				}
-			}
-			else if (event.text.unicode < 128 && event.text.unicode >= 32)
-			{
-				_playerName += event.text.unicode;
-			}
+    if (event.type == sf::Event::Closed)
+        window.close();
 
-			_player.setString(_playerName);
-		}
-	}
-	if (event.type == Event::MouseButtonPressed)
-	{
-		if (event.mouseButton.button == Mouse::Left)
-		{
-			Vector2i mousePos = Mouse::getPosition(window);
+    bool needName = (_joueur.getPlayer1Name().isEmpty() || _joueur.getPlayer2Name().isEmpty());;
 
-			// ==== MENU ====
-
-			if (_state == 0)
-			{
-				for (int i = 0; i < _buttons.size(); i++)
-				{
-					bool isClicked = _buttons[i].getGlobalBounds().contains(mousePos.x, mousePos.y);
-
-					if (isClicked)
-					{
-						if (i == 0)
-						{
-							_clickSound.play();
-
-							if (_player1Name.isEmpty() || _player2Name.isEmpty())
-							{
-								_state = 4;
-							}
-							else
-							{
-								_state = 1;
-							}
-							
-							if (!_gameStarted)
-							{
-								_grid.initializeGrid();
-								_gameOver = false;
-								_joueurActuel = 1;
-								_currentInputPlayer = 1;
-								_winText.setString("Tour de " + _player1Name);
-								centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
-								_gameStarted = true;
-								_blinkState = false;
-								_winText.setFillColor(Color::White);
-								_winText.setOutlineColor(Color::Red);
-								_winText.setOutlineThickness(2);
-							}
-						}
-						if (i == 1)
-						{
-							_clickSound.play();
-							_state = 2;
-						}
-						if (i == 2)
-						{
-							_clickSound.play();
-							_state = 3;
-						}
-						if (i == 3)
-						{
-							_clickSound.play();
-							window.close();
-						}
-					}
-				}
-			}
-
-			// ==== JEU ====
-
-			else if (_state == 1)
-			{
-				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
-				{
-					_clickSound.play();
-					_state = 0;
-				}
-				else if (!_gameOver)
-				{
-					int col = _grid.clicked(mousePos);
-
-					if (col != -1)
-					{
-						_clickSound.play();
-
-						if (_grid.drop(col, _joueurActuel))
-						{
-							_winner = _grid.getWinner();
-
-							if (_winner != 0 || _grid.isFull())
-							{
-								_victorySound.play();
-								_gameOver = true;
-								_gameStarted = false;
-
-								if (_winner == 1)
-								{
-									_winText.setString("Victoire de " + _player1Name);
-									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
-									updateVictory("classement.txt", _player1Name);
-								}
-								else if (_winner == 2)
-								{
-									_winText.setString("Victoire de " + _player2Name);
-									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
-									updateVictory("classement.txt", _player2Name);
-								}
-								else
-								{
-									_winText.setString("Partie nulle :( !");
-									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
-									_joueurActuel = 3;
-								}
-							}
-							else
-							{
-								_joueurActuel = 3 - _joueurActuel;
-								if (_joueurActuel == 1)
-								{
-									_winText.setString("Tour de " +  _player1Name);
-									_winText.setOutlineColor(Color::Red);
-									_winText.setOutlineThickness(2);
-									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
-								}
-								else
-								{
-									_winText.setString("Tour de " + _player2Name);
-									_winText.setOutlineColor(Color::Yellow);
-									_winText.setOutlineThickness(2);
-									centerText(_winText, WINDOW_WIDTH / 2.0f, 5);
-								}
-								
-							}
-						}
-					}
-				}
-			}
-
-			// ==== LEADERBOARD ====
-
-			else if (_state == 2)
-			{
-				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
-				{
-					_clickSound.play();
-					_state = 0;
-				}
-			}
-
-			// ==== HOW TO PLAY ====
-
-			else if (_state == 3)
-			{
-				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
-				{
-					_clickSound.play();
-					_state = 0;
-				}
-			}
-
-			else
-			{
-				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
-				{
-					_clickSound.play();
-					_state = 0;
-				}
-			}
-		}
-	}
-}
-
-void Game::hover(sf::RenderWindow& window)
-{
-	Vector2i mousePos = Mouse::getPosition(window);
-
-	if (_state == 0)
-	{
-		for (int i = 0; i < _buttons.size(); i++)
-		{
-			bool isHovered = _buttons[i].getGlobalBounds().contains(mousePos.x, mousePos.y);
-
-			if (isHovered)
-			{
-				_buttons[i].setFillColor(Color(255, 255, 0, 225));
-
-				if (!_buttons[i].wasHovered())
-				{
-					_hoverSound.play();
-				}
-			}
-			else
-			{
-				_buttons[i].setFillColor(Color(255, 255, 255, 175));
-			}
-
-			_buttons[i].setWasHovered(isHovered);
-		}
-	}
-	else if (_state == 1)
-	{
-		int col = _grid.clicked(mousePos);
-
-		if (col != -1)
-		{
-			_grid.hoverColumn(col, _joueurActuel);
-		}
-		else
-		{
-			_grid.hoverColumn(-1, _joueurActuel);
-		}
-
-		bool isHovered = _backButton.getGlobalBounds().contains(mousePos.x, mousePos.y);
-
-		if (isHovered)
-		{
-			_backButton.setFillColor(Color(255, 255, 0, 225));
-
-			if (!_backButton.wasHovered())
-			{
-				_hoverSound.play();
-			}
-		}
-		else
-		{
-			_backButton.setFillColor(Color(255, 255, 255, 175));
-		}
-
-		_backButton.setWasHovered(isHovered);
-	}
-	else if (_state == 2 || _state == 3 || _state == 4)
-	{
-		bool isHovered = _backButton.getGlobalBounds().contains(mousePos.x, mousePos.y);
-
-		if (isHovered)
-		{
-			_backButton.setFillColor(Color(255, 255, 0, 225));
-
-			if (!_backButton.wasHovered())
-			{
-				_hoverSound.play();
-			}
-		}
-		else
-		{
-			_backButton.setFillColor(Color(255, 255, 255, 175));
-		}
-
-		_backButton.setWasHovered(isHovered);
-	}
+    if (_state == MENU)
+    {
+        _menu.handleEvent(event, window, _state, needName);
+    }
+    else if (_state == LEADERBOARD)
+    {
+        _classement.handleEvent(event, window, _state);
+    }
+    else if (_state == HOW_TO)
+    {
+        _commentJouer.handleEvent(event, window, _state);
+    }
+    else if (_state == NAME_INPUT)
+    {
+        _nameInput.handleEvent(event, window, _state);
+    }
+    else
+    {
+        _jeu.handleEvent(event, window, _state);
+    }
 }
 
 void Game::draw(sf::RenderWindow& window)
 {
-	window.draw(_backgroundSprite);
+    if (_state == MENU)
+    {
+        _menu.draw(window);
+    }
+    else if (_state == LEADERBOARD)
+    {
+        _classement.draw(window);
+    }
+    else if (_state == HOW_TO)
+    {
+        _commentJouer.draw(window);
+    }
+    else if (_state == NAME_INPUT)
+    {
+        _nameInput.draw(window);
+    }
+    else
+    {
+        _jeu.draw(window);
+    }
+}
 
-	if (_state == 0)
-	{
-		_title.setString("Connect4");
-		centerText(_title, WINDOW_WIDTH / 2.0f, 80);
-		window.draw(_title);
-
-		for (int i = 0; i < _buttons.size(); i++)
-		{
-			_buttons[i].draw(window);
-		}
-	}
-	else if (_state == 1)
-	{
-		window.draw(_winText);
-		_grid.draw(window);
-
-		if (_gameOver)
-		{
-			if (_blink.getElapsedTime().asMilliseconds() >= 300)
-			{
-				_blinkState = !_blinkState;
-				_blink.restart();
-			}
-
-			if (_blinkState)
-			{
-				if (_joueurActuel == 1)
-				{
-					_winText.setFillColor(Color::Red);
-					_winText.setOutlineColor(Color::Yellow);
-					_winText.setOutlineThickness(2);
-				}
-				else if (_joueurActuel == 2)
-				{
-					_winText.setFillColor(Color::Yellow);
-					_winText.setOutlineColor(Color::Red);
-					_winText.setOutlineThickness(2);
-				}
-				else
-				{
-					_winText.setFillColor(Color::Black);
-					_winText.setOutlineColor(Color::Green);
-					_winText.setOutlineThickness(2);
-				}
-				
-			}
-			else
-			{
-				_winText.setFillColor(Color::White);
-			}
-		}
-
-		_backButton.draw(window);
-	}
-	else if (_state == 2)
-	{
-		_title.setString("Classement");
-		centerText(_title, WINDOW_WIDTH / 2.0f, 10);
-		window.draw(_title);
-		window.draw(_textBox);
-		_backButton.draw(window);
-	}
-	else if (_state == 3)
-	{
-		window.draw(_textBox);
-		_title.setString("Comment jouer");
-		centerText(_title, WINDOW_WIDTH / 2.0f, 10);
-		window.draw(_title);
-
-		_howTo.setString("\nAppuyez sur les cercles blancs en haut de la grille pour faire \ntomber un jeton.\n\nLes jetons rouges sont pour le premier joueur, et les jetons\njaunes sont pour le deuxieme joueur.\n\nLe premier joueur à aligner quatre jetons dans n'importe\nquelle direction gagne!\n\nBonne chance, et rappelez-vous, c'est un jeu!");
-		_howTo.setOutlineColor(Color::White);
-		_howTo.setOutlineThickness(2);
-		window.draw(_howTo);
-		_backButton.draw(window);
-	}
-	else
-	{
-		_title.setString("Entrez vos noms\n    d'utilisateurs");
-		centerText(_title, WINDOW_WIDTH / 2, 10);
-		window.draw(_title);
-		if (_currentInputPlayer == 1)
-		{
-			_prompt.setString("Nom du joueur 1:");
-			_prompt.setFillColor(Color::White);
-			_prompt.setOutlineThickness(2);
-		}
-		else
-		{
-			_prompt.setString("Nom du joueur 2:");
-			_prompt.setFillColor(Color::White);
-			_prompt.setOutlineThickness(2);
-		}
-		window.draw(_prompt);
-		window.draw(_player);
-		_backButton.draw(window);
-	}
+void Game::hover(sf::RenderWindow& window)
+{
+    if (_state == MENU)
+    {
+        _menu.hover(window);
+    }
+    else if (_state == LEADERBOARD)
+    {
+        _classement.hover(window);
+    }
+    else if (_state == HOW_TO)
+    {
+        _commentJouer.hover(window);
+    }
+    else if (_state == NAME_INPUT)
+    {
+        _nameInput.hover(window);
+    }
+    else
+    {
+        _jeu.hover(window);
+    }
 }

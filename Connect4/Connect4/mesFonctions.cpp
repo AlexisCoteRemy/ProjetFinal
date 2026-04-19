@@ -5,13 +5,6 @@
 
 using namespace std;
 
-void centerText(sf::Text& text, float x, float y)
-{
-    sf::FloatRect bounds = text.getLocalBounds();
-    text.setOrigin(bounds.left + bounds.width / 2.0f, bounds.top);
-    text.setPosition(x, y);
-}
-
 void addUser(std::string nameFile, std::string username)
 {
     ifstream fileIn(nameFile);
@@ -60,5 +53,5 @@ void updateVictory(std::string nameFile, std::string username)
     }
 
     fileOut.close();
-
 }
+

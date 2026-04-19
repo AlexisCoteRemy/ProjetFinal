@@ -34,6 +34,8 @@ void Grid::draw(sf::RenderWindow& window)
 	RectangleShape board(Vector2f(GRID_WIDTH, GRID_HEIGHT));
 	board.setPosition(CENTER_X, CENTER_Y);
 	board.setFillColor(Color::Blue);
+	board.setOutlineColor(Color::White);
+	board.setOutlineThickness(2);
 	window.draw(board);
 
 	for (int i = 0; i < ROWS; i++)
@@ -43,6 +45,8 @@ void Grid::draw(sf::RenderWindow& window)
 			CircleShape hole(CELLSIZE / 2 - 5);
 			hole.setPosition(CENTER_X + j * CELLSIZE + 5, CENTER_Y + i * CELLSIZE + 5);
 			hole.setFillColor(Color::Black);
+			hole.setOutlineColor(Color::White);
+			hole.setOutlineThickness(2);
 
 			window.draw(hole);
 		}
@@ -58,9 +62,13 @@ void Grid::draw(sf::RenderWindow& window)
 				jeton.setPosition(CENTER_X + j * CELLSIZE + 10, CENTER_Y + i * CELLSIZE + 10);
 
 				if (_grille[i][j] == 1)
+				{
 					jeton.setFillColor(Color::Red);
+				}
 				else
+				{
 					jeton.setFillColor(Color::Yellow);
+				}
 
 				window.draw(jeton);
 			}
@@ -108,7 +116,7 @@ void Grid::hoverColumn(int col, int joueurActuel)
 			{
 				_boutons[i].setFillColor(sf::Color::Yellow);
 			}
-			
+
 		}
 		else
 		{
@@ -121,7 +129,7 @@ int Grid::getWinner() const
 {
 	// Horizontalement
 
-	for (int i = 0; i < 6; i++) 
+	for (int i = 0; i < 6; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
