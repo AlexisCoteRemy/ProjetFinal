@@ -39,7 +39,4 @@ int main() {
 		game.draw(window);
 		window.display();
 	}
-
-
 }
-
