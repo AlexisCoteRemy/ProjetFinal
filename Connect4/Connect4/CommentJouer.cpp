@@ -24,9 +24,9 @@ CommentJouer::CommentJouer()
     _textBox.setOutlineColor(Color::Red);
     _textBox.setOutlineThickness(2);
 
-    _texte.setString("\nAppuyez sur les cercles blancs en haut de la grille pour faire \ntomber un jeton.\n\nLes jetons rouges sont pour le premier joueur, et les jetons\njaunes sont pour le deuxieme joueur.\n\nLe premier joueur à aligner quatre jetons dans n'importe\nquelle direction gagne!\n\nBonne chance, et rappelez-vous, c'est un jeu!");
+    _texte.setString("\nAppuyez sur les cercles blancs en haut de la grille\npour faire tomber un jeton.\n\nLes jetons rouges sont pour le premier joueur, et les\njetons jaunes sont pour le deuxieme joueur.\n\nLe premier joueur à aligner quatre jetons dans\nn'importe quelle direction gagne!\n\nBonne chance, et rappelez-vous, c'est un jeu!");
     _texte.setFont(_font);
-    _texte.setCharacterSize(20);
+    _texte.setCharacterSize(25);
     _texte.setPosition(Vector2f(((WINDOW_WIDTH - WINDOW_HEIGHT) + 10) / 2, 120));
     _texte.setFillColor(Color::Black);
     _texte.setOutlineColor(Color::White);

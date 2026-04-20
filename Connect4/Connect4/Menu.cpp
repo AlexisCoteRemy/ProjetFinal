@@ -22,7 +22,7 @@ Menu::Menu()
 
     for (int i = 0; i < labels.size(); i++)
     {
-        _buttons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labels[i], _font));
+        _buttons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX + 5, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labels[i], _font));
     }
 
     _hoverBuffer.loadFromFile("hoverSound.wav");

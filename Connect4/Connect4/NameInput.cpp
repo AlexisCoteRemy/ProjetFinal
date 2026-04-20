@@ -26,7 +26,7 @@ NameInput::NameInput(Joueur& joueur) : _joueur(joueur)
 
 	_texte.setFont(_font);
 	_texte.setCharacterSize(30);
-	_texte.setPosition(Vector2f(100, 125));
+	_texte.setPosition(Vector2f(105, 125));
 	_texte.setFillColor(Color::Black);
 	_texte.setOutlineColor(Color::White);
 	_texte.setOutlineThickness(0.5);
