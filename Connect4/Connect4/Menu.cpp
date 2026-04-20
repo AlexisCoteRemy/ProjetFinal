@@ -8,7 +8,7 @@ Menu::Menu()
     _font.loadFromFile("arial.ttf");
 
     _title.setFont(_font);
-    _title.setCharacterSize(60);
+    _title.setCharacterSize(80);
     _title.setFillColor(Color::White);
     _title.setOutlineColor(Color::Red);
     _title.setOutlineThickness(2);

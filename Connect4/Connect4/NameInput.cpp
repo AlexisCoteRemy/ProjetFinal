@@ -9,24 +9,24 @@ NameInput::NameInput(Joueur& joueur) : _joueur(joueur)
 
 	_title.setFont(_font);
 	_title.setCharacterSize(60);
-	_title.setString("Entrez vos noms\n   d'utilisateurs");
+	_title.setString("Utilisateurs");
 	_title.setFillColor(Color::White);
 	_title.setOutlineColor(Color::Red);
 	_title.setOutlineThickness(2);
 
 	FloatRect bounds = _title.getLocalBounds();
 	_title.setOrigin(bounds.width / 2, bounds.height / 2);
-	_title.setPosition(WINDOW_WIDTH / 2, 50);
+	_title.setPosition(WINDOW_WIDTH / 2, MAIN_BUTTON_HEIGHT);
 
-	_textBox.setSize(Vector2f(750, 50));
+	_textBox.setSize(Vector2f(TEXTBOX_W, 50));
 	_textBox.setFillColor(Color(255, 255, 255, 175));
-	_textBox.setPosition((WINDOW_WIDTH - 750) / 2, 140);
+	_textBox.setPosition((WINDOW_WIDTH - TEXTBOX_W) / 2, 120);
 	_textBox.setOutlineColor(Color::Red);
 	_textBox.setOutlineThickness(2);
 
 	_texte.setFont(_font);
-	_texte.setCharacterSize(40);
-	_texte.setPosition(Vector2f(40, 140));
+	_texte.setCharacterSize(30);
+	_texte.setPosition(Vector2f(100, 125));
 	_texte.setFillColor(Color::Black);
 	_texte.setOutlineColor(Color::White);
 	_texte.setOutlineThickness(0.5);
@@ -107,7 +107,6 @@ void NameInput::hover(sf::RenderWindow& window)
 		{
 			_hoverSound.play();
 		}
-
 	}
 	else
 	{

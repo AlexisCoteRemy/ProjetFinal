@@ -8,7 +8,7 @@ Classement::Classement()
 
     _title.setFont(_font);
     _title.setString("Classement");
-    _title.setCharacterSize(50);
+    _title.setCharacterSize(60);
     _title.setFillColor(Color::White);
     _title.setOutlineColor(Color::Red);
     _title.setOutlineThickness(2);
@@ -33,9 +33,9 @@ Classement::Classement()
     _victories.setOutlineThickness(2);
     _victories.setPosition(500, 120);
 
-    _textBox.setSize(Vector2f(600, 350));
+    _textBox.setSize(Vector2f(TEXTBOX_W, TEXTBOX_H));
     _textBox.setFillColor(Color(255, 255, 255, 175));
-    _textBox.setPosition((WINDOW_WIDTH - 600) / 2, 120);
+    _textBox.setPosition((WINDOW_WIDTH - WINDOW_HEIGHT) / 2, 120);
 
     _textBox.setOutlineColor(Color::Red);
     _textBox.setOutlineThickness(2);
