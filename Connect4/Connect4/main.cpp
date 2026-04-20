@@ -19,7 +19,7 @@ int main() {
 	sf::Sound mainMusic;
 	mainMusic.setBuffer(mainBuffer);
 	mainMusic.setLoop(true);
-	mainMusic.setVolume(3);
+	mainMusic.setVolume(2);
 	mainMusic.play();
 
 	Game game;
