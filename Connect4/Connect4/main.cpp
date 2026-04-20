@@ -3,7 +3,7 @@
 #include "Game.h"
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(800, 588), "Ma fenêtre");
+	sf::RenderWindow window(sf::VideoMode(800, 533), "Ma fenêtre");
 	window.setFramerateLimit(60);
 
 	sf::Texture backgroudImage;
