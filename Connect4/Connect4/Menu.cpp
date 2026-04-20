@@ -18,7 +18,7 @@ Menu::Menu()
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    std::vector<string> labels = { "Jouer", "Classement", "Comment joueur", "Quitter" };
+    std::vector<string> labels = { "Jouer", "Classement", "Comment jouer", "Quitter" };
 
     for (int i = 0; i < labels.size(); i++)
     {
