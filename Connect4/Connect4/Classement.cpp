@@ -40,7 +40,7 @@ Classement::Classement()
     _textBox.setOutlineColor(Color::Red);
     _textBox.setOutlineThickness(2);
 
-    _backButton = Button((WINDOW_WIDTH - 125) / 2, 500, (WINDOW_WIDTH - 125) / 2, 500, 125, 50, "Retour", _font);
+    _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT - (MAIN_BUTTON_HEIGHT * 2), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH, 50, "Retour", _font);
 
     _hoverBuffer.loadFromFile("hoverSound.wav");
     _hoverSound.setBuffer(_hoverBuffer);

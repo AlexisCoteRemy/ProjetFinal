@@ -17,3 +17,4 @@ static const int MAIN_BX = (WINDOW_WIDTH - MAIN_BUTTON_WIDTH) / 2;
 static const int MAIN_BY = (WINDOW_HEIGHT - MAIN_BUTTON_HEIGHT) / 2;
 static const int SPACING = 60;
 static const int START_Y_MAIN_BUTTON = 150;
+static const int BACK_BUTTON_WIDTH = 125;
