@@ -173,6 +173,8 @@ void Jeu::draw(sf::RenderWindow& window)
 		_winText.setString("Tour de " + _joueur.getPlayer1Name());
 		FloatRect bounds = _winText.getLocalBounds();
 		_winText.setOrigin(bounds.width / 2, bounds.height / 2);
+		_winText.setPosition(WINDOW_WIDTH / 2, 20);
+
 	}
 	window.draw(_winText);
 	_grid.draw(window);
@@ -229,7 +231,7 @@ void Jeu::reset()
 	_winText.setOutlineThickness(2);
 	FloatRect bounds = _winText.getLocalBounds();
 	_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-	_winText.setPosition(WINDOW_WIDTH / 2, 10);
+	_winText.setPosition(WINDOW_WIDTH / 2, 20);
 	_joueur.setPlayer1Name("");
 	_joueur.setPlayer2Name("");
 	_joueur.setPlayerName("");
