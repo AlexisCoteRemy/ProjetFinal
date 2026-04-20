@@ -5,3 +5,5 @@
 void addUser(std::string nameFile, std::string username);
 
 void updateVictory(std::string nameFile, std::string username);
+
+void clearLeaderboard(std::string nameFile);

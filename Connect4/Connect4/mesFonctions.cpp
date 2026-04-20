@@ -55,3 +55,9 @@ void updateVictory(std::string nameFile, std::string username)
     fileOut.close();
 }
 
+void clearLeaderboard(std::string nameFile)
+{
+    ofstream fileOut(nameFile, ios::out | ios::trunc);
+    fileOut.close();
+}
+

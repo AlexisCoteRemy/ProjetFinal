@@ -1,5 +1,6 @@
 #include "Classement.h"
 #include <fstream>
+#include "mesFonctions.h"
 
 using namespace sf;
 using namespace std;
@@ -44,6 +45,8 @@ Classement::Classement()
 
     _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH, 50, "Retour", _font);
 
+    _effacer = Button( 650, WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2), 650, WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 10, 50, "Effacer", _font);
+
     _hoverBuffer.loadFromFile("hoverSound.wav");
     _hoverSound.setBuffer(_hoverBuffer);
     _hoverSound.setVolume(10);
@@ -51,8 +54,6 @@ Classement::Classement()
     _clickBuffer.loadFromFile("clickSound.wav");
     _clickSound.setBuffer(_clickBuffer);
     _clickSound.setVolume(10);
-
-    loadScores("classement.txt");
 }
 
 void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -65,6 +66,17 @@ void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& 
         {
             _clickSound.play();
             state = State::MENU;
+        }
+        if (_effacer.getGlobalBounds().contains(mousePos.x, mousePos.y))
+        {
+            clearLeaderboard("classement.txt");
+
+            _noms.clear();
+            _victoires.clear();
+            _texts.clear();
+
+            loadScores("classement.txt");
+            _clickSound.play();
         }
     }
 }
@@ -89,11 +101,29 @@ void Classement::hover(sf::RenderWindow& window)
         _backButton.setFillColor(Color(255, 255, 255, 175));
     }
 
+    bool isHovered2 = _effacer.getGlobalBounds().contains(mousePos.x, mousePos.y);
+
+    if (isHovered2)
+    {
+        _effacer.setFillColor(Color(255, 255, 0, 225));
+
+        if (!_effacer.wasHovered())
+        {
+            _hoverSound.play();
+        }
+    }
+    else
+    {
+        _effacer.setFillColor(Color(255, 255, 255, 175));
+    }
+
+    _effacer.setWasHovered(isHovered2);
     _backButton.setWasHovered(isHovered);
 }
 
 void Classement::draw(sf::RenderWindow& window)
 {
+    loadScores("classement.txt");
     window.draw(_title);
     window.draw(_textBox);
     window.draw(_users);
@@ -102,6 +132,7 @@ void Classement::draw(sf::RenderWindow& window)
     {
         window.draw(_texts[i]);
     }
+    _effacer.draw(window);
     _backButton.draw(window);
 }
 
@@ -111,11 +142,17 @@ void Classement::loadScores(std::string nameFile)
     string nom;
     int victoires;
 
+    _noms.clear();
+    _victoires.clear();
+    _texts.clear();
+
     while (file >> nom >> victoires)
     {
         _noms.push_back(nom);
         _victoires.push_back(victoires);
     }
+
+    file.close();
 
     int n = _victoires.size();
 
@@ -151,4 +188,5 @@ void Classement::loadScores(std::string nameFile)
         _texts.push_back(nomText);
         _texts.push_back(scoreText);
     }
+
 }

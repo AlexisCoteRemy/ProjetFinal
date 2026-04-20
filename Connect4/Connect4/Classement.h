@@ -16,6 +16,7 @@ private:
     sf::RectangleShape _textBox;
 
     Button _backButton;
+    Button _effacer;
 
     sf::SoundBuffer _hoverBuffer;
     sf::SoundBuffer _clickBuffer;
