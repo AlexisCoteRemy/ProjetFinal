@@ -70,11 +70,6 @@ void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& 
         if (_effacer.getGlobalBounds().contains(mousePos.x, mousePos.y))
         {
             clearLeaderboard("classement.txt");
-
-            _noms.clear();
-            _victoires.clear();
-            _texts.clear();
-
             loadScores("classement.txt");
             _clickSound.play();
         }

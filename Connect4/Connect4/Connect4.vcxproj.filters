@@ -24,9 +24,6 @@
     <ClCompile Include="game.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="mesConstantes.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="button.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>

@@ -18,7 +18,7 @@ Menu::Menu()
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    std::vector<string> labels = { "Jouer", "Classement", "Comment jouer", "Quitter" };
+    vector<string> labels = { "Jouer", "Classement", "Comment jouer", "Quitter" };
 
     for (int i = 0; i < labels.size(); i++)
     {
@@ -38,7 +38,7 @@ void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
 {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
     {
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        Vector2i mousePos = sf::Mouse::getPosition(window);
 
         for (int i = 0; i < _buttons.size(); i++)
         {
@@ -78,7 +78,7 @@ void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
 
 void Menu::hover(sf::RenderWindow& window)
 {
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    Vector2i mousePos = sf::Mouse::getPosition(window);
 
     for (int i = 0; i < _buttons.size(); i++)
     {

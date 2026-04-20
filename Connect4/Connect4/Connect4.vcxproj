@@ -134,7 +134,6 @@
     <ClCompile Include="Joueur.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="mesConstantes.cpp" />
     <ClCompile Include="mesFonctions.cpp" />
     <ClCompile Include="NameInput.cpp" />
   </ItemGroup>

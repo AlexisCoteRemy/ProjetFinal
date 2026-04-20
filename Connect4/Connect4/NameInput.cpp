@@ -2,6 +2,7 @@
 #include "mesFonctions.h"
 
 using namespace sf;
+using namespace std;
 
 NameInput::NameInput(Joueur& joueur) : _joueur(joueur)
 {
@@ -48,7 +49,7 @@ void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& s
 {
 	if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left)
 	{
-		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+		Vector2i mousePos = sf::Mouse::getPosition(window);
 
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 		{
@@ -95,7 +96,7 @@ void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& s
 
 void NameInput::hover(sf::RenderWindow& window)
 {
-	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+	Vector2i mousePos = sf::Mouse::getPosition(window);
 
 	bool isHovered = _backButton.getGlobalBounds().contains(mousePos.x, mousePos.y);
 
@@ -121,7 +122,7 @@ void NameInput::draw(sf::RenderWindow& window)
 	window.draw(_title);
 	window.draw(_textBox);
 
-	std::string label;;
+	string label;;
 
 	if (_joueur.getCurrentInputPlayer() == 1)
 	{
