@@ -1,6 +1,8 @@
 #include "Classement.h"
+#include <fstream>
 
 using namespace sf;
+using namespace std;
 
 Classement::Classement()
 {
@@ -49,13 +51,15 @@ Classement::Classement()
     _clickBuffer.loadFromFile("clickSound.wav");
     _clickSound.setBuffer(_clickBuffer);
     _clickSound.setVolume(10);
+
+    loadScores("classement.txt");
 }
 
 void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 {
     if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left)
     {
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        Vector2i mousePos = sf::Mouse::getPosition(window);
 
         if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
         {
@@ -67,7 +71,7 @@ void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& 
 
 void Classement::hover(sf::RenderWindow& window)
 {
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    Vector2i mousePos = sf::Mouse::getPosition(window);
 
     bool isHovered = _backButton.getGlobalBounds().contains(mousePos.x, mousePos.y);
 
@@ -94,5 +98,57 @@ void Classement::draw(sf::RenderWindow& window)
     window.draw(_textBox);
     window.draw(_users);
     window.draw(_victories);
+    for (int i = 0; i < _texts.size(); i++)
+    {
+        window.draw(_texts[i]);
+    }
     _backButton.draw(window);
+}
+
+void Classement::loadScores(std::string nameFile)
+{
+    ifstream file(nameFile);
+    string nom;
+    int victoires;
+
+    while (file >> nom >> victoires)
+    {
+        _noms.push_back(nom);
+        _victoires.push_back(victoires);
+    }
+
+    int n = _victoires.size();
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (_victoires[i] < _victoires[j])
+            {
+                swap(_victoires[i], _victoires[j]);
+                swap(_noms[i], _noms[j]);
+            }
+        }
+    }
+
+    for (int i = 0; i < _noms.size(); i++)
+    {
+        Text nomText;
+        nomText.setFont(_font);
+        nomText.setString(_noms[i]);
+        nomText.setCharacterSize(25);
+        nomText.setFillColor(sf::Color::Black);
+        nomText.setPosition(150, 180 + i * 30);
+
+
+        Text scoreText;
+        scoreText.setFont(_font);
+        scoreText.setString(to_string(_victoires[i]));
+        scoreText.setCharacterSize(25);
+        scoreText.setFillColor(sf::Color::Black);
+        scoreText.setPosition(550, 180 + i * 30);
+
+        _texts.push_back(nomText);
+        _texts.push_back(scoreText);
+    }
 }

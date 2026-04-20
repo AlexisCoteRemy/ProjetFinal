@@ -9,7 +9,7 @@ Game::Game() : _nameInput(_joueur), _jeu(_joueur)
 
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 {
-    if (event.type == sf::Event::Closed)
+    if (event.type == Event::Closed)
         window.close();
 
     bool needName = (_joueur.getPlayer1Name().isEmpty() || _joueur.getPlayer2Name().isEmpty());;

@@ -110,17 +110,17 @@ void Grid::hoverColumn(int col, int joueurActuel)
 		{
 			if (joueurActuel == 1)
 			{
-				_boutons[i].setFillColor(sf::Color::Red);
+				_boutons[i].setFillColor(Color::Red);
 			}
 			else
 			{
-				_boutons[i].setFillColor(sf::Color::Yellow);
+				_boutons[i].setFillColor(Color::Yellow);
 			}
 
 		}
 		else
 		{
-			_boutons[i].setFillColor(sf::Color::White);
+			_boutons[i].setFillColor(Color::White);
 		}
 	}
 }

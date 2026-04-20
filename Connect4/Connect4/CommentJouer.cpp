@@ -49,7 +49,7 @@ void CommentJouer::handleEvent(sf::Event& event, sf::RenderWindow& window, State
 {
     if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left)
     {
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        Vector2i mousePos = sf::Mouse::getPosition(window);
 
         if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
         {
@@ -61,7 +61,7 @@ void CommentJouer::handleEvent(sf::Event& event, sf::RenderWindow& window, State
 
 void CommentJouer::hover(sf::RenderWindow& window)
 {
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    Vector2i mousePos = sf::Mouse::getPosition(window);
 
     bool isHovered = _backButton.getGlobalBounds().contains(mousePos.x, mousePos.y);
 
