@@ -11,6 +11,8 @@ private:
     sf::Font _font;
 
     sf::Text _title;
+    sf::Text _users;
+    sf::Text _victories;
     sf::RectangleShape _textBox;
 
     Button _backButton;

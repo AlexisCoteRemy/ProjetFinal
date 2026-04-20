@@ -17,6 +17,22 @@ Classement::Classement()
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
+    _users.setFont(_font);
+    _users.setString("Utilisateurs");
+    _users.setCharacterSize(40);
+    _users.setFillColor(Color::Black);
+    _users.setOutlineColor(Color::White);
+    _users.setOutlineThickness(2);
+    _users.setPosition(125, 120);
+
+    _victories.setFont(_font);
+    _victories.setString("Victoires");
+    _victories.setCharacterSize(40);
+    _victories.setFillColor(Color::Black);
+    _victories.setOutlineColor(Color::White);
+    _victories.setOutlineThickness(2);
+    _victories.setPosition(500, 120);
+
     _textBox.setSize(Vector2f(600, 350));
     _textBox.setFillColor(Color(255, 255, 255, 175));
     _textBox.setPosition((WINDOW_WIDTH - 600) / 2, 120);
@@ -76,5 +92,7 @@ void Classement::draw(sf::RenderWindow& window)
 {
     window.draw(_title);
     window.draw(_textBox);
+    window.draw(_users);
+    window.draw(_victories);
     _backButton.draw(window);
 }
