@@ -5,6 +5,7 @@ using namespace std;
 
 Game::Game() : _nameInput(_joueur), _jeu(_joueur)
 {
+    _state = MENU;
 }
 
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
