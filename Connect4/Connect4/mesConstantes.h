@@ -2,7 +2,7 @@
 
 static const int ROWS = 6;
 static const int COLS = 7;
-static const int CELLSIZE = 60;
+static const int CELLSIZE = 55;
 static const int WINDOW_WIDTH = 800;
 static const int WINDOW_HEIGHT = 588;
 static const int GRID_WIDTH = COLS * CELLSIZE;

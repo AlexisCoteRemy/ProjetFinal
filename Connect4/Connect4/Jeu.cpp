@@ -16,7 +16,7 @@ Jeu::Jeu(Joueur& joueur) : _joueur(joueur)
 	_joueur.setJoueurAcutel(1);
 
 	_winText.setFont(_font);
-	_winText.setCharacterSize(40);
+	_winText.setCharacterSize(60);
 	_winText.setString("Tour de " + _joueur.getPlayer1Name());
 	_winText.setFillColor(Color::White);
 	_winText.setOutlineColor(Color::Red);
@@ -24,9 +24,9 @@ Jeu::Jeu(Joueur& joueur) : _joueur(joueur)
 
 	FloatRect bounds = _winText.getLocalBounds();
 	_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-	_winText.setPosition(WINDOW_WIDTH / 2, 10);
+	_winText.setPosition(WINDOW_WIDTH / 2, 20);
 
-	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH, 50, "Retour", _font);
+	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 10 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 10 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH, 50, "Retour", _font);
 
 	_hoverBuffer.loadFromFile("hoverSound.wav");
 	_hoverSound.setBuffer(_hoverBuffer);
@@ -38,7 +38,7 @@ Jeu::Jeu(Joueur& joueur) : _joueur(joueur)
 
 	_victoryBuffer.loadFromFile("victorySound.wav");
 	_victorySound.setBuffer(_victoryBuffer);
-	_victorySound.setVolume(10);
+	_victorySound.setVolume(15);
 }
 
 void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -55,6 +55,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 				{
 					reset();
 				}
+				_clickSound.play();
 				state = MENU;
 			}
 
@@ -81,7 +82,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 								_winText.setString("Victoire de " + _joueur.getPlayer1Name());
 								FloatRect bounds = _winText.getLocalBounds();
 								_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-								_winText.setPosition(WINDOW_WIDTH / 2, 10);
+								_winText.setPosition(WINDOW_WIDTH / 2, 20);
 								updateVictory("classement.txt", _joueur.getPlayer1Name());
 							}
 							else if (_winner == 2)
@@ -89,7 +90,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 								_winText.setString("Victoire de " + _joueur.getPlayer2Name());
 								FloatRect bounds = _winText.getLocalBounds();
 								_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-								_winText.setPosition(WINDOW_WIDTH / 2, 10);
+								_winText.setPosition(WINDOW_WIDTH / 2, 20);
 								updateVictory("classement.txt", _joueur.getPlayer2Name());
 							}
 							else
@@ -97,7 +98,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 								_winText.setString("Partie nulle :( !");
 								FloatRect bounds = _winText.getLocalBounds();
 								_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-								_winText.setPosition(WINDOW_WIDTH / 2, 10);
+								_winText.setPosition(WINDOW_WIDTH / 2, 20);
 								_joueur.setJoueurAcutel(3);
 							}
 						}
@@ -112,7 +113,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 								_winText.setOutlineThickness(2);
 								FloatRect bounds = _winText.getLocalBounds();
 								_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-								_winText.setPosition(WINDOW_WIDTH / 2, 10);
+								_winText.setPosition(WINDOW_WIDTH / 2, 20);
 							}
 							else
 							{
@@ -121,7 +122,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 								_winText.setOutlineThickness(2);
 								FloatRect bounds = _winText.getLocalBounds();
 								_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-								_winText.setPosition(WINDOW_WIDTH / 2, 10);
+								_winText.setPosition(WINDOW_WIDTH / 2, 20);
 							}
 						}
 					}
@@ -151,6 +152,11 @@ void Jeu::hover(sf::RenderWindow& window)
 	if (isHovered)
 	{
 		_backButton.setFillColor(Color(255, 255, 0, 225));
+
+		if (!_backButton.wasHovered())
+		{
+			_hoverSound.play();
+		}
 	}
 	else
 	{
