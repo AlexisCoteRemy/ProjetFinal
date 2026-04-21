@@ -1,2 +1,8 @@
 Alexis 2
 Charles-Etienne 0
+<<<<<<< Updated upstream
+=======
+Eve 0
+moi 1
+toi 0
+>>>>>>> Stashed changes
