@@ -16,7 +16,7 @@ Jeu::Jeu(Joueur& joueur) : _joueur(joueur)
 	_joueur.setJoueurAcutel(1);
 
 	_winText.setFont(_font);
-	_winText.setCharacterSize(60);
+	_winText.setCharacterSize(40);
 	_winText.setString("Tour de " + _joueur.getPlayer1Name());
 	_winText.setFillColor(Color::White);
 	_winText.setOutlineColor(Color::Red);
@@ -26,7 +26,7 @@ Jeu::Jeu(Joueur& joueur) : _joueur(joueur)
 	_winText.setOrigin(bounds.width / 2, bounds.height / 2);
 	_winText.setPosition(WINDOW_WIDTH / 2, 20);
 
-	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 10 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 10 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH, 50, "Retour", _font);
+	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH, 50, "Retour", _font);
 
 	_hoverBuffer.loadFromFile("hoverSound.wav");
 	_hoverSound.setBuffer(_hoverBuffer);

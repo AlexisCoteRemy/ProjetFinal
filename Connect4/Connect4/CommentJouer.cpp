@@ -19,7 +19,7 @@ CommentJouer::CommentJouer()
 
     _textBox.setSize(Vector2f(TEXTBOX_W, TEXTBOX_H));
     _textBox.setFillColor(Color(255, 255, 255, 175));
-    _textBox.setPosition((WINDOW_WIDTH - WINDOW_HEIGHT) / 2, 120);
+    _textBox.setPosition((WINDOW_WIDTH - TEXTBOX_W) / 2, (WINDOW_HEIGHT - TEXTBOX_H) / 2);
 
     _textBox.setOutlineColor(Color::Red);
     _textBox.setOutlineThickness(2);
@@ -27,14 +27,14 @@ CommentJouer::CommentJouer()
     _texte.setString("Appuyez sur les cercles blancs en haut de la grille\npour faire tomber un jeton.\n\nLes jetons rouges sont pour le premier joueur, et les\njetons jaunes sont pour le deuxieme joueur.\n\nLe premier joueur à aligner quatre jetons dans\nn'importe quelle direction gagne!\n\nBonne chance, et rappelez-vous, c'est un jeu!");
     _texte.setFont(_font);
     _texte.setCharacterSize(25);
-    _texte.setPosition(Vector2f(((WINDOW_WIDTH - WINDOW_HEIGHT) + 10) / 2, 120));
+    _texte.setPosition(Vector2f(((WINDOW_WIDTH - TEXTBOX_W) + 10) / 2, 120));
     _texte.setFillColor(Color::Black);
     _texte.setOutlineColor(Color::White);
     _texte.setOutlineThickness(0.5);
     _texte.setOutlineColor(Color::White);
     _texte.setOutlineThickness(2);
 
-    _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH, 50, "Retour", _font);
+    _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH, 50, "Retour", _font);
 
     _hoverBuffer.loadFromFile("hoverSound.wav");
     _hoverSound.setBuffer(_hoverBuffer);

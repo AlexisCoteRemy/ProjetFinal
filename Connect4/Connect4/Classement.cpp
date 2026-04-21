@@ -26,7 +26,7 @@ Classement::Classement()
     _users.setFillColor(Color::Black);
     _users.setOutlineColor(Color::White);
     _users.setOutlineThickness(2);
-    _users.setPosition(125, 120);
+    _users.setPosition((TEXTBOX_W / 2) / 2, 120);
 
     _victories.setFont(_font);
     _victories.setString("Victoires");
@@ -34,18 +34,18 @@ Classement::Classement()
     _victories.setFillColor(Color::Black);
     _victories.setOutlineColor(Color::White);
     _victories.setOutlineThickness(2);
-    _victories.setPosition(500, 120);
+    _victories.setPosition((TEXTBOX_W / 2) + (TEXTBOX_W / 4), 120);
 
     _textBox.setSize(Vector2f(TEXTBOX_W, TEXTBOX_H));
     _textBox.setFillColor(Color(255, 255, 255, 175));
-    _textBox.setPosition((WINDOW_WIDTH - WINDOW_HEIGHT) / 2, 120);
+    _textBox.setPosition((WINDOW_WIDTH - TEXTBOX_W) / 2, (WINDOW_HEIGHT - TEXTBOX_H) / 2);
 
     _textBox.setOutlineColor(Color::Red);
     _textBox.setOutlineThickness(2);
 
-    _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH, 50, "Retour", _font);
+    _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH, 50, "Retour", _font);
 
-    _effacer = Button( 650, WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2), 650, WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 10, 50, "Effacer", _font);
+    _effacer = Button( 650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), 650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 10, 50, "Effacer", _font);
 
     _hoverBuffer.loadFromFile("hoverSound.wav");
     _hoverSound.setBuffer(_hoverBuffer);
@@ -170,7 +170,7 @@ void Classement::loadScores(std::string nameFile)
         nomText.setString(_noms[i]);
         nomText.setCharacterSize(25);
         nomText.setFillColor(sf::Color::Black);
-        nomText.setPosition(150, 180 + i * 30);
+        nomText.setPosition((TEXTBOX_W / 2) / 2, 180 + i * 30);
 
 
         Text scoreText;
@@ -178,7 +178,7 @@ void Classement::loadScores(std::string nameFile)
         scoreText.setString(to_string(_victoires[i]));
         scoreText.setCharacterSize(25);
         scoreText.setFillColor(sf::Color::Black);
-        scoreText.setPosition(550, 180 + i * 30);
+        scoreText.setPosition((TEXTBOX_W / 2) + (TEXTBOX_W / 4) + (TEXTBOX_W / 8), 180 + i * 30);
 
         _texts.push_back(nomText);
         _texts.push_back(scoreText);

@@ -2,9 +2,9 @@
 
 static const int ROWS = 6;
 static const int COLS = 7;
-static const int CELLSIZE = 55;
+static const int CELLSIZE = 50;
 static const int WINDOW_WIDTH = 800;
-static const int WINDOW_HEIGHT = 588;
+static const int WINDOW_HEIGHT = 533;
 static const int GRID_WIDTH = COLS * CELLSIZE;
 static const int GRID_HEIGHT = ROWS * CELLSIZE;
 static const int CENTER_X = (WINDOW_WIDTH - GRID_WIDTH) / 2;
