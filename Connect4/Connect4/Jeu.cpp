@@ -62,7 +62,6 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 					state = SAVE_LOAD;
 					_clickSound.play();
 				}
-				
 			}
 
 			if (!_gamerOver)
