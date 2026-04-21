@@ -1,6 +1,7 @@
 #include "SaveLoad.h"
 #include "mesConstantes.h"
 #include "mesFonctions.h"
+#include <fstream>
 
 using namespace std;
 
@@ -85,6 +86,16 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     }
                     else if (i == 1)
                     {
+                        std::ifstream fileIn("save.txt");
+
+                        if (!fileIn || fileIn.peek() == EOF)
+                        {
+                            fileIn.close();
+                            return;
+                        }
+
+                        fileIn.close();
+
                         wantLoad = true;
                         _clickSound.play();
                         state = GAME;
