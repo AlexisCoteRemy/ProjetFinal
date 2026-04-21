@@ -53,10 +53,16 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 			{
 				if (_gamerOver)
 				{
+					_clickSound.play();
 					reset();
+					state = MENU;
 				}
-				_clickSound.play();
-				state = MENU;
+				else
+				{
+					state = SAVE_LOAD;
+					_clickSound.play();
+				}
+				
 			}
 
 			if (!_gamerOver)

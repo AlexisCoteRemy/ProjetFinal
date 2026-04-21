@@ -8,6 +8,7 @@
 #include "Jeu.h"
 #include "Button.h"
 #include "mesConstantes.h"
+#include "SaveLoad.h"
 #include "State.h"
 #include <SFML/Graphics.hpp>
 
@@ -18,6 +19,7 @@ private:
     Classement _classement;
     CommentJouer _commentJouer;
     NameInput _nameInput;
+    SaveLoad _saveLoad;
     Jeu _jeu;
     Joueur _joueur;
     State _state;

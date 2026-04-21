@@ -1,10 +1,9 @@
-#include "Menu.h"
 #include "SaveLoad.h"
+#include "mesConstantes.h"
 
-using namespace sf;
 using namespace std;
 
-Menu::Menu()
+SaveLoad::SaveLoad()
 {
     _font.loadFromFile("arial.ttf");
 
@@ -13,13 +12,13 @@ Menu::Menu()
     _title.setFillColor(Color::White);
     _title.setOutlineColor(Color::Red);
     _title.setOutlineThickness(2);
-    _title.setString("Connect 4");
+    _title.setString("Faites votre choix");
 
     FloatRect bounds = _title.getLocalBounds();
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    vector<string> labels = { "Jouer", "Classement", "Comment jouer", "Quitter" };
+    vector<string> labels = { "Continuer", "Sauvegarder", "Charger", "Quitter" };
 
     for (int i = 0; i < labels.size(); i++)
     {
@@ -35,7 +34,7 @@ Menu::Menu()
     _clickSound.setVolume(10);
 }
 
-void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool needName)
+void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
     {
@@ -47,37 +46,30 @@ void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
             {
                 if (i == 0)
                 {
-                    if (needName)
-                    {
-                        _clickSound.play();
-                        state = NAME_INPUT;
-                    }
-                    else
-                    {
-                        _clickSound.play();
-                        state = SAVE_LOAD;
-                    }
+                    _clickSound.play();
+                    state = GAME;
+
                 }
                 else if (i == 1)
                 {
                     _clickSound.play();
-                    state = LEADERBOARD;
+                    state = MENU;
                 }
                 else if (i == 2)
                 {
                     _clickSound.play();
-                    state = HOW_TO;
+                    state = GAME;
                 }
                 else if (i == 3)
                 {
-                    window.close();
+                    state = MENU;
                 }
             }
         }
     }
 }
 
-void Menu::hover(sf::RenderWindow& window)
+void SaveLoad::hover(sf::RenderWindow& window)
 {
     Vector2i mousePos = sf::Mouse::getPosition(window);
 
@@ -103,12 +95,13 @@ void Menu::hover(sf::RenderWindow& window)
     }
 }
 
-void Menu::draw(sf::RenderWindow& window)
+void SaveLoad::draw(sf::RenderWindow& window)
 {
     window.draw(_title);
 
     for (int i = 0; i < _buttons.size(); i++)
     {
         _buttons[i].draw(window);
+        
     }
 }

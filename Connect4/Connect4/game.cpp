@@ -31,9 +31,13 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
     {
         _nameInput.handleEvent(event, window, _state);
     }
-    else
+    else if (_state == GAME)
     {
         _jeu.handleEvent(event, window, _state);
+    }
+    else
+    {
+        _saveLoad.handleEvent(event, window, _state);
     }
 }
 
@@ -55,9 +59,13 @@ void Game::draw(sf::RenderWindow& window)
     {
         _nameInput.draw(window);
     }
-    else
+    else if (_state == GAME)
     {
         _jeu.draw(window);
+    }
+    else
+    {
+        _saveLoad.draw(window);
     }
 }
 
@@ -79,8 +87,12 @@ void Game::hover(sf::RenderWindow& window)
     {
         _nameInput.hover(window);
     }
-    else
+    else if (_state == GAME)
     {
         _jeu.hover(window);
+    }
+    else
+    {
+        _saveLoad.hover(window);
     }
 }

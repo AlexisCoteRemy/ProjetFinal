@@ -6,5 +6,6 @@ enum State
     GAME,
     LEADERBOARD,
     HOW_TO,
-    NAME_INPUT
+    NAME_INPUT,
+    SAVE_LOAD
 };

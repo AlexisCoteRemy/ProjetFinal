@@ -13,6 +13,7 @@ void Grid::initializeGrid()
 		{
 			_grille[i][j] = 0;
 		}
+		saveGrid(_grille);
 	}
 
 	_boutons.clear();
