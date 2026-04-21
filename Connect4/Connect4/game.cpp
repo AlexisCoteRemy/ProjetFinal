@@ -38,7 +38,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
     }
     else
     {
-        _saveLoad.handleEvent(event, window, _state, _wantSave, _wantLoad);
+        _saveLoad.handleEvent(event, window, _state, _wantSave, _wantLoad, _jeu);
     }
 }
 

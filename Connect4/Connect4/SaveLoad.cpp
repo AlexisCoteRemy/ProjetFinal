@@ -42,7 +42,7 @@ SaveLoad::SaveLoad()
     _clickSound.setVolume(10);
 }
 
-void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool& wantSave, bool& wantLoad)
+void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool& wantSave, bool& wantLoad, Jeu& jeu)
 {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
     {
@@ -61,7 +61,7 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     }
                     else if (i == 1)
                     {
-                        wantSave = true;
+                        jeu.saveGame();
                         _clickSound.play();
                     }
                     else if (i == 2)
@@ -80,22 +80,15 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                 {
                     if (i == 0)
                     {
+                        std::ofstream fileOut("save.txt", std::ios::trunc);
+                        fileOut.close();
                         _clickSound.play();
+                        jeu.reset();
                         state = NAME_INPUT;
                     }
                     else if (i == 1)
                     {
-                        std::ifstream fileIn("save.txt");
-
-                        if (!fileIn || fileIn.peek() == EOF)
-                        {
-                            fileIn.close();
-                            return;
-                        }
-
-                        fileIn.close();
-
-                        wantLoad = true;
+                        jeu.loadGame();
                         _clickSound.play();
                         state = GAME;
                     }
