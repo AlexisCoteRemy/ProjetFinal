@@ -20,8 +20,8 @@ SaveLoad::SaveLoad()
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    vector<string> labelsSave = { "Continuer", "Sauvegarder", "Quitter" };
-    vector<string> labelsLoad = { "Nouvelle", "Charger", "Quitter" };
+    vector<string> labelsSave = { "Continuer", "Sauvegarder", "Menu" };
+    vector<string> labelsLoad = { "Nouvelle", "Charger", "Menu" };
 
     for (int i = 0; i < labelsSave.size(); i++)
     {
@@ -63,7 +63,6 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     {
                         wantSave = true;
                         _clickSound.play();
-                        state = MENU;
                     }
                     else if (i == 2)
                     {
