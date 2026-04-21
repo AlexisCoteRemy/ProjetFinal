@@ -18,7 +18,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	void reset();
 	void saveGame();
-	void loadGame();
+	bool loadGame();
 private:
 	bool _gamerOver;
 	bool _gameStarted;

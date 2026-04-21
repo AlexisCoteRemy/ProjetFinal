@@ -88,9 +88,13 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     }
                     else if (i == 1)
                     {
-                        jeu.loadGame();
+                        bool hasGame = jeu.loadGame();
                         _clickSound.play();
-                        state = GAME;
+
+                        if (hasGame)
+                        {
+                            state = GAME;
+                        }                       
                     }
                     else if (i == 2)
                     {

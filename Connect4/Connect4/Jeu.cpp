@@ -271,13 +271,13 @@ void Jeu::saveGame()
 	fileOut.close();
 }
 
-void Jeu::loadGame()
+bool Jeu::loadGame()
 {
 	std::ifstream fileIn("save.txt");
 
 	if (fileIn.peek() == EOF)
 	{
-		return;
+		return false;
 	}
 
 	std::string name1, name2;
@@ -302,4 +302,6 @@ void Jeu::loadGame()
 	}
 
 	fileIn.close();
+
+	return true;
 }
