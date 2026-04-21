@@ -2,5 +2,5 @@ Alexis 2
 Charles-Etienne 0
 MOI 0
 TOI 0
-moi 6
+moi 9
 toi 0

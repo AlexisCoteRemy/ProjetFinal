@@ -79,10 +79,11 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 
 						if (_winner != 0 || _grid.isFull())
 						{
-							clearLeaderboard("grid.txt");
 							_victorySound.play();
 							_gamerOver = true;
 							_gameStarted = false;
+							std::ofstream fileOut("save.txt", std::ios::trunc);
+							fileOut.close();
 
 							if (_winner == 1)
 							{
@@ -247,6 +248,11 @@ void Jeu::reset()
 
 void Jeu::saveGame()
 {
+	if (_gamerOver)
+	{
+		return;
+	}
+
 	std::ofstream fileOut("save.txt");
 
 	fileOut << _joueur.getPlayer1Name().toAnsiString() << std::endl;
@@ -268,6 +274,11 @@ void Jeu::saveGame()
 void Jeu::loadGame()
 {
 	std::ifstream fileIn("save.txt");
+
+	if (fileIn.peek() == EOF)
+	{
+		return;
+	}
 
 	std::string name1, name2;
 	int joueurActuel;
