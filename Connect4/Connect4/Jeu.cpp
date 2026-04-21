@@ -59,7 +59,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 				}
 				else
 				{
-					state = SAVE_LOAD;
+					state = SAVE_MENU;
 					_clickSound.play();
 				}
 			}

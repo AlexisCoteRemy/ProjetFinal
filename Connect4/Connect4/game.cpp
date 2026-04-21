@@ -65,7 +65,7 @@ void Game::draw(sf::RenderWindow& window)
     }
     else
     {
-        _saveLoad.draw(window);
+        _saveLoad.draw(window, _state);
     }
 }
 
@@ -93,6 +93,6 @@ void Game::hover(sf::RenderWindow& window)
     }
     else
     {
-        _saveLoad.hover(window);
+        _saveLoad.hover(window, _state);
     }
 }

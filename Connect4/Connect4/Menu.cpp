@@ -47,16 +47,8 @@ void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
             {
                 if (i == 0)
                 {
-                    if (needName)
-                    {
-                        _clickSound.play();
-                        state = NAME_INPUT;
-                    }
-                    else
-                    {
-                        _clickSound.play();
-                        state = SAVE_LOAD;
-                    }
+                    _clickSound.play();
+                    state = LOAD_MENU;
                 }
                 else if (i == 1)
                 {

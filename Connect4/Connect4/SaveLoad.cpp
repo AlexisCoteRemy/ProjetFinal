@@ -26,7 +26,7 @@ SaveLoad::SaveLoad()
         _saveButtons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX + 5, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labelsSave[i], _font));
     }
 
-    for (int i = 0; i < labelsSave.size(); i++)
+    for (int i = 0; i < labelsLoad.size(); i++)
     {
         _loadButtons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX + 5, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labelsLoad[i], _font));
     }
@@ -40,13 +40,13 @@ SaveLoad::SaveLoad()
     _clickSound.setVolume(10);
 }
 
-void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool gameStarted)
+void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
     {
         Vector2i mousePos = sf::Mouse::getPosition(window);
 
-        if (gameStarted)
+        if (state == SAVE_MENU)
         {
             for (int i = 0; i < _saveButtons.size(); i++)
             {
@@ -97,11 +97,11 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
     }
 }
 
-void SaveLoad::hover(sf::RenderWindow& window, bool gameStarted)
+void SaveLoad::hover(sf::RenderWindow& window, State& state)
 {
     Vector2i mousePos = sf::Mouse::getPosition(window);
 
-    if (gameStarted)
+    if (state == SAVE_MENU)
     {
         for (int i = 0; i < _saveButtons.size(); i++)
         {
@@ -149,11 +149,11 @@ void SaveLoad::hover(sf::RenderWindow& window, bool gameStarted)
     }
 }
 
-void SaveLoad::draw(sf::RenderWindow& window, bool gameStarted)
+void SaveLoad::draw(sf::RenderWindow& window,State& state)
 {
     window.draw(_title);
 
-    if (gameStarted)
+    if (state == SAVE_MENU)
     {
         for (int i = 0; i < _saveButtons.size(); i++)
         {

@@ -7,5 +7,6 @@ enum State
     LEADERBOARD,
     HOW_TO,
     NAME_INPUT,
-    SAVE_LOAD
+    SAVE_MENU,
+    LOAD_MENU
 };

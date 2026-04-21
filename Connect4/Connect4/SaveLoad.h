@@ -11,11 +11,12 @@ public:
 	SaveLoad();
 
 	void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
-	void hover(sf::RenderWindow& window);
-	void draw(sf::RenderWindow& window);
+	void hover(sf::RenderWindow& window, State& state);
+	void draw(sf::RenderWindow& window, State& state);
 
 private:
-	std::vector<Button> _buttons;
+	std::vector<Button> _saveButtons;
+	std::vector<Button> _loadButtons;
 	sf::Font _font;
 	sf::Text _title;
 	sf::SoundBuffer _hoverBuffer;
