@@ -6,3 +6,5 @@ Eve 0
 moi 1
 toi 0
 >>>>>>> Stashed changes
+moi 0
+toi 0
