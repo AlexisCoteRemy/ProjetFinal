@@ -18,11 +18,17 @@ SaveLoad::SaveLoad()
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    vector<string> labels = { "Continuer", "Sauvegarder", "Charger", "Quitter" };
+    vector<string> labelsSave = { "Continuer", "Sauvegarder", "Quitter" };
+    vector<string> labelsLoad = { "Nouvelle", "Charger", "Quitter" };
 
-    for (int i = 0; i < labels.size(); i++)
+    for (int i = 0; i < labelsSave.size(); i++)
     {
-        _buttons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX + 5, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labels[i], _font));
+        _saveButtons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX + 5, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labelsSave[i], _font));
+    }
+
+    for (int i = 0; i < labelsSave.size(); i++)
+    {
+        _loadButtons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX + 5, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labelsLoad[i], _font));
     }
 
     _hoverBuffer.loadFromFile("hoverSound.wav");
@@ -34,74 +40,131 @@ SaveLoad::SaveLoad()
     _clickSound.setVolume(10);
 }
 
-void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
+void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool gameStarted)
 {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
     {
         Vector2i mousePos = sf::Mouse::getPosition(window);
 
-        for (int i = 0; i < _buttons.size(); i++)
+        if (gameStarted)
         {
-            if (_buttons[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
+            for (int i = 0; i < _saveButtons.size(); i++)
             {
-                if (i == 0)
+                if (_saveButtons[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
                 {
-                    _clickSound.play();
-                    state = GAME;
-
+                    if (i == 0)
+                    {
+                        _clickSound.play();
+                        state = GAME;
+                    }
+                    else if (i == 1)
+                    {
+                        _clickSound.play();
+                        state = MENU;
+                    }
+                    else if (i == 2)
+                    {
+                        _clickSound.play();
+                        state = MENU;
+                    }
                 }
-                else if (i == 1)
+            }
+        } 
+        else
+        {
+            for (int i = 0; i < _loadButtons.size(); i++)
+            {
+                if (_loadButtons[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
                 {
-                    _clickSound.play();
-                    state = MENU;
-                }
-                else if (i == 2)
-                {
-                    _clickSound.play();
-                    state = GAME;
-                }
-                else if (i == 3)
-                {
-                    state = MENU;
+                    if (i == 0)
+                    {
+                        _clickSound.play();
+                        state = NAME_INPUT;
+                    }
+                    else if (i == 1)
+                    {
+                        _clickSound.play();
+                        state = GAME;
+                    }
+                    else if (i == 2)
+                    {
+                        _clickSound.play();
+                        state = MENU;
+                    }
                 }
             }
         }
     }
 }
 
-void SaveLoad::hover(sf::RenderWindow& window)
+void SaveLoad::hover(sf::RenderWindow& window, bool gameStarted)
 {
     Vector2i mousePos = sf::Mouse::getPosition(window);
 
-    for (int i = 0; i < _buttons.size(); i++)
+    if (gameStarted)
     {
-        bool isHovered = _buttons[i].getGlobalBounds().contains(mousePos.x, mousePos.y);
-
-        if (isHovered)
+        for (int i = 0; i < _saveButtons.size(); i++)
         {
-            _buttons[i].setFillColor(Color(255, 255, 0, 225));
+            bool isHovered = _saveButtons[i].getGlobalBounds().contains(mousePos.x, mousePos.y);
 
-            if (!_buttons[i].wasHovered())
+            if (isHovered)
             {
-                _hoverSound.play();
-            }
-        }
-        else
-        {
-            _buttons[i].setFillColor(Color(255, 255, 255, 175));
-        }
+                _saveButtons[i].setFillColor(Color(255, 255, 0, 225));
 
-        _buttons[i].setWasHovered(isHovered);
+                if (!_saveButtons[i].wasHovered())
+                {
+                    _hoverSound.play();
+                }
+            }
+            else
+            {
+                _saveButtons[i].setFillColor(Color(255, 255, 255, 175));
+            }
+
+            _saveButtons[i].setWasHovered(isHovered);
+        }
+    }
+    else
+    {
+        for (int i = 0; i < _loadButtons.size(); i++)
+        {
+            bool isHovered = _loadButtons[i].getGlobalBounds().contains(mousePos.x, mousePos.y);
+
+            if (isHovered)
+            {
+                _loadButtons[i].setFillColor(Color(255, 255, 0, 225));
+
+                if (!_loadButtons[i].wasHovered())
+                {
+                    _hoverSound.play();
+                }
+            }
+            else
+            {
+                _loadButtons[i].setFillColor(Color(255, 255, 255, 175));
+            }
+
+            _loadButtons[i].setWasHovered(isHovered);
+        }
     }
 }
 
-void SaveLoad::draw(sf::RenderWindow& window)
+void SaveLoad::draw(sf::RenderWindow& window, bool gameStarted)
 {
     window.draw(_title);
 
-    for (int i = 0; i < _buttons.size(); i++)
+    if (gameStarted)
     {
-        _buttons[i].draw(window);
-        
+        for (int i = 0; i < _saveButtons.size(); i++)
+        {
+            _saveButtons[i].draw(window);
+        }
+    }
+    else
+    {
+        for (int i = 0; i < _loadButtons.size(); i++)
+        {
+            _loadButtons[i].draw(window);
+        }
     }
 }
