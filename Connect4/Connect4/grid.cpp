@@ -1,5 +1,6 @@
 #include "grid.h"
 #include "mesConstantes.h"
+#include "mesFonctions.h"
 
 using namespace sf;
 
@@ -85,6 +86,8 @@ bool Grid::drop(int col, int joueur)
 			_grille[i][col] = joueur;
 			return true;
 		}
+
+		saveGrid(_grille);
 	}
 	return false;
 }

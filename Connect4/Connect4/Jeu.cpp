@@ -73,6 +73,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 
 						if (_winner != 0 || _grid.isFull())
 						{
+							clearLeaderboard("grid.txt");
 							_victorySound.play();
 							_gamerOver = true;
 							_gameStarted = false;

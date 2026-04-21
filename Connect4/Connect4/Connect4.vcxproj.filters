@@ -118,5 +118,8 @@
     <Text Include="classement.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
+    <Text Include="grid.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
   </ItemGroup>
 </Project>

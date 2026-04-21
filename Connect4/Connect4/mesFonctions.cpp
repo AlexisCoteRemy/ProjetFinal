@@ -1,4 +1,5 @@
 #include "mesFonctions.h"
+#include "mesConstantes.h"
 #include <fstream>
 #include <vector>
 #include <string>
@@ -61,3 +62,17 @@ void clearLeaderboard(std::string nameFile)
     fileOut.close();
 }
 
+void saveGrid(int grid[][7])
+{
+    std::ofstream fileOut("grid.txt", std::ios::app);
+
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLS; j++)
+        {
+            fileOut << grid[i][j] << " ";
+        }
+    }
+
+    fileOut.close();
+}
