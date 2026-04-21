@@ -124,7 +124,7 @@
     <Text Include="classement.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
-    <Text Include="grid.txt">
+    <Text Include="save.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
   </ItemGroup>

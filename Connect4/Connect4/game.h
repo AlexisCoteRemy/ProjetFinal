@@ -24,10 +24,14 @@ private:
     Joueur _joueur;
     State _state;
 
+    bool _wantSave;
+    bool _wantLoad;
+
 public:
     Game();
 
     void handleEvent(sf::Event& event, sf::RenderWindow& window);
     void hover(sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);
+    void processActions();
 };

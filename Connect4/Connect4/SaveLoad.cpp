@@ -1,5 +1,6 @@
 #include "SaveLoad.h"
 #include "mesConstantes.h"
+#include "mesFonctions.h"
 
 using namespace std;
 
@@ -40,7 +41,7 @@ SaveLoad::SaveLoad()
     _clickSound.setVolume(10);
 }
 
-void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
+void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool& wantSave, bool& wantLoad)
 {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
     {
@@ -59,6 +60,7 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     }
                     else if (i == 1)
                     {
+                        wantSave = true;
                         _clickSound.play();
                         state = MENU;
                     }
@@ -83,6 +85,7 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     }
                     else if (i == 1)
                     {
+                        wantLoad = true;
                         _clickSound.play();
                         state = GAME;
                     }

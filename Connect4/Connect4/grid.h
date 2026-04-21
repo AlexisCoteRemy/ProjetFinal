@@ -21,6 +21,10 @@ public:
 
 	bool isFull() const;
 
+	int getCell(int i, int j) const;
+
+	void setCell(int i, int j, int value);
+
 private:
 	int _grille[6][7];
 	std::vector<Button> _boutons;

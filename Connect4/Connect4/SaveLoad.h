@@ -4,13 +4,14 @@
 #include <SFML/Audio.hpp>
 #include "button.h"
 #include "State.h"
+#include "Jeu.h"
 
 class SaveLoad
 {
 public:
 	SaveLoad();
 
-	void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
+	void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool& wantSave, bool& wantLoad);
 	void hover(sf::RenderWindow& window, State& state);
 	void draw(sf::RenderWindow& window, State& state);
 

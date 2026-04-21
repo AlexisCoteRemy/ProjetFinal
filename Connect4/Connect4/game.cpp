@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "mesFonctions.h"
 
 using namespace sf;
 using namespace std;
@@ -37,7 +38,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
     }
     else
     {
-        _saveLoad.handleEvent(event, window, _state);
+        _saveLoad.handleEvent(event, window, _state, _wantSave, _wantLoad);
     }
 }
 
@@ -94,5 +95,20 @@ void Game::hover(sf::RenderWindow& window)
     else
     {
         _saveLoad.hover(window, _state);
+    }
+}
+
+void Game::processActions()
+{
+    if (_wantSave)
+    {
+        _jeu.saveGame();
+        _wantSave = false;
+    }
+
+    if (_wantLoad)
+    {
+        _jeu.loadGame();
+        _wantLoad = false;
     }
 }

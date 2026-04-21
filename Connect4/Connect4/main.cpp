@@ -33,6 +33,8 @@ int main() {
 			game.handleEvent(event, window);
 		}
 
+		game.processActions();
+
 		window.clear();
 		window.draw(backgroundSprite);
 		game.hover(window);

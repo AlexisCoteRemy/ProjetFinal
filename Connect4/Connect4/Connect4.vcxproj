@@ -170,7 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="classement.txt" />
-    <Text Include="grid.txt" />
+    <Text Include="save.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

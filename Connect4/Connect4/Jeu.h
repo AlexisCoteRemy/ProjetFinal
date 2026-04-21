@@ -17,7 +17,8 @@ public:
 	void hover(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
 	void reset();
-
+	void saveGame();
+	void loadGame();
 private:
 	bool _gamerOver;
 	bool _gameStarted;

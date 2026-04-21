@@ -13,7 +13,6 @@ void Grid::initializeGrid()
 		{
 			_grille[i][j] = 0;
 		}
-		saveGrid(_grille);
 	}
 
 	_boutons.clear();
@@ -87,8 +86,6 @@ bool Grid::drop(int col, int joueur)
 			_grille[i][col] = joueur;
 			return true;
 		}
-
-		saveGrid(_grille);
 	}
 	return false;
 }
@@ -199,4 +196,14 @@ bool Grid::isFull() const
 		}
 	}
 	return true;
+}
+
+int Grid::getCell(int i, int j) const
+{
+	return _grille[i][j];
+}
+
+void Grid::setCell(int i, int j, int value)
+{
+	_grille[i][j] = value;
 }

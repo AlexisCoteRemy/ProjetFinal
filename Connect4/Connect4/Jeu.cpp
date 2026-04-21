@@ -1,5 +1,6 @@
 #include "Jeu.h"
 #include "mesFonctions.h"
+#include <fstream>
 
 using namespace sf;
 
@@ -242,4 +243,52 @@ void Jeu::reset()
 	_joueur.setPlayer2Name("");
 	_joueur.setPlayerName("");
 	_joueur.setCurrentInputPlayer(1);
+}
+
+void Jeu::saveGame()
+{
+	std::ofstream fileOut("save.txt");
+
+	fileOut << _joueur.getPlayer1Name().toAnsiString() << std::endl;
+	fileOut << _joueur.getPlayer2Name().toAnsiString() << std::endl;
+	fileOut << _joueur.getJoueurActuel() << std::endl;
+
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			fileOut << _grid.getCell(i,j) << " ";
+		}
+		fileOut << std::endl;
+	}
+
+	fileOut.close();
+}
+
+void Jeu::loadGame()
+{
+	std::ifstream fileIn("save.txt");
+
+	std::string name1, name2;
+	int joueurActuel;
+
+	fileIn >> name1;
+	fileIn >> name2;
+	fileIn >> joueurActuel;
+
+	_joueur.setPlayer1Name(name1);
+	_joueur.setPlayer2Name(name2);
+	_joueur.setJoueurAcutel(joueurActuel);
+
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			int value;
+			fileIn >> value;
+			_grid.setCell(i, j, value);
+		}
+	}
+
+	fileIn.close();
 }

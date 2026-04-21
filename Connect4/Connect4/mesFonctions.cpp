@@ -61,18 +61,3 @@ void clearLeaderboard(std::string nameFile)
     ofstream fileOut(nameFile, ios::out | ios::trunc);
     fileOut.close();
 }
-
-void saveGrid(int grid[][7])
-{
-    std::ofstream fileOut("grid.txt", std::ios::app);
-
-    for (int i = 0; i < ROWS; i++)
-    {
-        for (int j = 0; j < COLS; j++)
-        {
-            fileOut << grid[i][j] << " ";
-        }
-    }
-
-    fileOut.close();
-}
