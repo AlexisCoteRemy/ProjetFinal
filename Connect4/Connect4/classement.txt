@@ -4,3 +4,9 @@ MOI 0
 TOI 0
 moi 10
 toi 0
+Allo 2
+Chose 3
+Binouche 4
+Patente 6
+Lui 1
+Elle 0

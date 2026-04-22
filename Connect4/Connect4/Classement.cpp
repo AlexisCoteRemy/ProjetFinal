@@ -54,6 +54,9 @@ Classement::Classement()
     _clickBuffer.loadFromFile("clickSound.wav");
     _clickSound.setBuffer(_clickBuffer);
     _clickSound.setVolume(10);
+
+    _offset = 0;
+    _maxVisible = 8;
 }
 
 void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -72,6 +75,33 @@ void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& 
             clearLeaderboard("classement.txt");
             loadScores("classement.txt");
             _clickSound.play();
+        }
+    }
+
+    if (event.type == sf::Event::MouseWheelScrolled)
+    {
+        if (event.mouseWheelScroll.delta > 0)
+        {
+            _offset--;
+        }  
+        else
+        {
+            _offset++;
+        }
+
+        if (_offset < 0)
+        {
+            _offset = 0;
+        }
+
+        if (_offset > _noms.size() - _maxVisible)
+        {
+            _offset = _noms.size() - _maxVisible;
+        } 
+
+        if (_noms.size() < _maxVisible)
+        {
+            _offset = 0;
         }
     }
 }
@@ -163,11 +193,18 @@ void Classement::loadScores(std::string nameFile)
         }
     }
 
-    for (int i = 0; i < _noms.size(); i++)
+    for (int i = 0; i < _maxVisible; i++)
     {
+
+        int index = i + _offset;
+
+        if (index >= _noms.size())
+        {
+            break;
+        }
         Text nomText;
         nomText.setFont(_font);
-        nomText.setString(_noms[i]);
+        nomText.setString(_noms[index]);
         nomText.setCharacterSize(25);
         nomText.setFillColor(sf::Color::Black);
         nomText.setPosition((TEXTBOX_W / 2) / 2, 180 + i * 30);
@@ -175,7 +212,7 @@ void Classement::loadScores(std::string nameFile)
 
         Text scoreText;
         scoreText.setFont(_font);
-        scoreText.setString(to_string(_victoires[i]));
+        scoreText.setString(to_string(_victoires[index]));
         scoreText.setCharacterSize(25);
         scoreText.setFillColor(sf::Color::Black);
         scoreText.setPosition((TEXTBOX_W / 2) + (TEXTBOX_W / 4) + (TEXTBOX_W / 8), 180 + i * 30);

@@ -28,6 +28,9 @@ private:
     std::vector<int> _victoires;
     std::vector<sf::Text> _texts;
 
+    int _offset;
+    int _maxVisible;
+
 public:
     Classement();
 
