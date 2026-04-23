@@ -6,7 +6,7 @@ using namespace std;
 
 NameInput::NameInput(Joueur& joueur) : _joueur(joueur)
 {
-	_font.loadFromFile("arial.ttf");
+	_font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
 	_title.setFont(_font);
 	_title.setCharacterSize(60);
@@ -34,7 +34,7 @@ NameInput::NameInput(Joueur& joueur) : _joueur(joueur)
 	_texte.setOutlineColor(Color::White);
 	_texte.setOutlineThickness(2);
 
-	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH, 50, "Retour", _font);
+	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, "Retour", _font);
 
 	_hoverBuffer.loadFromFile("hoverSound.wav");
 	_hoverSound.setBuffer(_hoverBuffer);

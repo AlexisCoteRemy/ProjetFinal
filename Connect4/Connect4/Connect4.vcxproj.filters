@@ -114,6 +114,9 @@
     <Font Include="arial.ttf">
       <Filter>Fichiers de ressources</Filter>
     </Font>
+    <Font Include="ITCAvantGardePro-Md.ttf">
+      <Filter>Fichiers de ressources</Filter>
+    </Font>
   </ItemGroup>
   <ItemGroup>
     <Image Include="c4.jpg">

@@ -6,7 +6,7 @@ using namespace std;
 
 Menu::Menu()
 {
-    _font.loadFromFile("arial.ttf");
+    _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
     _title.setFont(_font);
     _title.setCharacterSize(80);
