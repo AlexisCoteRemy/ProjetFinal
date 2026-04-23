@@ -153,6 +153,12 @@ void Classement::draw(sf::RenderWindow& window)
     window.draw(_textBox);
     window.draw(_users);
     window.draw(_victories);
+
+    for (int i = 0; i < _rows.size(); i++)
+    {
+        window.draw(_rows[i]);
+    }
+
     for (int i = 0; i < _texts.size(); i++)
     {
         window.draw(_texts[i]);
@@ -170,6 +176,7 @@ void Classement::loadScores(std::string nameFile)
     _noms.clear();
     _victoires.clear();
     _texts.clear();
+    _rows.clear();
 
     while (file >> nom >> victoires)
     {
@@ -195,6 +202,20 @@ void Classement::loadScores(std::string nameFile)
 
     for (int i = 0; i < _maxVisible; i++)
     {
+        RectangleShape row;
+        row.setSize(Vector2f(TEXTBOX_W - 40, 30));
+        row.setPosition((WINDOW_WIDTH - TEXTBOX_W) / 2 + 20, 180 + i * 30);
+
+        if (i % 2 == 0)
+        {
+            row.setFillColor(Color(255, 0, 0, 50));
+        }
+        else
+        {
+            row.setFillColor(Color(255, 255, 0, 50));
+        }
+
+        _rows.push_back(row);
 
         int index = i + _offset;
 

@@ -27,6 +27,7 @@ private:
     std::vector<std::string> _noms;
     std::vector<int> _victoires;
     std::vector<sf::Text> _texts;
+    std::vector<sf::RectangleShape> _rows;
 
     int _offset;
     int _maxVisible;
