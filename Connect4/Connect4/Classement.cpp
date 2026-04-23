@@ -1,6 +1,5 @@
 #include "Classement.h"
 #include <fstream>
-#include <map>
 #include "mesFonctions.h"
 
 using namespace sf;
@@ -46,7 +45,7 @@ Classement::Classement()
 
     _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 10, 50, "Retour", _font);
 
-    _effacer = Button( 650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), 650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 20, 50, "Effacer", _font);
+    _effacer = Button(650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), 650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 20, 50, "Effacer", _font);
 
     _hoverBuffer.loadFromFile("hoverSound.wav");
     _hoverSound.setBuffer(_hoverBuffer);
@@ -84,7 +83,7 @@ void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& 
         if (event.mouseWheelScroll.delta > 0)
         {
             _offset--;
-        }  
+        }
         else
         {
             _offset++;
@@ -98,7 +97,7 @@ void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& 
         if (_offset > _noms.size() - _maxVisible)
         {
             _offset = _noms.size() - _maxVisible;
-        } 
+        }
 
         if (_noms.size() < _maxVisible)
         {
@@ -164,23 +163,36 @@ void Classement::draw(sf::RenderWindow& window)
 
 void Classement::loadScores(std::string nameFile)
 {
-    
-    
     ifstream file(nameFile);
     string nom;
     int victoires;
 
-    _scores.clear();
+    _noms.clear();
+    _victoires.clear();
     _texts.clear();
 
     while (file >> nom >> victoires)
     {
-        _scores.emplace(nom, victoires);
+        _noms.push_back(nom);
+        _victoires.push_back(victoires);
     }
 
     file.close();
-    //trier la map par rapport aux victoires
-    //faire une boucle sur les éléments de la map
+
+    int n = _victoires.size();
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (_victoires[i] < _victoires[j])
+            {
+                swap(_victoires[i], _victoires[j]);
+                swap(_noms[i], _noms[j]);
+            }
+        }
+    }
+
     for (int i = 0; i < _maxVisible; i++)
     {
 
@@ -193,14 +205,8 @@ void Classement::loadScores(std::string nameFile)
         Text nomText;
         nomText.setFont(_font);
         nomText.setString(_noms[index]);
-        if (_scores = 1)
-            nomText.setFillColor(sf::Color(255, 215, 0, 255));
-        else if(_scores = 2)
-            nomText.setFillColor(Color (192, 192, 192, 255));
-        else if(_scores = 3)
-            nomText.setFillColor(sf::Color(205, 127, 50, 255));
         nomText.setCharacterSize(25);
-        
+        nomText.setFillColor(sf::Color::Black);
         nomText.setPosition((TEXTBOX_W / 2) / 2, 180 + i * 30);
 
 

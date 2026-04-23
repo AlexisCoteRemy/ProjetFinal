@@ -95,8 +95,6 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                         {
                             state = GAME;
                         }
-                        else
-                            warning.draw(window);
                     }
                     else if (i == 2)
                     {

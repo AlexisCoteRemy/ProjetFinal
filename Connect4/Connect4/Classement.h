@@ -24,7 +24,8 @@ private:
     sf::Sound _hoverSound;
     sf::Sound _clickSound;
 
-    std::map<string, int> _scores;
+    std::vector<std::string> _noms;
+    std::vector<int> _victoires;
     std::vector<sf::Text> _texts;
 
     int _offset;
