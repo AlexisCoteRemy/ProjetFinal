@@ -33,6 +33,27 @@ SaveLoad::SaveLoad()
         _loadButtons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX + 5, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labelsLoad[i], _font));
     }
 
+    _warning.setFont(_font);
+    _warning.setString("Aucune partie sauvegardée");
+    _warning.setCharacterSize(30);
+    _warning.setFillColor(Color::Red);
+
+    FloatRect bounds2 = _warning.getLocalBounds();
+    _warning.setOrigin(bounds2.width / 2, bounds2.height / 2);
+    _warning.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 100);
+
+    _saved.setFont(_font);
+    _saved.setString("Partie sauvegardée");
+    _saved.setCharacterSize(30);
+    _saved.setFillColor(Color::Green);
+
+    FloatRect bounds3 = _saved.getLocalBounds();
+    _saved.setOrigin(bounds3.width / 2, bounds3.height / 2);
+    _saved.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 100);
+
+    _showWarning = false;
+    _showSaved = false;
+
     _hoverBuffer.loadFromFile("hoverSound.wav");
     _hoverSound.setBuffer(_hoverBuffer);
     _hoverSound.setVolume(10);
@@ -63,6 +84,8 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     {
                         jeu.saveGame();
                         _clickSound.play();
+                        _showSaved = true;
+                        _savedClock.restart();
                     }
                     else if (i == 2)
                     {
@@ -93,7 +116,13 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
 
                         if (hasGame)
                         {
+                            _showWarning = false;
                             state = GAME;
+                        }
+                        else
+                        {
+                            _showWarning = true;
+                            _warningClock.restart();
                         }
                     }
                     else if (i == 2)
@@ -163,6 +192,30 @@ void SaveLoad::draw(sf::RenderWindow& window,State& state)
 {
     window.draw(_title);
 
+    if (_showWarning)
+    {
+        if (_warningClock.getElapsedTime().asSeconds() < 2)
+        {
+            window.draw(_warning);
+        }
+        else
+        {
+            _showWarning = false;
+        }
+    }
+
+    if (_showSaved)
+    {
+        if (_savedClock.getElapsedTime().asSeconds() < 2)
+        {
+            window.draw(_saved);
+        }
+        else
+        {
+            _showSaved = false;
+        }
+    }
+
     if (state == SAVE_MENU)
     {
         for (int i = 0; i < _saveButtons.size(); i++)
@@ -177,6 +230,4 @@ void SaveLoad::draw(sf::RenderWindow& window,State& state)
             _loadButtons[i].draw(window);
         }
     }
-
-
 }

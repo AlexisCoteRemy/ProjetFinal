@@ -20,6 +20,12 @@ private:
 	std::vector<Button> _loadButtons;
 	sf::Font _font;
 	sf::Text _title;
+	sf::Text _warning;
+	sf::Text _saved;
+	bool _showWarning;
+	bool _showSaved;
+	sf::Clock _warningClock;
+	sf::Clock _savedClock;
 	sf::SoundBuffer _hoverBuffer;
 	sf::SoundBuffer _clickBuffer;
 
