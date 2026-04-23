@@ -94,7 +94,9 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                         if (hasGame)
                         {
                             state = GAME;
-                        }                       
+                        }
+                        else
+                            warning.draw(window);
                     }
                     else if (i == 2)
                     {
@@ -177,4 +179,6 @@ void SaveLoad::draw(sf::RenderWindow& window,State& state)
             _loadButtons[i].draw(window);
         }
     }
+
+
 }

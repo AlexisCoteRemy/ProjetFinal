@@ -1,5 +1,6 @@
 #include "Classement.h"
 #include <fstream>
+#include <map>
 #include "mesFonctions.h"
 
 using namespace sf;
@@ -163,36 +164,23 @@ void Classement::draw(sf::RenderWindow& window)
 
 void Classement::loadScores(std::string nameFile)
 {
+    
+    
     ifstream file(nameFile);
     string nom;
     int victoires;
 
-    _noms.clear();
-    _victoires.clear();
+    _scores.clear();
     _texts.clear();
 
     while (file >> nom >> victoires)
     {
-        _noms.push_back(nom);
-        _victoires.push_back(victoires);
+        _scores.emplace(nom, victoires);
     }
 
     file.close();
-
-    int n = _victoires.size();
-
-    for (int i = 0; i < n - 1; i++)
-    {
-        for (int j = i + 1; j < n; j++)
-        {
-            if (_victoires[i] < _victoires[j])
-            {
-                swap(_victoires[i], _victoires[j]);
-                swap(_noms[i], _noms[j]);
-            }
-        }
-    }
-
+    //trier la map par rapport aux victoires
+    //faire une boucle sur les éléments de la map
     for (int i = 0; i < _maxVisible; i++)
     {
 
@@ -205,8 +193,14 @@ void Classement::loadScores(std::string nameFile)
         Text nomText;
         nomText.setFont(_font);
         nomText.setString(_noms[index]);
+        if (_scores = 1)
+            nomText.setFillColor(sf::Color(255, 215, 0, 255));
+        else if(_scores = 2)
+            nomText.setFillColor(Color (192, 192, 192, 255));
+        else if(_scores = 3)
+            nomText.setFillColor(sf::Color(205, 127, 50, 255));
         nomText.setCharacterSize(25);
-        nomText.setFillColor(sf::Color::Black);
+        
         nomText.setPosition((TEXTBOX_W / 2) / 2, 180 + i * 30);
 
 

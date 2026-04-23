@@ -8,5 +8,4 @@ Lui 1
 MOI 0
 Patente 6
 TOI 0
-moi 11
-toi 0
+moi 12
