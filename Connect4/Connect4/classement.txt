@@ -1,2 +1,11 @@
-moi 1
+moi 2
 toi 0
+Alexis 0
+Charles-Etienne 0
+Jeremy 0
+Felix-Antoine 0
+Katrine 0
+Eve 0
+Chose 0
+Binouche 0
+Patente 0

@@ -15,6 +15,10 @@ private:
     sf::Text _victories;
     sf::RectangleShape _textBox;
 
+    sf::Texture _arrowTexture;
+    sf::Sprite _upArrow;
+    sf::Sprite _downArrow;
+
     Button _backButton;
     Button _effacer;
 

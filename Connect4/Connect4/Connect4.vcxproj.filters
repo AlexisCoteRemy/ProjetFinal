@@ -122,6 +122,12 @@
     <Image Include="c4.jpg">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="arrow.jpg">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="arrow.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="classement.txt">

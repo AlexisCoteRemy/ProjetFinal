@@ -161,6 +161,8 @@
     <Font Include="ITCAvantGardePro-Md.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="arrow.jpg" />
+    <Image Include="arrow.png" />
     <Image Include="c4.jpg" />
   </ItemGroup>
   <ItemGroup>

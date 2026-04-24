@@ -57,6 +57,21 @@ Classement::Classement()
 
     _offset = 0;
     _maxVisible = 8;
+
+    _arrowTexture.loadFromFile("arrow.png");
+
+    _upArrow.setTexture(_arrowTexture);
+    _downArrow.setTexture(_arrowTexture);
+
+    sf::FloatRect bounds2 = _upArrow.getLocalBounds();
+    _upArrow.setOrigin(bounds2.width / 2, bounds2.height / 2);
+    _downArrow.setOrigin(bounds2.width / 2, bounds2.height / 2);
+
+    _upArrow.setRotation(0);
+    _downArrow.setRotation(180);
+
+    _upArrow.setPosition(((WINDOW_WIDTH - TEXTBOX_W) / 2) + TEXTBOX_W - 50, ((WINDOW_HEIGHT - TEXTBOX_H) / 2) + 100);
+    _downArrow.setPosition(((WINDOW_WIDTH - TEXTBOX_W) / 2) + TEXTBOX_W - 50, ((WINDOW_HEIGHT - TEXTBOX_H) / 2) + TEXTBOX_H - 30);
 }
 
 void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -154,6 +169,16 @@ void Classement::draw(sf::RenderWindow& window)
     window.draw(_users);
     window.draw(_victories);
 
+    if (_offset > 0)
+    {
+        window.draw(_upArrow);
+    }
+
+    if (_offset + _maxVisible < _noms.size())
+    {
+        window.draw(_downArrow);
+    }
+
     if (_noms.empty())
     {
         _effacer.draw(window);
@@ -222,7 +247,7 @@ void Classement::loadScores(std::string nameFile)
     for (int i = 0; i < nbLignes; i++)
     {
         RectangleShape row;
-        row.setSize(Vector2f(TEXTBOX_W - 40, 30));
+        row.setSize(Vector2f(TEXTBOX_W - 120, 30));
         row.setPosition((WINDOW_WIDTH - TEXTBOX_W) / 2 + 20, 180 + i * 30);
 
         if (i % 2 == 0)
