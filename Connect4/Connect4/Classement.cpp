@@ -159,10 +159,8 @@ void Classement::draw(sf::RenderWindow& window)
         _effacer.draw(window);
         _backButton.draw(window);
     }
-
     else
     {
-
         for (int i = 0; i < _rows.size(); i++)
         {
             window.draw(_rows[i]);
