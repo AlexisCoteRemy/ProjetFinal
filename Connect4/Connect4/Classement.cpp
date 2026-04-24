@@ -154,17 +154,27 @@ void Classement::draw(sf::RenderWindow& window)
     window.draw(_users);
     window.draw(_victories);
 
-    for (int i = 0; i < _rows.size(); i++)
+    if (_noms.empty())
     {
-        window.draw(_rows[i]);
+        _effacer.draw(window);
+        _backButton.draw(window);
     }
 
-    for (int i = 0; i < _texts.size(); i++)
+    else
     {
-        window.draw(_texts[i]);
+
+        for (int i = 0; i < _rows.size(); i++)
+        {
+            window.draw(_rows[i]);
+        }
+
+        for (int i = 0; i < _texts.size(); i++)
+        {
+            window.draw(_texts[i]);
+        }
+        _effacer.draw(window);
+        _backButton.draw(window);
     }
-    _effacer.draw(window);
-    _backButton.draw(window);
 }
 
 void Classement::loadScores(std::string nameFile)
@@ -200,7 +210,18 @@ void Classement::loadScores(std::string nameFile)
         }
     }
 
-    for (int i = 0; i < _maxVisible; i++)
+    int nbLignes;
+
+    if (_noms.size() - _offset < _maxVisible)
+    {
+        nbLignes = _noms.size() - _offset;
+    }
+    else
+    {
+        nbLignes = _maxVisible;
+    }
+
+    for (int i = 0; i < nbLignes; i++)
     {
         RectangleShape row;
         row.setSize(Vector2f(TEXTBOX_W - 40, 30));
