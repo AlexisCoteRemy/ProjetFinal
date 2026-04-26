@@ -28,11 +28,11 @@ Menu::Menu()
 
     _hoverBuffer.loadFromFile("hoverSound.wav");
     _hoverSound.setBuffer(_hoverBuffer);
-    _hoverSound.setVolume(10);
+    _hoverSound.setVolume(20);
 
     _clickBuffer.loadFromFile("clickSound.wav");
     _clickSound.setBuffer(_clickBuffer);
-    _clickSound.setVolume(10);
+    _clickSound.setVolume(20);
 }
 
 void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool needName)
