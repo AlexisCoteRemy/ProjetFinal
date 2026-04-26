@@ -157,19 +157,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="arial.ttf" />
     <Font Include="ITCAvantGardePro-Md.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="arrow.jpg" />
     <Image Include="arrow.png" />
     <Image Include="c4.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="backSound.wav" />
     <Media Include="clickSound.wav" />
     <Media Include="hoverSound.wav" />
     <Media Include="mainMusic.wav" />
     <Media Include="victorySound.wav" />
+    <Media Include="warningSound.wav" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="classement.txt" />

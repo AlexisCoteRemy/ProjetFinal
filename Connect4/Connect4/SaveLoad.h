@@ -28,7 +28,11 @@ private:
 	sf::Clock _savedClock;
 	sf::SoundBuffer _hoverBuffer;
 	sf::SoundBuffer _clickBuffer;
+	sf::SoundBuffer _backBuffer;
+	sf::SoundBuffer _warningBuffer;
 
 	sf::Sound _hoverSound;
 	sf::Sound _clickSound;
+	sf::Sound _backSound;
+	sf::Sound _warningSound;
 };

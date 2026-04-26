@@ -34,8 +34,10 @@ private:
 	sf::SoundBuffer _hoverBuffer;
 	sf::SoundBuffer _clickBuffer;
 	sf::SoundBuffer _victoryBuffer;
+	sf::SoundBuffer _backBuffer;
 
 	sf::Sound _hoverSound;
 	sf::Sound _clickSound;
 	sf::Sound _victorySound;
+	sf::Sound _backSound;
 };

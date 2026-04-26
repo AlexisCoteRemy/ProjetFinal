@@ -29,7 +29,9 @@ private:
 
     sf::SoundBuffer _hoverBuffer;
     sf::SoundBuffer _clickBuffer;
+    sf::SoundBuffer _backBuffer;
 
     sf::Sound _hoverSound;
     sf::Sound _clickSound;
+    sf::Sound _backSound;
 };

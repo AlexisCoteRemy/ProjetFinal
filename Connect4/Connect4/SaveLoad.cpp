@@ -56,11 +56,19 @@ SaveLoad::SaveLoad()
 
     _hoverBuffer.loadFromFile("hoverSound.wav");
     _hoverSound.setBuffer(_hoverBuffer);
-    _hoverSound.setVolume(10);
+    _hoverSound.setVolume(20);
 
     _clickBuffer.loadFromFile("clickSound.wav");
     _clickSound.setBuffer(_clickBuffer);
-    _clickSound.setVolume(10);
+    _clickSound.setVolume(20);
+
+    _backBuffer.loadFromFile("backSound.wav");
+    _backSound.setBuffer(_backBuffer);
+    _backSound.setVolume(20);
+
+    _warningBuffer.loadFromFile("warningSound.wav");
+    _warningSound.setBuffer(_warningBuffer);
+    _warningSound.setVolume(20);
 }
 
 void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool& wantSave, bool& wantLoad, Jeu& jeu)
@@ -89,7 +97,7 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     }
                     else if (i == 2)
                     {
-                        _clickSound.play();
+                        _backSound.play();
                         state = MENU;
                     }
                 }
@@ -121,13 +129,14 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                         }
                         else
                         {
+                            _warningSound.play();
                             _showWarning = true;
                             _warningClock.restart();
                         }
                     }
                     else if (i == 2)
                     {
-                        _clickSound.play();
+                        _backSound.play();
                         state = MENU;
                     }
                 }

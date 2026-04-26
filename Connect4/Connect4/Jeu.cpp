@@ -31,15 +31,19 @@ Jeu::Jeu(Joueur& joueur) : _joueur(joueur)
 
 	_hoverBuffer.loadFromFile("hoverSound.wav");
 	_hoverSound.setBuffer(_hoverBuffer);
-	_hoverSound.setVolume(10);
+	_hoverSound.setVolume(20);
 
 	_clickBuffer.loadFromFile("clickSound.wav");
 	_clickSound.setBuffer(_clickBuffer);
-	_clickSound.setVolume(10);
+	_clickSound.setVolume(20);
 
 	_victoryBuffer.loadFromFile("victorySound.wav");
 	_victorySound.setBuffer(_victoryBuffer);
 	_victorySound.setVolume(15);
+
+	_backBuffer.loadFromFile("backSound.wav");
+	_backSound.setBuffer(_backBuffer);
+	_backSound.setVolume(20);
 }
 
 void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -54,14 +58,14 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 			{
 				if (_gamerOver)
 				{
-					_clickSound.play();
+					_backSound.play();
 					reset();
 					state = MENU;
 				}
 				else
 				{
 					state = SAVE_MENU;
-					_clickSound.play();
+					_backSound.play();
 				}
 			}
 

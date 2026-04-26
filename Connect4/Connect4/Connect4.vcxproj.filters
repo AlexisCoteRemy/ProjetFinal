@@ -109,20 +109,20 @@
     <Media Include="victorySound.wav">
       <Filter>Fichiers de ressources</Filter>
     </Media>
+    <Media Include="backSound.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="warningSound.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="arial.ttf">
-      <Filter>Fichiers de ressources</Filter>
-    </Font>
     <Font Include="ITCAvantGardePro-Md.ttf">
       <Filter>Fichiers de ressources</Filter>
     </Font>
   </ItemGroup>
   <ItemGroup>
     <Image Include="c4.jpg">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="arrow.jpg">
       <Filter>Fichiers de ressources</Filter>
     </Image>
     <Image Include="arrow.png">
