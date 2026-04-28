@@ -275,7 +275,31 @@ void Classement::loadScores(std::string nameFile)
         nomText.setFont(_font);
         nomText.setString(_noms[index]);
         nomText.setCharacterSize(25);
-        nomText.setFillColor(sf::Color::Black);
+        
+        if (index == 0)
+        {
+            nomText.setFillColor(Color(255, 215, 0, 255));
+            nomText.setOutlineThickness(2);
+            nomText.setOutlineColor(Color::Black);
+        }
+            
+        else if (index == 1)
+        {
+            nomText.setOutlineThickness(2);
+            nomText.setOutlineColor(Color::Black);
+            nomText.setFillColor(Color(192, 192, 192, 255));
+        }
+            
+        else if (index == 2)
+        {
+            nomText.setOutlineThickness(2);
+            nomText.setOutlineColor(Color::Black);
+            nomText.setFillColor(Color(205, 127, 50, 255));
+        }
+            
+        else
+            nomText.setFillColor(Color::Black);
+        
         nomText.setPosition((TEXTBOX_W / 2) / 2, 180 + i * 30);
 
 
@@ -283,7 +307,31 @@ void Classement::loadScores(std::string nameFile)
         scoreText.setFont(_font);
         scoreText.setString(to_string(_victoires[index]));
         scoreText.setCharacterSize(25);
-        scoreText.setFillColor(sf::Color::Black);
+        scoreText.setOutlineThickness(2);
+        scoreText.setOutlineColor(Color::Black);
+        if (index == 0)
+        {
+            scoreText.setOutlineThickness(2);
+            scoreText.setOutlineColor(Color::Black);
+            scoreText.setFillColor(Color(255, 215, 0, 255));
+        }
+            
+        else if (index == 1)
+        {
+            scoreText.setFillColor(Color(192, 192, 192, 255));
+            scoreText.setOutlineThickness(2);
+            scoreText.setOutlineColor(Color::Black);
+        }
+            
+        else if (index == 2)
+        {
+            scoreText.setFillColor(Color(205, 127, 50, 255));
+            scoreText.setOutlineThickness(2);
+            scoreText.setOutlineColor(Color::Black);
+        }
+            
+        else
+            scoreText.setFillColor(Color::Black);
         scoreText.setPosition((TEXTBOX_W / 2) + (TEXTBOX_W / 4) + (TEXTBOX_W / 8), 180 + i * 30);
 
         _texts.push_back(nomText);

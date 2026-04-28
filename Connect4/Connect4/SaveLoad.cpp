@@ -1,4 +1,5 @@
 #include "SaveLoad.h"
+#include "Classement.h"
 #include "mesConstantes.h"
 #include "mesFonctions.h"
 #include <fstream>
@@ -240,3 +241,4 @@ void SaveLoad::draw(sf::RenderWindow& window,State& state)
         }
     }
 }
+
