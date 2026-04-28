@@ -298,11 +298,7 @@ void Classement::loadScores(std::string nameFile)
         }
             
         else
-        {
             nomText.setFillColor(Color::Black);
-            nomText.setOutlineThickness(0);
-        }
-           
         
         nomText.setPosition((TEXTBOX_W / 2) / 2, 180 + i * 30);
 
@@ -311,8 +307,7 @@ void Classement::loadScores(std::string nameFile)
         scoreText.setFont(_font);
         scoreText.setString(to_string(_victoires[index]));
         scoreText.setCharacterSize(25);
-        scoreText.setOutlineThickness(2);
-        scoreText.setOutlineColor(Color::Black);
+
         if (index == 0)
         {
             scoreText.setOutlineThickness(2);
@@ -335,11 +330,8 @@ void Classement::loadScores(std::string nameFile)
         }
             
         else
-        {
             scoreText.setFillColor(Color::Black);
-            scoreText.setOutlineThickness(0);
-        }
-            
+
         scoreText.setPosition((TEXTBOX_W / 2) + (TEXTBOX_W / 4) + (TEXTBOX_W / 8), 180 + i * 30);
 
         _texts.push_back(nomText);
