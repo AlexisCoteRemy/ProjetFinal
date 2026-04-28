@@ -19,6 +19,7 @@ public:
 	void reset();
 	void saveGame();
 	bool loadGame();
+	
 private:
 	bool _gamerOver;
 	bool _gameStarted;
@@ -40,4 +41,7 @@ private:
 	sf::Sound _clickSound;
 	sf::Sound _victorySound;
 	sf::Sound _backSound;
+
+protected:
+	void backButtonPressed(State& state);
 };

@@ -56,17 +56,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 
 			if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 			{
-				if (_gamerOver)
-				{
-					_backSound.play();
-					reset();
-					state = MENU;
-				}
-				else
-				{
-					state = SAVE_MENU;
-					_backSound.play();
-				}
+				backButtonPressed(state);
 			}
 
 			if (!_gamerOver)
@@ -141,6 +131,12 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 				}
 			}
 		}
+		
+	}
+	else if (event.type == Event::KeyPressed)
+	{
+		if (event.key.code == Keyboard::Escape)
+			backButtonPressed(state);
 	}
 }
 
@@ -308,4 +304,20 @@ bool Jeu::loadGame()
 	fileIn.close();
 
 	return true;
+}
+
+void Jeu::backButtonPressed(State& state)
+{
+
+	if (_gamerOver)
+	{
+		_backSound.play();
+		reset();
+		state = MENU;
+	}
+	else
+	{
+		state = SAVE_MENU;
+		_backSound.play();
+	}
 }

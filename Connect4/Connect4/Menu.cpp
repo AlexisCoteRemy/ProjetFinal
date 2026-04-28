@@ -67,6 +67,7 @@ void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
             }
         }
     }
+    
 }
 
 void Menu::hover(sf::RenderWindow& window)
