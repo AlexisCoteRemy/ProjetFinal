@@ -70,6 +70,10 @@ SaveLoad::SaveLoad()
     _warningBuffer.loadFromFile("warningSound.wav");
     _warningSound.setBuffer(_warningBuffer);
     _warningSound.setVolume(20);
+
+    _saveBuffer.loadFromFile("saveSound.wav");
+    _saveSound.setBuffer(_saveBuffer);
+    _saveSound.setVolume(20);
 }
 
 void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool& wantSave, bool& wantLoad, Jeu& jeu)
@@ -92,7 +96,7 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     else if (i == 1)
                     {
                         jeu.saveGame();
-                        _clickSound.play();
+                        _saveSound.play();
                         _showSaved = true;
                         _savedClock.restart();
                     }
