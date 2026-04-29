@@ -78,12 +78,22 @@ SaveLoad::SaveLoad()
 
 void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool& wantSave, bool& wantLoad, Jeu& jeu)
 {
+    if (event.type == Event::KeyPressed)
+    {
+        if (event.key.code == Keyboard::Escape)
+        {
+            _backSound.play();
+            state = State::MENU;
+        }
+    }
+
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
     {
         Vector2i mousePos = sf::Mouse::getPosition(window);
 
         if (state == SAVE_MENU)
         {
+
             for (int i = 0; i < _saveButtons.size(); i++)
             {
                 if (_saveButtons[i].getGlobalBounds().contains(mousePos.x, mousePos.y))

@@ -51,6 +51,15 @@ NameInput::NameInput(Joueur& joueur) : _joueur(joueur)
 
 void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 {
+	if (event.type == Event::KeyPressed)
+	{
+		if (event.key.code == Keyboard::Escape)
+		{
+			_backSound.play();
+			state = State::LOAD_MENU;
+		}
+	}
+
 	if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left)
 	{
 		Vector2i mousePos = sf::Mouse::getPosition(window);

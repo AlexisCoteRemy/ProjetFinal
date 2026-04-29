@@ -80,6 +80,15 @@ Classement::Classement()
 
 void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 {
+    if (event.type == Event::KeyPressed)
+    {
+        if (event.key.code == Keyboard::Escape)
+        {
+            _backSound.play();
+            state = State::MENU;
+        }
+    }
+
     if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left)
     {
         Vector2i mousePos = sf::Mouse::getPosition(window);
