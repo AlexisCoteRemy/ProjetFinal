@@ -7,6 +7,9 @@ using namespace std;
 Game::Game() : _nameInput(_joueur), _jeu(_joueur)
 {
     _state = MENU;
+    _previousState = MENU;
+    _wantLoad = false;
+    _wantSave = false;
 }
 
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)

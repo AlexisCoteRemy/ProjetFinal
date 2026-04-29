@@ -208,7 +208,7 @@ void SaveLoad::hover(sf::RenderWindow& window, State& state)
             else
             {
                 _loadButtons[i].setFillColor(Color(255, 255, 255, 175));
-                _loadButtons[i].setScale(1.05f, 1.05f);
+                _loadButtons[i].setScale(1.f, 1.f);
             }
 
             _loadButtons[i].setWasHovered(isHovered);
