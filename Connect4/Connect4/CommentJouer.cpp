@@ -81,6 +81,7 @@ void CommentJouer::hover(sf::RenderWindow& window)
     if (isHovered)
     {
         _backButton.setFillColor(Color(255, 255, 0, 225));
+        _backButton.setScale(1.05f, 1.05f);
 
         if (!_backButton.wasHovered())
         {
@@ -90,6 +91,7 @@ void CommentJouer::hover(sf::RenderWindow& window)
     else
     {
         _backButton.setFillColor(Color(255, 255, 255, 175));
+        _backButton.setScale(1.f, 1.f);
     }
 
     _backButton.setWasHovered(isHovered);

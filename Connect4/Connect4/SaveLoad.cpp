@@ -173,6 +173,7 @@ void SaveLoad::hover(sf::RenderWindow& window, State& state)
             if (isHovered)
             {
                 _saveButtons[i].setFillColor(Color(255, 255, 0, 225));
+                _saveButtons[i].setScale(1.05f, 1.05f);
 
                 if (!_saveButtons[i].wasHovered())
                 {
@@ -182,6 +183,7 @@ void SaveLoad::hover(sf::RenderWindow& window, State& state)
             else
             {
                 _saveButtons[i].setFillColor(Color(255, 255, 255, 175));
+                _saveButtons[i].setScale(1.f, 1.f);
             }
 
             _saveButtons[i].setWasHovered(isHovered);
@@ -196,6 +198,7 @@ void SaveLoad::hover(sf::RenderWindow& window, State& state)
             if (isHovered)
             {
                 _loadButtons[i].setFillColor(Color(255, 255, 0, 225));
+                _loadButtons[i].setScale(1.05f, 1.05f);
 
                 if (!_loadButtons[i].wasHovered())
                 {
@@ -205,6 +208,7 @@ void SaveLoad::hover(sf::RenderWindow& window, State& state)
             else
             {
                 _loadButtons[i].setFillColor(Color(255, 255, 255, 175));
+                _loadButtons[i].setScale(1.05f, 1.05f);
             }
 
             _loadButtons[i].setWasHovered(isHovered);

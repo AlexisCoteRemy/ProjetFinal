@@ -16,6 +16,7 @@ public:
 	FloatRect getGlobalBounds() const;
 	bool wasHovered() const;
 	void setWasHovered(bool state);
+	void setScale(float scaleX, float scaleY);
 
 private:
 	CircleShape _circle;
