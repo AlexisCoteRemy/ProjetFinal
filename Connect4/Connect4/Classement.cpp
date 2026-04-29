@@ -1,7 +1,6 @@
 #include "Classement.h"
 #include <fstream>
 #include "mesFonctions.h"
-#include "Jeu.h"
 
 using namespace sf;
 using namespace std;
@@ -122,13 +121,6 @@ void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& 
         if (_noms.size() < _maxVisible)
         {
             _offset = 0;
-        }
-    }
-    else if (event.type == sf::Event::KeyPressed)
-    {
-        if (event.key.code == Keyboard::Escape)
-        {
-           Jeu::backButtonPressed(state);
         }
     }
 }
