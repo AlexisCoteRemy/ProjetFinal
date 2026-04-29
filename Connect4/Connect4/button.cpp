@@ -87,3 +87,8 @@ void Button::setScale(float scaleX, float scaleY)
 {
 	_button.setScale(scaleX, scaleY);
 }
+
+void Button::setTextScale(float scaleX, float scaleY)
+{
+	_texte.setScale(scaleX, scaleY);
+}

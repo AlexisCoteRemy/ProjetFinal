@@ -144,6 +144,7 @@ void Classement::hover(sf::RenderWindow& window)
     {
         _backButton.setFillColor(Color(255, 255, 0, 225));
         _backButton.setScale(1.05f, 1.05f);
+        _backButton.setTextScale(1.05f, 1.05f);
 
         if (!_backButton.wasHovered())
         {
@@ -154,6 +155,7 @@ void Classement::hover(sf::RenderWindow& window)
     {
         _backButton.setFillColor(Color(255, 255, 255, 175));
         _backButton.setScale(1.f, 1.f);
+        _backButton.setTextScale(1.f, 1.f);
     }
 
     bool isHovered2 = _effacer.getGlobalBounds().contains(mousePos.x, mousePos.y);
@@ -162,6 +164,7 @@ void Classement::hover(sf::RenderWindow& window)
     {
         _effacer.setFillColor(Color(255, 255, 0, 225));
         _effacer.setScale(1.05f, 1.05f);
+        _effacer.setTextScale(1.05f, 1.05f);
 
         if (!_effacer.wasHovered())
         {
@@ -172,6 +175,7 @@ void Classement::hover(sf::RenderWindow& window)
     {
         _effacer.setFillColor(Color(255, 255, 255, 175));
         _effacer.setScale(1.f, 1.f);
+        _effacer.setTextScale(1.f, 1.f);
     }
 
     _effacer.setWasHovered(isHovered2);

@@ -92,6 +92,7 @@ void Menu::hover(sf::RenderWindow& window)
         {
             _buttons[i].setFillColor(Color(255, 255, 0, 225));
             _buttons[i].setScale(1.05f, 1.05f);
+            _buttons[i].setTextScale(1.05f, 1.05f);
 
             if (!_buttons[i].wasHovered())
             {
@@ -102,6 +103,7 @@ void Menu::hover(sf::RenderWindow& window)
         {
             _buttons[i].setFillColor(Color(255, 255, 255, 175));
             _buttons[i].setScale(1.f, 1.f);
+            _buttons[i].setTextScale(1.f, 1.f);
         }
 
         _buttons[i].setWasHovered(isHovered);

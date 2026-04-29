@@ -67,7 +67,7 @@ void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& s
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 		{
 			_backSound.play();
-			state = State::MENU;
+			state = State::LOAD_MENU;
 		}
 	}
 
@@ -117,6 +117,7 @@ void NameInput::hover(sf::RenderWindow& window)
 	{
 		_backButton.setFillColor(Color(255, 255, 0, 225));
 		_backButton.setScale(1.05f, 1.05f);
+		_backButton.setTextScale(1.05f, 1.05f);
 
 		if (!_backButton.wasHovered())
 		{
@@ -127,6 +128,7 @@ void NameInput::hover(sf::RenderWindow& window)
 	{
 		_backButton.setFillColor(Color(255, 255, 255, 175));
 		_backButton.setScale(1.f, 1.f);
+		_backButton.setTextScale(1.f, 1.f);
 	}
 
 	_backButton.setWasHovered(isHovered);

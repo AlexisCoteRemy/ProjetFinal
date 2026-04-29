@@ -17,6 +17,7 @@ public:
 	bool wasHovered() const;
 	void setWasHovered(bool state);
 	void setScale(float scaleX, float scaleY);
+	void setTextScale(float scaleX, float scaleY);
 
 private:
 	CircleShape _circle;
