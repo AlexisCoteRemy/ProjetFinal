@@ -7,6 +7,7 @@
 #include "Joueur.h"
 #include "Jeu.h"
 #include "Button.h"
+#include "Quit.h"
 #include "mesConstantes.h"
 #include "SaveLoad.h"
 #include "State.h"
@@ -21,8 +22,10 @@ private:
     NameInput _nameInput;
     SaveLoad _saveLoad;
     Jeu _jeu;
+    Quit _quit;
     Joueur _joueur;
     State _state;
+    State _previousState;
 
     bool _wantSave;
     bool _wantLoad;

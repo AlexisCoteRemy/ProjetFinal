@@ -1,10 +1,8 @@
-#include "Menu.h"
-#include "SaveLoad.h"
+#include "Quit.h"
 
-using namespace sf;
 using namespace std;
 
-Menu::Menu()
+Quit::Quit()
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -13,13 +11,13 @@ Menu::Menu()
     _title.setFillColor(Color::White);
     _title.setOutlineColor(Color::Red);
     _title.setOutlineThickness(2);
-    _title.setString("Connect 4");
+    _title.setString("Quitter?");
 
     FloatRect bounds = _title.getLocalBounds();
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    vector<string> labels = { "Jouer", "Classement", "Comment jouer", "Quitter" };
+    vector<string> labels = { "Oui", "Non"};
 
     for (int i = 0; i < labels.size(); i++)
     {
@@ -33,16 +31,20 @@ Menu::Menu()
     _clickBuffer.loadFromFile("clickSound.wav");
     _clickSound.setBuffer(_clickBuffer);
     _clickSound.setVolume(20);
+
+    _backBuffer.loadFromFile("backSound.wav");
+    _backSound.setBuffer(_backBuffer);
+    _backSound.setVolume(20);
 }
 
-void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool needName)
+void Quit::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, State& previousState)
 {
     if (event.type == Event::KeyPressed)
     {
         if (event.key.code == Keyboard::Escape)
         {
-            _clickSound.play();
-            state = State::QUIT_MENU;
+            _backSound.play();
+            state = previousState;
         }
     }
 
@@ -56,31 +58,19 @@ void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
             {
                 if (i == 0)
                 {
-                    _clickSound.play();
-                    state = LOAD_MENU;
+                    window.close();
                 }
-                else if (i == 1)
+                else
                 {
-                    _clickSound.play();
-                    state = LEADERBOARD;
-                }
-                else if (i == 2)
-                {
-                    _clickSound.play();
-                    state = HOW_TO;
-                }
-                else if (i == 3)
-                {
-                    _clickSound.play();
-                    state = QUIT_MENU;
+                    _backSound.play();
+                    state = previousState;
                 }
             }
         }
     }
-    
 }
 
-void Menu::hover(sf::RenderWindow& window)
+void Quit::hover(sf::RenderWindow& window)
 {
     Vector2i mousePos = sf::Mouse::getPosition(window);
 
@@ -108,7 +98,7 @@ void Menu::hover(sf::RenderWindow& window)
     }
 }
 
-void Menu::draw(sf::RenderWindow& window)
+void Quit::draw(sf::RenderWindow& window)
 {
     window.draw(_title);
 

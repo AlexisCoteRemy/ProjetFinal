@@ -8,5 +8,6 @@ enum State
     HOW_TO,
     NAME_INPUT,
     SAVE_MENU,
-    LOAD_MENU
+    LOAD_MENU,
+    QUIT_MENU
 };

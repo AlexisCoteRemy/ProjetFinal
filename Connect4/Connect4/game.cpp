@@ -12,7 +12,10 @@ Game::Game() : _nameInput(_joueur), _jeu(_joueur)
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 {
     if (event.type == Event::Closed)
-        window.close();
+    {
+        _previousState = _state;
+        _state = QUIT_MENU;
+    }
 
     bool needName = (_joueur.getPlayer1Name().isEmpty() || _joueur.getPlayer2Name().isEmpty());;
 
@@ -35,6 +38,10 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
     else if (_state == GAME)
     {
         _jeu.handleEvent(event, window, _state);
+    }
+    else if (_state == QUIT_MENU)
+    {
+        _quit.handleEvent(event, window, _state, _previousState);
     }
     else
     {
@@ -64,6 +71,10 @@ void Game::draw(sf::RenderWindow& window)
     {
         _jeu.draw(window);
     }
+    else if (_state == QUIT_MENU)
+    {
+        _quit.hover(window);
+    }
     else
     {
         _saveLoad.draw(window, _state);
@@ -91,6 +102,10 @@ void Game::hover(sf::RenderWindow& window)
     else if (_state == GAME)
     {
         _jeu.hover(window);
+    }
+    else if (_state == QUIT_MENU)
+    {
+        _quit.draw(window);
     }
     else
     {
