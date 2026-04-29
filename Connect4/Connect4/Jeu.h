@@ -19,12 +19,15 @@ public:
 	void reset();
 	void saveGame();
 	bool loadGame();
+	void update(State& state);
 	
 private:
 	bool _gamerOver;
 	bool _gameStarted;
 	bool _blinkState;
 	int _winner;
+	bool _waitingForLeaderboard;
+	sf::Clock _endClock;
 	Joueur& _joueur;
 	Grid _grid;
 	sf::Text _winText;

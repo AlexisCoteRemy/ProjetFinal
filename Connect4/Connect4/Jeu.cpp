@@ -12,6 +12,7 @@ Jeu::Jeu(Joueur& joueur) : _joueur(joueur)
 	_gamerOver = false;
 	_gameStarted = true;
 	_blinkState = false;
+	_waitingForLeaderboard = false;
 	_winner = 0;
 	_joueur.setCurrentInputPlayer(1);
 	_joueur.setJoueurAcutel(1);
@@ -76,6 +77,8 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 							_victorySound.play();
 							_gamerOver = true;
 							_gameStarted = false;
+							_waitingForLeaderboard = true;
+							_endClock.restart();
 							std::ofstream fileOut("save.txt", std::ios::trunc);
 							fileOut.close();
 
@@ -231,6 +234,7 @@ void Jeu::reset()
 	_gamerOver = false;
 	_gameStarted = true;
 	_blinkState = false;
+	_waitingForLeaderboard = false;
 	_winner = 0;
 	_joueur.setJoueurAcutel(1);
 	_winText.setString("Tour de " + _joueur.getPlayer1Name());
@@ -304,6 +308,18 @@ bool Jeu::loadGame()
 	fileIn.close();
 
 	return true;
+}
+
+void Jeu::update(State& state)
+{
+	if (_waitingForLeaderboard)
+	{
+		if (_endClock.getElapsedTime().asSeconds() >= 3)
+		{
+			state = LEADERBOARD;
+			_waitingForLeaderboard = false;
+		}
+	}
 }
 
 void Jeu::backButtonPressed(State& state)

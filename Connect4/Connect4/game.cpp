@@ -111,4 +111,9 @@ void Game::processActions()
         _jeu.loadGame();
         _wantLoad = false;
     }
+
+    if (_state == GAME)
+    {
+        _jeu.update(_state);
+    }
 }
