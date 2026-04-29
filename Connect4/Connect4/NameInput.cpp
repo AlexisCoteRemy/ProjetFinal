@@ -47,6 +47,14 @@ NameInput::NameInput(Joueur& joueur) : _joueur(joueur)
 	_backBuffer.loadFromFile("backSound.wav");
 	_backSound.setBuffer(_backBuffer);
 	_backSound.setVolume(20);
+
+	_keyboardBuffer.loadFromFile("keyboardType.wav");
+	_keyboardSound.setBuffer(_keyboardBuffer);
+	_keyboardSound.setVolume(10);
+
+	_backspaceBuffer.loadFromFile("backspaceType.wav");
+	_backspaceSound.setBuffer(_backspaceBuffer);
+	_backspaceSound.setVolume(10);
 }
 
 void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -75,10 +83,12 @@ void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& s
 	{
 		if (event.text.unicode == 8)
 		{
+			_backspaceSound.play();
 			_joueur.removeLastChar();
 		}
 		else if (event.text.unicode < 128 && event.text.unicode >= 32)
 		{
+			_keyboardSound.play();
 			_joueur.addCharToName(event.text.unicode);
 		}
 

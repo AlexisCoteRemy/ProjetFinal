@@ -124,6 +124,12 @@
     <Media Include="saveSound.wav">
       <Filter>Fichiers de ressources</Filter>
     </Media>
+    <Media Include="backspaceType.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
+    <Media Include="keyboardType.wav">
+      <Filter>Fichiers de ressources</Filter>
+    </Media>
   </ItemGroup>
   <ItemGroup>
     <Font Include="ITCAvantGardePro-Md.ttf">
