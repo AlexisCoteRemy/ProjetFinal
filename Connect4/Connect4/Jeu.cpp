@@ -55,13 +55,13 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 		{
 			Vector2i mousePos = Mouse::getPosition(window);
 
-			if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
-			{
-				backButtonPressed(state);
-			}
-
 			if (!_gamerOver)
 			{
+				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+				{
+					backButtonPressed(state);
+				}
+
 				int col = _grid.clicked(mousePos);
 
 				if (col != -1)
@@ -229,7 +229,10 @@ void Jeu::draw(sf::RenderWindow& window)
 		}
 	}
 
-	_backButton.draw(window);
+	if (!_gamerOver)
+	{
+		_backButton.draw(window);
+	}
 }
 
 void Jeu::reset()
