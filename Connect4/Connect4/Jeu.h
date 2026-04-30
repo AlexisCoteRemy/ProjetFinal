@@ -8,6 +8,7 @@
 #include "State.h"
 #include "mesConstantes.h"
 #include "Grid.h"
+#include "FallingToken.h"
 
 class Jeu
 {
@@ -36,8 +37,11 @@ private:
 	sf::Font _font;
 	Button _backButton;
 	sf::Clock _blink;
+	sf::Clock _clock;
 
 	SoundManager& _sounds;
+
+	FallingToken _fallingToken;
 
 protected:
 	void backButtonPressed(State& state);

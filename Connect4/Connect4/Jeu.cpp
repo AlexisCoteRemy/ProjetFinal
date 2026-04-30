@@ -33,6 +33,9 @@ Jeu::Jeu(Joueur& joueur, SoundManager& sounds) : _joueur(joueur), _sounds(sounds
 
 void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 {
+	if (_fallingToken.isFalling())
+		return;
+
 	if (event.type == Event::MouseButtonPressed)
 	{
 		if (event.mouseButton.button == Mouse::Left)
@@ -52,57 +55,23 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 				{
 					_sounds.play("click");
 
-					if (_grid.drop(col, _joueur.getJoueurActuel()))
+					if (!_fallingToken.isFalling())
 					{
-						_winner = _grid.getWinner();
+						int row = -1;
 
-						if (_winner != 0 || _grid.isFull())
+						for (int i = ROWS - 1; i >= 0; i--)
 						{
-							_sounds.play("victory");
-							_gamerOver = true;
-							_gameStarted = false;
-							_waitingForLeaderboard = true;
-							_endClock.restart();
-							std::ofstream fileOut("save.txt", std::ios::trunc);
-							fileOut.close();
-
-							if (_winner == 1)
+							if (_grid.getCell(i, col) == 0)
 							{
-								_winText.setString("Victoire de " + _joueur.getPlayer1Name());
-								FloatRect bounds = _winText.getLocalBounds();
-								_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-								_winText.setPosition(WINDOW_WIDTH / 2, 20);
-								updateVictory("classement.txt", _joueur.getPlayer1Name());
-							}
-							else if (_winner == 2)
-							{
-								_winText.setString("Victoire de " + _joueur.getPlayer2Name());
-								FloatRect bounds = _winText.getLocalBounds();
-								_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-								_winText.setPosition(WINDOW_WIDTH / 2, 20);
-								updateVictory("classement.txt", _joueur.getPlayer2Name());
-							}
-							else
-							{
-								_winText.setString("Partie nulle :( !");
-								FloatRect bounds = _winText.getLocalBounds();
-								_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-								_winText.setPosition(WINDOW_WIDTH / 2, 20);
-								_joueur.setJoueurAcutel(3);
+								row = i;
+								break;
 							}
 						}
-						else
-						{
-							_joueur.setJoueurAcutel(3 - _joueur.getJoueurActuel());
 
-							if (_joueur.getJoueurActuel() == 1)
-							{
-								updateTurnText();
-							}
-							else
-							{
-								updateTurnText();
-							}
+						if (row != -1)
+						{
+							_fallingToken.start(col, row, _joueur.getJoueurActuel());
+							_sounds.play("click");
 						}
 					}
 				}
@@ -167,6 +136,7 @@ void Jeu::draw(sf::RenderWindow& window)
 	}
 	window.draw(_winText);
 	_grid.draw(window);
+	_fallingToken.draw(window);
 
 	if (_gamerOver)
 	{
@@ -293,6 +263,56 @@ void Jeu::update(State& state)
 		{
 			state = LEADERBOARD;
 			_waitingForLeaderboard = false;
+		}
+	}
+
+	float dt = _clock.restart().asSeconds();
+
+	_fallingToken.update(dt);
+
+	if (_fallingToken.isStopped())
+	{
+		int col = _fallingToken.getCol();
+		int player = _fallingToken.getPlayer();
+
+		_grid.drop(col, player);
+
+		// reset animation
+		_fallingToken = FallingToken();
+
+		_winner = _grid.getWinner();
+
+		if (_winner != 0 || _grid.isFull())
+		{
+			_sounds.play("victory");
+			_gamerOver = true;
+			_gameStarted = false;
+			_waitingForLeaderboard = true;
+			_endClock.restart();
+
+			std::ofstream fileOut("save.txt", std::ios::trunc);
+			fileOut.close();
+
+			if (_winner == 1)
+			{
+				_winText.setString("Victoire de " + _joueur.getPlayer1Name());
+				updateVictory("classement.txt", _joueur.getPlayer1Name());
+			}
+			else if (_winner == 2)
+			{
+				_winText.setString("Victoire de " + _joueur.getPlayer2Name());
+				updateVictory("classement.txt", _joueur.getPlayer2Name());
+			}
+			else
+			{
+				_winText.setString("Partie nulle :( !");
+				_joueur.setJoueurAcutel(3);
+			}
+		}
+		else
+		{
+			_joueur.setJoueurAcutel(3 - _joueur.getJoueurActuel());
+			updateTurnText();
 		}
 	}
 }
