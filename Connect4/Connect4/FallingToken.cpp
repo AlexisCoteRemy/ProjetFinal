@@ -63,9 +63,13 @@ void FallingToken::draw(RenderWindow& window)
 	CircleShape token(CELLSIZE / 2 - 5);
 
 	if (_player == 1)
+	{
 		token.setFillColor(Color::Red);
+	}
 	else
+	{
 		token.setFillColor(Color::Yellow);
+	}
 
 	float x = CENTER_X + _col * CELLSIZE + 5;
 
