@@ -97,21 +97,11 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 
 							if (_joueur.getJoueurActuel() == 1)
 							{
-								_winText.setString("Tour de " + _joueur.getPlayer1Name());
-								_winText.setOutlineColor(Color::Red);
-								_winText.setOutlineThickness(2);
-								FloatRect bounds = _winText.getLocalBounds();
-								_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-								_winText.setPosition(WINDOW_WIDTH / 2, 20);
+								updateTurnText();
 							}
 							else
 							{
-								_winText.setString("Tour de " + _joueur.getPlayer2Name());
-								_winText.setOutlineColor(Color::Yellow);
-								_winText.setOutlineThickness(2);
-								FloatRect bounds = _winText.getLocalBounds();
-								_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-								_winText.setPosition(WINDOW_WIDTH / 2, 20);
+								updateTurnText();
 							}
 						}
 					}
@@ -167,7 +157,7 @@ void Jeu::hover(sf::RenderWindow& window)
 
 void Jeu::draw(sf::RenderWindow& window)
 {
-	if (_gameStarted && _winText.getString() == "Tour de ")
+	if (_gameStarted && !_joueur.getPlayer1Name().isEmpty())
 	{
 		_winText.setString("Tour de " + _joueur.getPlayer1Name());
 		FloatRect bounds = _winText.getLocalBounds();
@@ -228,13 +218,7 @@ void Jeu::reset()
 	_waitingForLeaderboard = false;
 	_winner = 0;
 	_joueur.setJoueurAcutel(1);
-	_winText.setString("Tour de " + _joueur.getPlayer1Name());
-	_winText.setFillColor(Color::White);
-	_winText.setOutlineColor(Color::Red);
-	_winText.setOutlineThickness(2);
-	FloatRect bounds = _winText.getLocalBounds();
-	_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-	_winText.setPosition(WINDOW_WIDTH / 2, 20);
+	updateTurnText();
 	_joueur.setPlayer1Name("");
 	_joueur.setPlayer2Name("");
 	_joueur.setPlayerName("");
@@ -313,6 +297,25 @@ void Jeu::update(State& state)
 	}
 }
 
+void Jeu::updateTurnText()
+{
+	if (_joueur.getJoueurActuel() == 1)
+	{
+		_winText.setString("Tour de " + _joueur.getPlayer1Name());
+		_winText.setOutlineColor(Color::Red);
+	}
+	else
+	{
+		_winText.setString("Tour de " + _joueur.getPlayer2Name());
+		_winText.setOutlineColor(Color::Yellow);
+	}
+
+	_winText.setOutlineThickness(2);
+
+	FloatRect bounds = _winText.getLocalBounds();
+	_winText.setOrigin(bounds.width / 2, bounds.height / 2);
+	_winText.setPosition(WINDOW_WIDTH / 2, 20);
+}
 void Jeu::backButtonPressed(State& state)
 {
 

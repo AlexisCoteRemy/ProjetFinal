@@ -1,15 +1,4 @@
-Alexis 1
-Binouche 0
-Charles-Etienne 0
-Chose 0
-Eve 0
-Felix-Antoine 0
-Jeremy 0
-Katrine 0
-Patente 0
-a 1
+a 2
 b 0
-c 1
-d 0
-moi 8
+moi 2
 toi 0

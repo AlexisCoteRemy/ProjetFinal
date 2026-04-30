@@ -21,6 +21,7 @@ public:
 	void saveGame();
 	bool loadGame();
 	void update(State& state);
+	void updateTurnText();
 	
 private:
 	bool _gamerOver;

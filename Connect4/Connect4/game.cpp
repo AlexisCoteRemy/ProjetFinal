@@ -53,6 +53,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
     else if (_state == NAME_INPUT)
     {
         _nameInput.handleEvent(event, window, _state);
+
     }
     else if (_state == GAME)
     {
@@ -74,6 +75,22 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
     if (_state != oldState && oldState != QUIT_MENU)
     {
         _previousState = oldState;
+    }
+
+    if (_state != oldState)
+    {
+        if (_state == NAME_INPUT)
+        {
+            _joueur.setPlayer1Name("");
+            _joueur.setPlayer2Name("");
+            _joueur.setPlayerName("");
+            _joueur.setCurrentInputPlayer(1);
+        }
+
+        if (_state == GAME && oldState != NAME_INPUT)
+        {
+            _jeu.reset();
+        }
     }
 }
 
