@@ -46,7 +46,17 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 			{
 				if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 				{
-					backButtonPressed(state);
+					if (_gamerOver)
+					{
+						_sounds.play("back");
+						reset();
+						state = MENU;
+					}
+					else
+					{
+						state = SAVE_MENU;
+						_sounds.play("back");
+					}
 				}
 
 				int col = _grid.clicked(mousePos);
@@ -77,7 +87,6 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 				}
 			}
 		}
-		
 	}
 	else if (event.type == Event::KeyPressed)
 	{
@@ -348,19 +357,4 @@ void Jeu::updateTurnText()
 	FloatRect bounds = _winText.getLocalBounds();
 	_winText.setOrigin(bounds.width / 2, bounds.height / 2);
 	_winText.setPosition(WINDOW_WIDTH / 2, 20);
-}
-void Jeu::backButtonPressed(State& state)
-{
-
-	if (_gamerOver)
-	{
-		_sounds.play("back");
-		reset();
-		state = MENU;
-	}
-	else
-	{
-		state = SAVE_MENU;
-		_sounds.play("back");
-	}
 }

@@ -42,7 +42,4 @@ private:
 	SoundManager& _sounds;
 
 	FallingToken _fallingToken;
-
-protected:
-	void backButtonPressed(State& state);
 };
