@@ -13,7 +13,11 @@ public:
 
     void setVolume(float volume);
 
+    float getVolume() const;
+
 private:
     std::map<std::string, sf::SoundBuffer> _buffers;
     std::map<std::string, sf::Sound> _sounds;
+
+    float _volume;
 };

@@ -13,15 +13,6 @@ int main() {
 	backgroundSprite.setTexture(backgroudImage);
 	backgroundSprite.setColor(sf::Color(255, 255, 255, 75));
 
-	sf::SoundBuffer mainBuffer;
-	mainBuffer.loadFromFile("mainMusic.wav");
-
-	sf::Sound mainMusic;
-	mainMusic.setBuffer(mainBuffer);
-	mainMusic.setLoop(true);
-	mainMusic.setVolume(1);
-	mainMusic.play();
-
 	Game game;
 
 	while (window.isOpen())

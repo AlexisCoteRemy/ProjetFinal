@@ -4,7 +4,7 @@
 using namespace sf;
 using namespace std;
 
-Game::Game() : _menu(_sounds),_nameInput(_joueur, _sounds),_jeu(_joueur, _sounds), _classement(_sounds), _commentJouer(_sounds), _saveLoad(_sounds), _quit(_sounds), _settings(_sounds)
+Game::Game() : _menu(_sounds),_nameInput(_joueur, _sounds),_jeu(_joueur, _sounds), _classement(_sounds), _commentJouer(_sounds), _saveLoad(_sounds), _quit(_sounds), _settings(_sounds, _music)
 {
     _sounds.load("hover", "hoverSound.wav");
     _sounds.load("click", "clickSound.wav");
@@ -15,6 +15,10 @@ Game::Game() : _menu(_sounds),_nameInput(_joueur, _sounds),_jeu(_joueur, _sounds
     _sounds.load("keyboardType", "keyboardType.wav");
     _sounds.load("backspaceType", "backspaceType.wav");
     _sounds.setVolume(20);
+
+    _music.load("mainMusic.wav");
+    _music.play();
+    _music.setVolume(2);
 
     _state = MENU;
     _previousState = MENU;

@@ -13,6 +13,7 @@
 #include "State.h"
 #include "Settings.h"
 #include "SoundManager.h"
+#include "MusicManager.h"
 #include <SFML/Graphics.hpp>
 
 class Game
@@ -30,6 +31,7 @@ private:
     Settings _settings;
     State _previousState;
     SoundManager _sounds;
+    MusicManager _music;
 
     bool _wantSave;
     bool _wantLoad;

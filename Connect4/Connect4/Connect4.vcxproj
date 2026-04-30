@@ -136,6 +136,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="mesFonctions.cpp" />
+    <ClCompile Include="MusicManager.cpp" />
     <ClCompile Include="NameInput.cpp" />
     <ClCompile Include="Quit.cpp" />
     <ClCompile Include="SaveLoad.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="mesConstantes.h" />
     <ClInclude Include="mesFonctions.h" />
+    <ClInclude Include="MusicManager.h" />
     <ClInclude Include="NameInput.h" />
     <ClInclude Include="Quit.h" />
     <ClInclude Include="SaveLoad.h" />

@@ -21,8 +21,25 @@ void SoundManager::play(const std::string& name)
 
 void SoundManager::setVolume(float volume)
 {
+    _volume = volume;
+
+    if (_volume < 0.f)
+    {
+        _volume = 0.f;
+    }
+        
+    if (_volume > 100.f)
+    {
+        _volume = 100.f;
+    }
+
     for (std::map<std::string, sf::Sound>::iterator it = _sounds.begin(); it != _sounds.end(); ++it)
     {
-        it->second.setVolume(volume);
+        it->second.setVolume(_volume);
     }
+}
+
+float SoundManager::getVolume() const
+{
+    return _volume;
 }
