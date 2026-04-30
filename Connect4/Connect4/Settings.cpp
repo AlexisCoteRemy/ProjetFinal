@@ -89,7 +89,7 @@ void Settings::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                 }
                 else if (i == 1)
                 {
-                    _music.setVolume(_music.getVolume() + 5.f);
+                    _music.setVolume(_music.getVolume() + 1.f);
                 }
 
                 _sounds.play("click");
@@ -103,7 +103,7 @@ void Settings::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                 }
                 else if (i == 1)
                 {
-                    _music.setVolume(_music.getVolume() - 5.f);
+                    _music.setVolume(_music.getVolume() - 1.f);
                 }
 
                 _sounds.play("click");
