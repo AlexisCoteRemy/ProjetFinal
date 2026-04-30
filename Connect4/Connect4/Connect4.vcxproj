@@ -139,6 +139,7 @@
     <ClCompile Include="NameInput.cpp" />
     <ClCompile Include="Quit.cpp" />
     <ClCompile Include="SaveLoad.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="button.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="NameInput.h" />
     <ClInclude Include="Quit.h" />
     <ClInclude Include="SaveLoad.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="State.h" />
   </ItemGroup>
   <ItemGroup>

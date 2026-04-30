@@ -4,7 +4,7 @@
 using namespace sf;
 using namespace std;
 
-Menu::Menu()
+Menu::Menu(SoundManager& sounds) : _sounds(sounds)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -25,14 +25,6 @@ Menu::Menu()
     {
         _buttons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX + 5, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labels[i], _font));
     }
-
-    _hoverBuffer.loadFromFile("hoverSound.wav");
-    _hoverSound.setBuffer(_hoverBuffer);
-    _hoverSound.setVolume(20);
-
-    _clickBuffer.loadFromFile("clickSound.wav");
-    _clickSound.setBuffer(_clickBuffer);
-    _clickSound.setVolume(20);
 }
 
 void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool needName)
@@ -41,7 +33,7 @@ void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
     {
         if (event.key.code == Keyboard::Escape)
         {
-            _clickSound.play();
+            _sounds.play("click");
             state = State::QUIT_MENU;
         }
     }
@@ -56,26 +48,26 @@ void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
             {
                 if (i == 0)
                 {
-                    _clickSound.play();
+                    _sounds.play("click");
                     state = LOAD_MENU;
                 }
                 else if (i == 1)
                 {
-                    _clickSound.play();
+                    _sounds.play("click");
                     state = LEADERBOARD;
                 }
                 else if (i == 2)
                 {
-                    _clickSound.play();
+                    _sounds.play("click");
                     state = HOW_TO;
                 }
                 else if (i == 3)
                 {
-                    _clickSound.play();
+                    _sounds.play("click");
                 }
                 else if (i == 4)
                 {
-                    _clickSound.play();
+                    _sounds.play("click");
                     state = QUIT_MENU;
                 }
             }
@@ -100,7 +92,7 @@ void Menu::hover(sf::RenderWindow& window)
 
             if (!_buttons[i].wasHovered())
             {
-                _hoverSound.play();
+                _sounds.play("hover");
             }
         }
         else

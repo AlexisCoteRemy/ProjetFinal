@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include "Button.h"
 #include "State.h"
+#include "SoundManager.h"
 #include "mesConstantes.h"
 
 class Classement
@@ -22,13 +23,7 @@ private:
     Button _backButton;
     Button _effacer;
 
-    sf::SoundBuffer _hoverBuffer;
-    sf::SoundBuffer _clickBuffer;
-    sf::SoundBuffer _backBuffer;
-
-    sf::Sound _hoverSound;
-    sf::Sound _clickSound;
-    sf::Sound _backSound;
+    SoundManager& _sounds;
 
     std::vector<std::string> _noms;
     std::vector<int> _victoires;
@@ -39,7 +34,7 @@ private:
     int _maxVisible;
 
 public:
-    Classement();
+    Classement(SoundManager& sounds);
 
     void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
     void hover(sf::RenderWindow& window);

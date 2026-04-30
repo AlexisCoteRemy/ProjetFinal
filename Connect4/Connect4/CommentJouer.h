@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "SoundManager.h"
 #include "Button.h"
 #include "State.h"
 #include "mesConstantes.h"
@@ -16,16 +17,10 @@ private:
 
     Button _backButton;
 
-    sf::SoundBuffer _hoverBuffer;
-    sf::SoundBuffer _clickBuffer;
-    sf::SoundBuffer _backBuffer;
-
-    sf::Sound _hoverSound;
-    sf::Sound _clickSound;
-    sf::Sound _backSound;
+    SoundManager& _sounds;
 
 public:
-    CommentJouer();
+    CommentJouer(SoundManager& sounds);
 
     void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
     void hover(sf::RenderWindow& window);

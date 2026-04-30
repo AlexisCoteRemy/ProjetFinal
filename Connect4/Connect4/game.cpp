@@ -4,8 +4,18 @@
 using namespace sf;
 using namespace std;
 
-Game::Game() : _nameInput(_joueur), _jeu(_joueur)
+Game::Game() : _menu(_sounds),_nameInput(_joueur, _sounds),_jeu(_joueur, _sounds), _classement(_sounds), _commentJouer(_sounds), _saveLoad(_sounds), _quit(_sounds)
 {
+    _sounds.load("hover", "hoverSound.wav");
+    _sounds.load("click", "clickSound.wav");
+    _sounds.load("back", "backSound.wav");
+    _sounds.load("save", "saveSound.wav");
+    _sounds.load("victory", "victorySound.wav");
+    _sounds.load("warning", "warningSound.wav");
+    _sounds.load("keyboardType", "keyboardType.wav");
+    _sounds.load("backspaceType", "backspaceType.wav");
+    _sounds.setVolume(20);
+
     _state = MENU;
     _previousState = MENU;
     _wantLoad = false;

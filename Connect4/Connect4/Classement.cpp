@@ -5,7 +5,7 @@
 using namespace sf;
 using namespace std;
 
-Classement::Classement()
+Classement::Classement(SoundManager& sounds) : _sounds(sounds)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -47,18 +47,6 @@ Classement::Classement()
 
     _effacer = Button(650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), 650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 20, 50, "Effacer", _font);
 
-    _hoverBuffer.loadFromFile("hoverSound.wav");
-    _hoverSound.setBuffer(_hoverBuffer);
-    _hoverSound.setVolume(20);
-
-    _clickBuffer.loadFromFile("clickSound.wav");
-    _clickSound.setBuffer(_clickBuffer);
-    _clickSound.setVolume(20);
-
-    _backBuffer.loadFromFile("backSound.wav");
-    _backSound.setBuffer(_backBuffer);
-    _backSound.setVolume(20);
-
     _offset = 0;
     _maxVisible = 8;
 
@@ -84,7 +72,7 @@ void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& 
     {
         if (event.key.code == Keyboard::Escape)
         {
-            _backSound.play();
+            _sounds.play("back");
             state = State::MENU;
         }
     }
@@ -95,14 +83,14 @@ void Classement::handleEvent(sf::Event& event, sf::RenderWindow& window, State& 
 
         if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
         {
-            _backSound.play();
+            _sounds.play("back");
             state = State::MENU;
         }
         if (_effacer.getGlobalBounds().contains(mousePos.x, mousePos.y))
         {
             clearLeaderboard("classement.txt");
             loadScores("classement.txt");
-            _clickSound.play();
+            _sounds.play("click");
         }
     }
 
@@ -148,7 +136,7 @@ void Classement::hover(sf::RenderWindow& window)
 
         if (!_backButton.wasHovered())
         {
-            _hoverSound.play();
+            _sounds.play("hover");
         }
     }
     else
@@ -168,7 +156,7 @@ void Classement::hover(sf::RenderWindow& window)
 
         if (!_effacer.wasHovered())
         {
-            _hoverSound.play();
+            _sounds.play("hover");
         }
     }
     else
@@ -354,5 +342,4 @@ void Classement::loadScores(std::string nameFile)
         _texts.push_back(nomText);
         _texts.push_back(scoreText);
     }
-
 }

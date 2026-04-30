@@ -2,6 +2,7 @@
 
 #include "Button.h"
 #include "State.h"
+#include "SoundManager.h"
 #include "mesConstantes.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -14,15 +15,11 @@ private:
     std::vector<Button> _buttons;
     sf::Font _font;
     sf::Text _title;
-
-    sf::SoundBuffer _hoverBuffer;
-    sf::SoundBuffer _clickBuffer;
-
-    sf::Sound _hoverSound;
-    sf::Sound _clickSound;
-
+    
+    SoundManager& _sounds;
+ 
 public:
-    Menu();
+    Menu(SoundManager& sounds);
 
     void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool needName);
     void hover(sf::RenderWindow& window);

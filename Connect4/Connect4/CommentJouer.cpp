@@ -2,7 +2,7 @@
 
 using namespace sf;
 
-CommentJouer::CommentJouer()
+CommentJouer::CommentJouer(SoundManager& sounds) : _sounds(sounds)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -35,18 +35,6 @@ CommentJouer::CommentJouer()
     _texte.setOutlineThickness(2);
 
     _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, "Retour", _font);
-
-    _hoverBuffer.loadFromFile("hoverSound.wav");
-    _hoverSound.setBuffer(_hoverBuffer);
-    _hoverSound.setVolume(20);
-
-    _clickBuffer.loadFromFile("clickSound.wav");
-    _clickSound.setBuffer(_clickBuffer);
-    _clickSound.setVolume(20);
-
-    _backBuffer.loadFromFile("backSound.wav");
-    _backSound.setBuffer(_backBuffer);
-    _backSound.setVolume(20);
 }
 
 void CommentJouer::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -55,7 +43,7 @@ void CommentJouer::handleEvent(sf::Event& event, sf::RenderWindow& window, State
     {
         if (event.key.code == Keyboard::Escape)
         {
-            _backSound.play();
+            _sounds.play("back");
             state = State::MENU;
         }
     }
@@ -66,7 +54,7 @@ void CommentJouer::handleEvent(sf::Event& event, sf::RenderWindow& window, State
 
         if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
         {
-            _backSound.play();
+            _sounds.play("back");
             state = State::MENU;
         }
     }
@@ -86,7 +74,7 @@ void CommentJouer::hover(sf::RenderWindow& window)
 
         if (!_backButton.wasHovered())
         {
-            _hoverSound.play();
+            _sounds.play("hover");
         }
     }
     else

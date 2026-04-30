@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Joueur.h"
+#include "SoundManager.h"
 #include "Button.h"
 #include "State.h"
 #include "mesConstantes.h"
@@ -11,7 +12,7 @@
 class Jeu
 {
 public:
-	Jeu(Joueur& joueur);
+	Jeu(Joueur& joueur, SoundManager& sounds);
 
 	void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
 	void hover(sf::RenderWindow& window);
@@ -35,15 +36,7 @@ private:
 	Button _backButton;
 	sf::Clock _blink;
 
-	sf::SoundBuffer _hoverBuffer;
-	sf::SoundBuffer _clickBuffer;
-	sf::SoundBuffer _victoryBuffer;
-	sf::SoundBuffer _backBuffer;
-
-	sf::Sound _hoverSound;
-	sf::Sound _clickSound;
-	sf::Sound _victorySound;
-	sf::Sound _backSound;
+	SoundManager& _sounds;
 
 protected:
 	void backButtonPressed(State& state);

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-SaveLoad::SaveLoad()
+SaveLoad::SaveLoad(SoundManager& sounds) : _sounds(sounds)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -54,26 +54,6 @@ SaveLoad::SaveLoad()
 
     _showWarning = false;
     _showSaved = false;
-
-    _hoverBuffer.loadFromFile("hoverSound.wav");
-    _hoverSound.setBuffer(_hoverBuffer);
-    _hoverSound.setVolume(20);
-
-    _clickBuffer.loadFromFile("clickSound.wav");
-    _clickSound.setBuffer(_clickBuffer);
-    _clickSound.setVolume(20);
-
-    _backBuffer.loadFromFile("backSound.wav");
-    _backSound.setBuffer(_backBuffer);
-    _backSound.setVolume(20);
-
-    _warningBuffer.loadFromFile("warningSound.wav");
-    _warningSound.setBuffer(_warningBuffer);
-    _warningSound.setVolume(20);
-
-    _saveBuffer.loadFromFile("saveSound.wav");
-    _saveSound.setBuffer(_saveBuffer);
-    _saveSound.setVolume(20);
 }
 
 void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool& wantSave, bool& wantLoad, Jeu& jeu)
@@ -82,7 +62,7 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
     {
         if (event.key.code == Keyboard::Escape)
         {
-            _backSound.play();
+            _sounds.play("back");
             state = State::MENU;
         }
     }
@@ -100,19 +80,19 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                 {
                     if (i == 0)
                     {
-                        _clickSound.play();
+                        _sounds.play("click");
                         state = GAME;
                     }
                     else if (i == 1)
                     {
                         jeu.saveGame();
-                        _saveSound.play();
+                        _sounds.play("save");
                         _showSaved = true;
                         _savedClock.restart();
                     }
                     else if (i == 2)
                     {
-                        _backSound.play();
+                        _sounds.play("back");
                         state = MENU;
                     }
                 }
@@ -128,14 +108,14 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     {
                         std::ofstream fileOut("save.txt", std::ios::trunc);
                         fileOut.close();
-                        _clickSound.play();
+                        _sounds.play("click");
                         jeu.reset();
                         state = NAME_INPUT;
                     }
                     else if (i == 1)
                     {
                         bool hasGame = jeu.loadGame();
-                        _clickSound.play();
+                        _sounds.play("click");
 
                         if (hasGame)
                         {
@@ -144,14 +124,14 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                         }
                         else
                         {
-                            _warningSound.play();
+                            _sounds.play("warning");
                             _showWarning = true;
                             _warningClock.restart();
                         }
                     }
                     else if (i == 2)
                     {
-                        _backSound.play();
+                        _sounds.play("click");
                         state = MENU;
                     }
                 }
@@ -178,7 +158,7 @@ void SaveLoad::hover(sf::RenderWindow& window, State& state)
 
                 if (!_saveButtons[i].wasHovered())
                 {
-                    _hoverSound.play();
+                    _sounds.play("hover");
                 }
             }
             else
@@ -205,7 +185,7 @@ void SaveLoad::hover(sf::RenderWindow& window, State& state)
 
                 if (!_loadButtons[i].wasHovered())
                 {
-                    _hoverSound.play();
+                    _sounds.play("hover");
                 }
             }
             else

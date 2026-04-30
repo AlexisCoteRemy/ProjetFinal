@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Quit::Quit()
+Quit::Quit(SoundManager& sounds) : _sounds(sounds)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -23,18 +23,6 @@ Quit::Quit()
     {
         _buttons.push_back(Button(MAIN_BX, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BX + 5, START_Y_MAIN_BUTTON + SPACING * i, MAIN_BUTTON_WIDTH, MAIN_BUTTON_HEIGHT, labels[i], _font));
     }
-
-    _hoverBuffer.loadFromFile("hoverSound.wav");
-    _hoverSound.setBuffer(_hoverBuffer);
-    _hoverSound.setVolume(20);
-
-    _clickBuffer.loadFromFile("clickSound.wav");
-    _clickSound.setBuffer(_clickBuffer);
-    _clickSound.setVolume(20);
-
-    _backBuffer.loadFromFile("backSound.wav");
-    _backSound.setBuffer(_backBuffer);
-    _backSound.setVolume(20);
 }
 
 void Quit::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, State& previousState)
@@ -43,7 +31,7 @@ void Quit::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
     {
         if (event.key.code == Keyboard::Escape)
         {
-            _backSound.play();
+            _sounds.play("back");
             state = previousState;
         }
     }
@@ -62,7 +50,7 @@ void Quit::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
                 }
                 else
                 {
-                    _backSound.play();
+                    _sounds.play("back");
                     state = previousState;
                 }
             }
@@ -86,7 +74,7 @@ void Quit::hover(sf::RenderWindow& window)
 
             if (!_buttons[i].wasHovered())
             {
-                _hoverSound.play();
+                _sounds.play("hover");
             }
         }
         else

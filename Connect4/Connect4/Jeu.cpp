@@ -4,7 +4,7 @@
 
 using namespace sf;
 
-Jeu::Jeu(Joueur& joueur) : _joueur(joueur)
+Jeu::Jeu(Joueur& joueur, SoundManager& sounds) : _joueur(joueur), _sounds(sounds)
 {
 	_font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -29,22 +29,6 @@ Jeu::Jeu(Joueur& joueur) : _joueur(joueur)
 	_winText.setPosition(WINDOW_WIDTH / 2, 20);
 
 	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, "Retour", _font);
-
-	_hoverBuffer.loadFromFile("hoverSound.wav");
-	_hoverSound.setBuffer(_hoverBuffer);
-	_hoverSound.setVolume(20);
-
-	_clickBuffer.loadFromFile("clickSound.wav");
-	_clickSound.setBuffer(_clickBuffer);
-	_clickSound.setVolume(20);
-
-	_victoryBuffer.loadFromFile("victorySound.wav");
-	_victorySound.setBuffer(_victoryBuffer);
-	_victorySound.setVolume(15);
-
-	_backBuffer.loadFromFile("backSound.wav");
-	_backSound.setBuffer(_backBuffer);
-	_backSound.setVolume(20);
 }
 
 void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -66,7 +50,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 
 				if (col != -1)
 				{
-					_clickSound.play();
+					_sounds.play("click");
 
 					if (_grid.drop(col, _joueur.getJoueurActuel()))
 					{
@@ -74,7 +58,7 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 
 						if (_winner != 0 || _grid.isFull())
 						{
-							_victorySound.play();
+							_sounds.play("victory");
 							_gamerOver = true;
 							_gameStarted = false;
 							_waitingForLeaderboard = true;
@@ -168,7 +152,7 @@ void Jeu::hover(sf::RenderWindow& window)
 
 		if (!_backButton.wasHovered())
 		{
-			_hoverSound.play();
+			_sounds.play("hover");
 		}
 	}
 	else
@@ -334,13 +318,13 @@ void Jeu::backButtonPressed(State& state)
 
 	if (_gamerOver)
 	{
-		_backSound.play();
+		_sounds.play("back");
 		reset();
 		state = MENU;
 	}
 	else
 	{
 		state = SAVE_MENU;
-		_backSound.play();
+		_sounds.play("back");
 	}
 }

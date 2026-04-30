@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "SoundManager.h"
 #include "button.h"
 #include "State.h"
 #include "Jeu.h"
@@ -9,7 +10,7 @@
 class SaveLoad
 {
 public:
-	SaveLoad();
+	SaveLoad(SoundManager& sounds);
 
 	void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool& wantSave, bool& wantLoad, Jeu& jeu);
 	void hover(sf::RenderWindow& window, State& state);
@@ -27,15 +28,6 @@ private:
 	bool _showSaved;
 	sf::Clock _warningClock;
 	sf::Clock _savedClock;
-	sf::SoundBuffer _hoverBuffer;
-	sf::SoundBuffer _clickBuffer;
-	sf::SoundBuffer _backBuffer;
-	sf::SoundBuffer _warningBuffer;
-	sf::SoundBuffer _saveBuffer;
-
-	sf::Sound _hoverSound;
-	sf::Sound _clickSound;
-	sf::Sound _backSound;
-	sf::Sound _warningSound;
-	sf::Sound _saveSound;
+	
+	SoundManager& _sounds;
 };

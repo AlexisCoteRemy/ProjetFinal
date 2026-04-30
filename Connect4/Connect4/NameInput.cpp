@@ -4,7 +4,7 @@
 using namespace sf;
 using namespace std;
 
-NameInput::NameInput(Joueur& joueur) : _joueur(joueur)
+NameInput::NameInput(Joueur& joueur, SoundManager& sounds) : _joueur(joueur), _sounds(sounds)
 {
 	_font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -35,26 +35,6 @@ NameInput::NameInput(Joueur& joueur) : _joueur(joueur)
 	_texte.setOutlineThickness(2);
 
 	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, "Retour", _font);
-
-	_hoverBuffer.loadFromFile("hoverSound.wav");
-	_hoverSound.setBuffer(_hoverBuffer);
-	_hoverSound.setVolume(20);
-
-	_clickBuffer.loadFromFile("clickSound.wav");
-	_clickSound.setBuffer(_clickBuffer);
-	_clickSound.setVolume(20);
-
-	_backBuffer.loadFromFile("backSound.wav");
-	_backSound.setBuffer(_backBuffer);
-	_backSound.setVolume(20);
-
-	_keyboardBuffer.loadFromFile("keyboardType.wav");
-	_keyboardSound.setBuffer(_keyboardBuffer);
-	_keyboardSound.setVolume(5);
-
-	_backspaceBuffer.loadFromFile("backspaceType.wav");
-	_backspaceSound.setBuffer(_backspaceBuffer);
-	_backspaceSound.setVolume(10);
 }
 
 void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -63,7 +43,7 @@ void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& s
 	{
 		if (event.key.code == Keyboard::Escape)
 		{
-			_backSound.play();
+			_sounds.play("back");
 			state = State::LOAD_MENU;
 		}
 	}
@@ -74,7 +54,7 @@ void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& s
 
 		if (_backButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
 		{
-			_backSound.play();
+			_sounds.play("back");
 			state = State::LOAD_MENU;
 		}
 	}
@@ -83,12 +63,12 @@ void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& s
 	{
 		if (event.text.unicode == 8)
 		{
-			_backspaceSound.play();
+			_sounds.play("backspaceType");
 			_joueur.removeLastChar();
 		}
 		else if (event.text.unicode < 128 && event.text.unicode >= 32)
 		{
-			_keyboardSound.play();
+			_sounds.play("keyboardType");
 			_joueur.addCharToName(event.text.unicode);
 		}
 
@@ -131,7 +111,7 @@ void NameInput::hover(sf::RenderWindow& window)
 
 		if (!_backButton.wasHovered())
 		{
-			_hoverSound.play();
+			_sounds.play("hover");
 		}
 	}
 	else

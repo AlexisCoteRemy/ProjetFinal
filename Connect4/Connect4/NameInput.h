@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Button.h"
+#include "SoundManager.h"
 #include "State.h"
 #include "Joueur.h"
 #include "mesConstantes.h"
@@ -10,7 +11,7 @@
 class NameInput
 {
 public:
-    NameInput(Joueur& joueur);
+    NameInput(Joueur& joueur, SoundManager& sounds);
 
     void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
     void hover(sf::RenderWindow& window);
@@ -27,15 +28,5 @@ private:
 
     Joueur& _joueur;
 
-    sf::SoundBuffer _hoverBuffer;
-    sf::SoundBuffer _clickBuffer;
-    sf::SoundBuffer _backBuffer;
-    sf::SoundBuffer _keyboardBuffer;
-    sf::SoundBuffer _backspaceBuffer;
-
-    sf::Sound _hoverSound;
-    sf::Sound _clickSound;
-    sf::Sound _backSound;
-    sf::Sound _keyboardSound;
-    sf::Sound _backspaceSound;
+    SoundManager& _sounds;
 };
