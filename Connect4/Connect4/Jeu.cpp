@@ -19,7 +19,7 @@ Jeu::Jeu(Joueur& joueur, SoundManager& sounds) : _joueur(joueur), _sounds(sounds
 
 	_winText.setFont(_font);
 	_winText.setCharacterSize(40);
-	_winText.setString("Tour de " + _joueur.getPlayer1Name());
+	updateTurnText();
 	_winText.setFillColor(Color::White);
 	_winText.setOutlineColor(Color::Red);
 	_winText.setOutlineThickness(2);
@@ -88,6 +88,11 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 
 void Jeu::hover(sf::RenderWindow& window)
 {
+	if (_gamerOver)
+	{
+		return;
+	}
+
 	Vector2i mousePos = Mouse::getPosition(window);
 
 	int col = _grid.clicked(mousePos);
@@ -126,14 +131,6 @@ void Jeu::hover(sf::RenderWindow& window)
 
 void Jeu::draw(sf::RenderWindow& window)
 {
-	if (_gameStarted && !_joueur.getPlayer1Name().isEmpty())
-	{
-		_winText.setString("Tour de " + _joueur.getPlayer1Name());
-		FloatRect bounds = _winText.getLocalBounds();
-		_winText.setOrigin(bounds.width / 2, bounds.height / 2);
-		_winText.setPosition(WINDOW_WIDTH / 2, 20);
-
-	}
 	window.draw(_winText);
 	_grid.draw(window);
 	_fallingToken.draw(window);
@@ -188,11 +185,11 @@ void Jeu::reset()
 	_waitingForLeaderboard = false;
 	_winner = 0;
 	_joueur.setJoueurAcutel(1);
-	updateTurnText();
 	_joueur.setPlayer1Name("");
 	_joueur.setPlayer2Name("");
 	_joueur.setPlayerName("");
 	_joueur.setCurrentInputPlayer(1);
+	updateTurnText();
 }
 
 void Jeu::saveGame()
@@ -330,6 +327,11 @@ void Jeu::update(State& state)
 
 void Jeu::updateTurnText()
 {
+	if (_gamerOver)
+	{
+		return;
+	}
+
 	if (_joueur.getJoueurActuel() == 1)
 	{
 		_winText.setString("Tour de " + _joueur.getPlayer1Name());

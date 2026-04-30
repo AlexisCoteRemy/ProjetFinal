@@ -77,6 +77,11 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
         _previousState = oldState;
     }
 
+    if (_state == GAME && _previousState != GAME)
+    {
+        _jeu.updateTurnText();
+    }
+
     if (_state != oldState)
     {
         if (_state == NAME_INPUT)
