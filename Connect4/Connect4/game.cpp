@@ -14,6 +14,8 @@ Game::Game() : _nameInput(_joueur), _jeu(_joueur)
 
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 {
+    State oldState = _state;
+
     if (event.type == Event::Closed)
     {
         _previousState = _state;
@@ -49,6 +51,11 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
     else
     {
         _saveLoad.handleEvent(event, window, _state, _wantSave, _wantLoad, _jeu);
+    }
+
+    if (_state != oldState && oldState != QUIT_MENU)
+    {
+        _previousState = oldState;
     }
 }
 
