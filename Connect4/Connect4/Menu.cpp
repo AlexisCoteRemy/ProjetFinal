@@ -64,6 +64,7 @@ void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
                 else if (i == 3)
                 {
                     _sounds.play("click");
+                    state = SETTINGS;
                 }
                 else if (i == 4)
                 {

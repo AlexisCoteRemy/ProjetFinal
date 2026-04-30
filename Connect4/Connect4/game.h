@@ -11,6 +11,7 @@
 #include "mesConstantes.h"
 #include "SaveLoad.h"
 #include "State.h"
+#include "Settings.h"
 #include "SoundManager.h"
 #include <SFML/Graphics.hpp>
 
@@ -26,6 +27,7 @@ private:
     Quit _quit;
     Joueur _joueur;
     State _state;
+    Settings _settings;
     State _previousState;
     SoundManager _sounds;
 

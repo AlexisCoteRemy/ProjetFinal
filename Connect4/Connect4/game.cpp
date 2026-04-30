@@ -4,7 +4,7 @@
 using namespace sf;
 using namespace std;
 
-Game::Game() : _menu(_sounds),_nameInput(_joueur, _sounds),_jeu(_joueur, _sounds), _classement(_sounds), _commentJouer(_sounds), _saveLoad(_sounds), _quit(_sounds)
+Game::Game() : _menu(_sounds),_nameInput(_joueur, _sounds),_jeu(_joueur, _sounds), _classement(_sounds), _commentJouer(_sounds), _saveLoad(_sounds), _quit(_sounds), _settings(_sounds)
 {
     _sounds.load("hover", "hoverSound.wav");
     _sounds.load("click", "clickSound.wav");
@@ -58,6 +58,10 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
     {
         _quit.handleEvent(event, window, _state, _previousState);
     }
+    else if (_state == SETTINGS)
+    {
+        _settings.handleEvent(event, window, _state);
+    }
     else
     {
         _saveLoad.handleEvent(event, window, _state, _wantSave, _wantLoad, _jeu);
@@ -93,7 +97,11 @@ void Game::draw(sf::RenderWindow& window)
     }
     else if (_state == QUIT_MENU)
     {
-        _quit.hover(window);
+        _quit.draw(window);
+    }
+    else if (_state == SETTINGS)
+    {
+        _settings.draw(window);
     }
     else
     {
@@ -125,7 +133,11 @@ void Game::hover(sf::RenderWindow& window)
     }
     else if (_state == QUIT_MENU)
     {
-        _quit.draw(window);
+        _quit.hover(window);
+    }
+    else if (_state == SETTINGS)
+    {
+        _settings.hover(window);
     }
     else
     {
