@@ -7,5 +7,9 @@ Felix-Antoine 0
 Jeremy 0
 Katrine 0
 Patente 0
-moi 6
+a 1
+b 0
+c 1
+d 0
+moi 8
 toi 0

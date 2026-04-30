@@ -128,6 +128,7 @@
     <ClCompile Include="button.cpp" />
     <ClCompile Include="Classement.cpp" />
     <ClCompile Include="CommentJouer.cpp" />
+    <ClCompile Include="FallingToken.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="Jeu.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="button.h" />
     <ClInclude Include="Classement.h" />
     <ClInclude Include="CommentJouer.h" />
+    <ClInclude Include="FallingToken.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="Jeu.h" />
