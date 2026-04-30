@@ -19,7 +19,7 @@ Menu::Menu()
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    vector<string> labels = { "Jouer", "Classement", "Comment jouer", "Quitter" };
+    vector<string> labels = { "Jouer", "Classement", "Comment jouer", "Réglages", "Quitter" };
 
     for (int i = 0; i < labels.size(); i++)
     {
@@ -70,6 +70,10 @@ void Menu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state,
                     state = HOW_TO;
                 }
                 else if (i == 3)
+                {
+                    _clickSound.play();
+                }
+                else if (i == 4)
                 {
                     _clickSound.play();
                     state = QUIT_MENU;

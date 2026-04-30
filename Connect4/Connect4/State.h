@@ -6,6 +6,7 @@ enum State
     GAME,
     LEADERBOARD,
     HOW_TO,
+    SETTINGS,
     NAME_INPUT,
     SAVE_MENU,
     LOAD_MENU,
