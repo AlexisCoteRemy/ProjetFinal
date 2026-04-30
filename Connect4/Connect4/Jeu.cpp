@@ -91,7 +91,19 @@ void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
 	else if (event.type == Event::KeyPressed)
 	{
 		if (event.key.code == Keyboard::Escape)
-			backButtonPressed(state);
+		{
+			if (_gamerOver)
+			{
+				_sounds.play("back");
+				reset();
+				state = MENU;
+			}
+			else
+			{
+				state = SAVE_MENU;
+				_sounds.play("back");
+			}
+		}
 	}
 }
 
