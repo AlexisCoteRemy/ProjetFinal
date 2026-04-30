@@ -50,7 +50,7 @@ NameInput::NameInput(Joueur& joueur) : _joueur(joueur)
 
 	_keyboardBuffer.loadFromFile("keyboardType.wav");
 	_keyboardSound.setBuffer(_keyboardBuffer);
-	_keyboardSound.setVolume(10);
+	_keyboardSound.setVolume(5);
 
 	_backspaceBuffer.loadFromFile("backspaceType.wav");
 	_backspaceSound.setBuffer(_backspaceBuffer);
