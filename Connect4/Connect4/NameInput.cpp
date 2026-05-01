@@ -4,13 +4,13 @@
 using namespace sf;
 using namespace std;
 
-NameInput::NameInput(Joueur& joueur, SoundManager& sounds) : _joueur(joueur), _sounds(sounds)
+NameInput::NameInput(Joueur& joueur, SoundManager& sounds, Localization& loc) : _joueur(joueur), _sounds(sounds), _loc(loc)
 {
 	_font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
 	_title.setFont(_font);
 	_title.setCharacterSize(60);
-	_title.setString("Utilisateurs");
+	_title.setString(_loc.get("name.title"));
 	_title.setFillColor(Color::White);
 	_title.setOutlineColor(Color::Red);
 	_title.setOutlineThickness(2);
@@ -34,7 +34,7 @@ NameInput::NameInput(Joueur& joueur, SoundManager& sounds) : _joueur(joueur), _s
 	_texte.setOutlineColor(Color::White);
 	_texte.setOutlineThickness(2);
 
-	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, "Retour", _font);
+	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 15 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, _loc.get("global.back"), _font);
 }
 
 void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -129,19 +129,41 @@ void NameInput::draw(sf::RenderWindow& window)
 	window.draw(_title);
 	window.draw(_textBox);
 
-	string label;;
+	string label;
 
 	if (_joueur.getCurrentInputPlayer() == 1)
 	{
-		label = "Nom du joueur 1 : ";
+		label = _loc.get("name.player1");
 	}
 	else
 	{
-		label = "Nom du joueur 2 : ";
+		label = _loc.get("name.player2");
 	}
 
 	label += _joueur.getPlayerName();
 	_texte.setString(label);
 	window.draw(_texte);
 	_backButton.draw(window);
+}
+
+void NameInput::updateTexts()
+{
+	_title.setString(_loc.get("name.title"));
+
+	FloatRect bounds = _title.getLocalBounds();
+	_title.setOrigin(bounds.width / 2, bounds.height / 2);
+	_title.setPosition(WINDOW_WIDTH / 2, MAIN_BUTTON_HEIGHT);
+
+	string label;
+
+	if (_joueur.getCurrentInputPlayer() == 1)
+	{
+		label = _loc.get("name.player1");
+	}
+	else
+	{
+		label = _loc.get("name.player2");
+	}
+
+	_backButton.setText(_loc.get("global.back"));
 }

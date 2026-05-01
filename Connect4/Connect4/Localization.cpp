@@ -28,9 +28,11 @@ void Localization::init()
     _en["global.back"] = "Back";
 
     // ===== NAME INPUT =====
+    _fr["name.title"] = "Utilisateurs";
     _fr["name.player1"] = "Nom du joueur 1 : ";
     _fr["name.player2"] = "Nom du joueur 2 : ";
 
+    _en["name.title"] = "Users";
     _en["name.player1"] = "Player 1 name: ";
     _en["name.player2"] = "Player 2 name: ";
 

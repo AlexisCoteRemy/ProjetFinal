@@ -7,15 +7,17 @@
 #include "State.h"
 #include "Joueur.h"
 #include "mesConstantes.h"
+#include "Localization.h"
 
 class NameInput
 {
 public:
-    NameInput(Joueur& joueur, SoundManager& sounds);
+    NameInput(Joueur& joueur, SoundManager& sounds, Localization& loc);
 
     void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
     void hover(sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);
+    void updateTexts();
 
 private:
     sf::Font _font;
@@ -29,4 +31,6 @@ private:
     Joueur& _joueur;
 
     SoundManager& _sounds;
+
+    Localization& _loc;
 };
