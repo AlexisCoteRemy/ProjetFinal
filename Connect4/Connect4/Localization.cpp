@@ -90,6 +90,15 @@ void Localization::init()
         "to drop a token.\n\n"
         "Red = player 1, Yellow = player 2.\n\n"
         "Align 4 tokens to win!";
+
+    // ===== QUIT =====
+    _fr["quit.yes"] = "Oui";
+    _fr["quit.no"] = "Non";
+    _fr["quit.title"] = "Quitter?";
+
+    _en["quit.yes"] = "Yes";
+    _en["quit.no"] = "No";
+    _en["quit.title"] = "Quit?";
 }
 
 void Localization::setLanguage(const std::string& lang)

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Quit::Quit(SoundManager& sounds) : _sounds(sounds)
+Quit::Quit(SoundManager& sounds, Localization& loc) : _sounds(sounds), _loc(loc)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -11,13 +11,13 @@ Quit::Quit(SoundManager& sounds) : _sounds(sounds)
     _title.setFillColor(Color::White);
     _title.setOutlineColor(Color::Red);
     _title.setOutlineThickness(2);
-    _title.setString("Quitter?");
+    _title.setString(_loc.get("quit.title"));
 
     FloatRect bounds = _title.getLocalBounds();
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    vector<string> labels = { "Oui", "Non"};
+    vector<string> labels = { _loc.get("quit.yes"), _loc.get("quit.no")};
 
     for (int i = 0; i < labels.size(); i++)
     {
@@ -96,4 +96,16 @@ void Quit::draw(sf::RenderWindow& window)
     {
         _buttons[i].draw(window);
     }
+}
+
+void Quit::updateTexts()
+{
+    _title.setString(_loc.get("quit.title"));
+
+    FloatRect bounds = _title.getLocalBounds();
+    _title.setOrigin(bounds.width / 2, bounds.height / 2);
+    _title.setPosition(WINDOW_WIDTH / 2, 50);
+
+    _buttons[0].setText(_loc.get("quit.yes"));
+    _buttons[1].setText(_loc.get("quit.no"));
 }
