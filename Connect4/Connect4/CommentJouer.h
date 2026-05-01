@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "State.h"
 #include "mesConstantes.h"
+#include "Localization.h"
 
 class CommentJouer
 {
@@ -18,11 +19,13 @@ private:
     Button _backButton;
 
     SoundManager& _sounds;
+    Localization& _loc;
 
 public:
-    CommentJouer(SoundManager& sounds);
+    CommentJouer(SoundManager& sounds, Localization& lol);
 
     void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
     void hover(sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);
+    void updateTexts();
 };

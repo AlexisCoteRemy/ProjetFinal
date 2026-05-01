@@ -81,12 +81,14 @@ void Localization::init()
     _en["leader.clear"] = "Clear";
 
     // ===== HOW TO =====
+    _fr["how.title"] = "Comment joueur";
     _fr["how.text"] =
         "Appuyez sur les cercles blancs en haut de la grille\n"
         "pour faire tomber un jeton.\n\n"
         "Rouge = joueur 1, Jaune = joueur 2.\n\n"
         "Alignez 4 jetons pour gagner !";
 
+    _en["how.title"] = "How to play";
     _en["how.text"] =
         "Click the white circles above the grid\n"
         "to drop a token.\n\n"

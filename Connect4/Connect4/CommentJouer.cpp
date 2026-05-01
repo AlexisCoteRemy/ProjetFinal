@@ -2,13 +2,13 @@
 
 using namespace sf;
 
-CommentJouer::CommentJouer(SoundManager& sounds) : _sounds(sounds)
+CommentJouer::CommentJouer(SoundManager& sounds, Localization& loc) : _sounds(sounds), _loc(loc)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
     _title.setFont(_font);
     _title.setCharacterSize(60);
-    _title.setString("Comment jouer");
+    _title.setString(_loc.get("how.title"));
     _title.setFillColor(Color::White);
     _title.setOutlineColor(Color::Red);
     _title.setOutlineThickness(2);
@@ -24,7 +24,7 @@ CommentJouer::CommentJouer(SoundManager& sounds) : _sounds(sounds)
     _textBox.setOutlineColor(Color::Red);
     _textBox.setOutlineThickness(2);
 
-    _texte.setString("Appuyez sur les cercles blancs en haut de la grille\npour faire tomber un jeton.\n\nLes jetons rouges sont pour le premier joueur, et les\njetons jaunes sont pour le deuxieme joueur.\n\nLe premier joueur à aligner quatre jetons dans\nn'importe quelle direction gagne!\n\nBonne chance, et rappelez-vous, c'est un jeu!");
+    _texte.setString(_loc.get("how.text"));
     _texte.setFont(_font);
     _texte.setCharacterSize(22);
     _texte.setPosition(Vector2f(((WINDOW_WIDTH - TEXTBOX_W) + 10) / 2, 120));
@@ -34,7 +34,7 @@ CommentJouer::CommentJouer(SoundManager& sounds) : _sounds(sounds)
     _texte.setOutlineColor(Color::White);
     _texte.setOutlineThickness(2);
 
-    _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, "Retour", _font);
+    _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, _loc.get("global.back"), _font);
 }
 
 void CommentJouer::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -93,4 +93,17 @@ void CommentJouer::draw(sf::RenderWindow& window)
     window.draw(_textBox);
     window.draw(_texte);
     _backButton.draw(window);
+}
+
+void CommentJouer::updateTexts()
+{
+    _title.setString(_loc.get("how.title"));
+
+    FloatRect bounds = _title.getLocalBounds();
+    _title.setOrigin(bounds.width / 2, bounds.height / 2);
+    _title.setPosition(WINDOW_WIDTH / 2, 50);
+
+    _texte.setString(_loc.get("how.text"));
+
+    _backButton.setText(_loc.get("global.back"));
 }
