@@ -11,7 +11,7 @@ Settings::Settings(SoundManager& sounds, MusicManager& music, Localization& loc)
     _title.setFillColor(Color::White);
     _title.setOutlineColor(Color::Red);
     _title.setOutlineThickness(2);
-    _title.setString("Réglages");
+    _title.setString(_loc.get("settings.title"));
 
     FloatRect bounds = _title.getLocalBounds();
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
@@ -249,7 +249,11 @@ void Settings::draw(sf::RenderWindow& window)
 
 void Settings::updateTexts()
 {
-    _title.setString(_loc.get("menu.settings"));
+    _title.setString(_loc.get("settings.title"));
+
+    FloatRect bounds = _title.getLocalBounds();
+    _title.setOrigin(bounds.width / 2, bounds.height / 2);
+    _title.setPosition(WINDOW_WIDTH / 2, 50);
 
     _labels[0].setString(_loc.get("settings.sound"));
     _labels[1].setString(_loc.get("settings.music"));

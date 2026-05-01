@@ -47,10 +47,12 @@ void Localization::init()
     _fr["settings.sound"] = "Effets sonores";
     _fr["settings.music"] = "Musique";
     _fr["settings.language"] = "Langue";
+    _fr["settings.title"] = "Réglages";
 
     _en["settings.sound"] = "Sound effects";
     _en["settings.music"] = "Music";
     _en["settings.language"] = "Language";
+    _en["settings.title"] = "Settings";
 
     // ===== SAVE / LOAD =====
     _fr["save.continue"] = "Continuer";
