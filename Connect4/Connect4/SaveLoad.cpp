@@ -6,7 +6,7 @@
 
 using namespace std;
 
-SaveLoad::SaveLoad(SoundManager& sounds) : _sounds(sounds)
+SaveLoad::SaveLoad(SoundManager& sounds, Localization& loc) : _sounds(sounds), _loc(loc)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -15,14 +15,14 @@ SaveLoad::SaveLoad(SoundManager& sounds) : _sounds(sounds)
     _title.setFillColor(Color::White);
     _title.setOutlineColor(Color::Red);
     _title.setOutlineThickness(2);
-    _title.setString("Faites votre choix");
+    _title.setString(_loc.get("save.title"));
 
     FloatRect bounds = _title.getLocalBounds();
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    vector<string> labelsSave = { "Continuer", "Sauvegarder", "Menu" };
-    vector<string> labelsLoad = { "Nouvelle", "Charger", "Menu" };
+    vector<string> labelsSave = { _loc.get("save.continue"), _loc.get("save.save"), _loc.get("save.menu") };
+    vector<string> labelsLoad = { _loc.get("save.new"), _loc.get("save.load"), _loc.get("save.menu") };
 
     for (int i = 0; i < labelsSave.size(); i++)
     {
@@ -35,7 +35,7 @@ SaveLoad::SaveLoad(SoundManager& sounds) : _sounds(sounds)
     }
 
     _warning.setFont(_font);
-    _warning.setString("Aucune partie sauvegardée");
+    _warning.setString(_loc.get("save.nosave"));
     _warning.setCharacterSize(30);
     _warning.setFillColor(Color::Red);
 
@@ -44,7 +44,7 @@ SaveLoad::SaveLoad(SoundManager& sounds) : _sounds(sounds)
     _warning.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 100);
 
     _saved.setFont(_font);
-    _saved.setString("Partie sauvegardée");
+    _saved.setString(_loc.get("save.saved"));
     _saved.setCharacterSize(30);
     _saved.setFillColor(Color::Green);
 
@@ -244,3 +244,36 @@ void SaveLoad::draw(sf::RenderWindow& window,State& state)
     }
 }
 
+void SaveLoad::updateTexts()
+{
+    _title.setString(_loc.get("save.title"));
+
+    FloatRect bounds = _title.getLocalBounds();
+    _title.setOrigin(bounds.width / 2, bounds.height / 2);
+    _title.setPosition(WINDOW_WIDTH / 2, 50);
+
+    vector<string> labelsSave = { _loc.get("save.continue"), _loc.get("save.save"), _loc.get("save.menu") };
+    vector<string> labelsLoad = { _loc.get("save.new"), _loc.get("save.load"), _loc.get("save.menu") };
+
+    for (int i = 0; i < labelsSave.size(); i++)
+    {
+        _saveButtons[i].setText(labelsSave[i]);
+    }
+
+    for (int i = 0; i < labelsLoad.size(); i++)
+    {
+        _loadButtons[i].setText(labelsLoad[i]);
+    }
+
+    _warning.setString(_loc.get("save.nosave"));
+
+    FloatRect bounds2 = _warning.getLocalBounds();
+    _warning.setOrigin(bounds2.width / 2, bounds2.height / 2);
+    _warning.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 100);
+
+    _saved.setString(_loc.get("save.saved"));
+
+    FloatRect bounds3 = _saved.getLocalBounds();
+    _saved.setOrigin(bounds3.width / 2, bounds3.height / 2);
+    _saved.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 100);
+}

@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "SoundManager.h"
+#include "Localization.h"
 #include "button.h"
 #include "State.h"
 #include "Jeu.h"
@@ -10,12 +11,13 @@
 class SaveLoad
 {
 public:
-	SaveLoad(SoundManager& sounds);
+	SaveLoad(SoundManager& sounds, Localization& loc);
 
 	void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state, bool& wantSave, bool& wantLoad, Jeu& jeu);
 	void hover(sf::RenderWindow& window, State& state);
 	void draw(sf::RenderWindow& window, State& state);
 	void setFillColor(Color color);
+	void updateTexts();
 
 private:
 	std::vector<Button> _saveButtons;
@@ -30,4 +32,6 @@ private:
 	sf::Clock _savedClock;
 	
 	SoundManager& _sounds;
+
+	Localization& _loc;
 };

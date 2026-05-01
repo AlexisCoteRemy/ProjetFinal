@@ -57,6 +57,7 @@ void Localization::init()
     _en["settings.title"] = "Settings";
 
     // ===== SAVE / LOAD =====
+    _fr["save.title"] = "Faites votre choix";
     _fr["save.continue"] = "Continuer";
     _fr["save.save"] = "Sauvegarder";
     _fr["save.new"] = "Nouvelle";
@@ -65,6 +66,7 @@ void Localization::init()
     _fr["save.nosave"] = "Aucune partie sauvegardée";
     _fr["save.saved"] = "Partie sauvegardée";
 
+    _en["save.title"] = "Make your choice";
     _en["save.continue"] = "Continue";
     _en["save.save"] = "Save";
     _en["save.new"] = "New";

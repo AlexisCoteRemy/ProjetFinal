@@ -19,8 +19,7 @@ Menu::Menu(SoundManager& sounds, Localization& loc) : _sounds(sounds), _loc(loc)
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    vector<string> labels = {_loc.get("menu.play"), _loc.get("menu.leaderboard"), _loc.get("menu.howto"), _loc.get("menu.settings"), _loc.get("menu.quit")
-    };
+    vector<string> labels = {_loc.get("menu.play"), _loc.get("menu.leaderboard"), _loc.get("menu.howto"), _loc.get("menu.settings"), _loc.get("menu.quit")};
 
     for (int i = 0; i < labels.size(); i++)
     {
@@ -126,9 +125,10 @@ void Menu::updateTexts()
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    _buttons[0].setText(_loc.get("menu.play"));
-    _buttons[1].setText(_loc.get("menu.leaderboard"));
-    _buttons[2].setText(_loc.get("menu.howto"));
-    _buttons[3].setText(_loc.get("menu.settings"));
-    _buttons[4].setText(_loc.get("menu.quit"));
+    vector<string> labels = { _loc.get("menu.play"), _loc.get("menu.leaderboard"), _loc.get("menu.howto"), _loc.get("menu.settings"), _loc.get("menu.quit") };
+
+    for (int i = 0; i < labels.size(); i++)
+    {
+        _buttons[i].setText(labels[i]);
+    }
 }
