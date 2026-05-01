@@ -92,3 +92,17 @@ void Button::setTextScale(float scaleX, float scaleY)
 {
 	_texte.setScale(scaleX, scaleY);
 }
+
+void Button::setText(const std::string& string)
+{
+	_texte.setString(string);
+
+	sf::FloatRect bounds = _texte.getLocalBounds();
+	_texte.setOrigin(bounds.left + bounds.width / 2.0f, bounds.top + bounds.height / 2.0f);
+	_texte.setPosition(_button.getPosition());
+}
+
+void Button::setCharacterSize(int size)
+{
+	_texte.setCharacterSize(size);
+}

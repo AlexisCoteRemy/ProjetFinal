@@ -32,6 +32,7 @@ private:
     State _previousState;
     SoundManager _sounds;
     MusicManager _music;
+    Localization _loc;
 
     bool _wantSave;
     bool _wantLoad;

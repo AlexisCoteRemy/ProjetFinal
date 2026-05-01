@@ -18,6 +18,8 @@ public:
 	void setWasHovered(bool state);
 	void setScale(float scaleX, float scaleY);
 	void setTextScale(float scaleX, float scaleY);
+	void setText(const std::string& string);
+	void setCharacterSize(int size);
 
 private:
 	CircleShape _circle;

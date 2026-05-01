@@ -4,7 +4,7 @@
 using namespace sf;
 using namespace std;
 
-Menu::Menu(SoundManager& sounds) : _sounds(sounds)
+Menu::Menu(SoundManager& sounds, Localization& loc) : _sounds(sounds), _loc(loc)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -13,13 +13,14 @@ Menu::Menu(SoundManager& sounds) : _sounds(sounds)
     _title.setFillColor(Color::White);
     _title.setOutlineColor(Color::Red);
     _title.setOutlineThickness(2);
-    _title.setString("Connect 4");
+    _title.setString(_loc.get("menu.title"));
 
     FloatRect bounds = _title.getLocalBounds();
     _title.setOrigin(bounds.width / 2, bounds.height / 2);
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
-    vector<string> labels = { "Jouer", "Classement", "Comment jouer", "Réglages", "Quitter" };
+    vector<string> labels = {_loc.get("menu.play"), _loc.get("menu.leaderboard"), _loc.get("menu.howto"), _loc.get("menu.settings"), _loc.get("menu.quit")
+    };
 
     for (int i = 0; i < labels.size(); i++)
     {
@@ -115,4 +116,19 @@ void Menu::draw(sf::RenderWindow& window)
     {
         _buttons[i].draw(window);
     }
+}
+
+void Menu::updateTexts()
+{
+    _title.setString(_loc.get("menu.title"));
+
+    FloatRect bounds = _title.getLocalBounds();
+    _title.setOrigin(bounds.width / 2, bounds.height / 2);
+    _title.setPosition(WINDOW_WIDTH / 2, 50);
+
+    _buttons[0].setText(_loc.get("menu.play"));
+    _buttons[1].setText(_loc.get("menu.leaderboard"));
+    _buttons[2].setText(_loc.get("menu.howto"));
+    _buttons[3].setText(_loc.get("menu.settings"));
+    _buttons[4].setText(_loc.get("menu.quit"));
 }

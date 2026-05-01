@@ -133,6 +133,7 @@
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="Jeu.cpp" />
     <ClCompile Include="Joueur.cpp" />
+    <ClCompile Include="Localization.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="mesFonctions.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="grid.h" />
     <ClInclude Include="Jeu.h" />
     <ClInclude Include="Joueur.h" />
+    <ClInclude Include="Localization.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="mesConstantes.h" />
     <ClInclude Include="mesFonctions.h" />

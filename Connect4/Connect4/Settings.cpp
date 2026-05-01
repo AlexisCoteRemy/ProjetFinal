@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Settings::Settings(SoundManager& sounds, MusicManager& music) : _sounds(sounds), _music(music)
+Settings::Settings(SoundManager& sounds, MusicManager& music, Localization& loc) : _sounds(sounds), _music(music), _loc(loc)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -24,19 +24,16 @@ Settings::Settings(SoundManager& sounds, MusicManager& music) : _sounds(sounds),
     _textBox.setOutlineColor(Color::Red);
     _textBox.setOutlineThickness(2);
 
-    std::vector<string> labels = { "Effets sonores", "Musique" };
+    std::vector<string> labels = {_loc.get("settings.sound"), _loc.get("settings.music"), _loc.get("settings.language")};
 
     for (int i = 0; i < labels.size(); i++)
     {
         sf::Text text;
-
         text.setFont(_font);
         text.setCharacterSize(24);
         text.setFillColor(Color::Black);
         text.setOutlineColor(Color::White);
         text.setOutlineThickness(2);
-
-        text.setString(labels[i]);
 
         float x = _textBox.getPosition().x + 20;
         float y = _textBox.getPosition().y + 20 + i * 60;
@@ -45,14 +42,20 @@ Settings::Settings(SoundManager& sounds, MusicManager& music) : _sounds(sounds),
 
         _labels.push_back(text);
 
-        float buttonY = y;
+        if (i < 2)
+        {
+            float minusX = x + 250;
+            float plusX = x + 320;
 
-        float minusX = x + 250;
-        float plusX = x + 320;
+            _volMinusButtons.push_back(Button(minusX, y, minusX, y, 60, 40, "-", _font));
+            _volPlusButtons.push_back(Button(plusX, y, plusX, y, 60, 40, "+", _font));
+        }
+        else
+        {
+            float langX = x + 250;
 
-        _volMinusButtons.push_back(Button(minusX, buttonY, minusX, buttonY, 60, 40, "-", _font));
-
-        _volPlusButtons.push_back(Button(plusX, buttonY, plusX, buttonY, 60, 40, "+", _font));
+            _languageButton = Button(langX, y, langX, y, 130, 40, "", _font);
+        }
     }
 
     _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, "Retour", _font);
@@ -79,7 +82,7 @@ void Settings::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
             state = State::MENU;
         }
 
-        for (int i = 0; i < _labels.size(); i++)
+        for (int i = 0; i < 2; i++)
         {
             if (_volPlusButtons[i].getGlobalBounds().contains(mousePos.x, mousePos.y))
             {
@@ -87,10 +90,11 @@ void Settings::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                 {
                     _sounds.setVolume(_sounds.getVolume() + 5.f);
                 }
+
                 else if (i == 1)
                 {
                     _music.setVolume(_music.getVolume() + 1.f);
-                }
+                } 
 
                 _sounds.play("click");
             }
@@ -108,6 +112,21 @@ void Settings::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
 
                 _sounds.play("click");
             }
+        }
+
+        if (_languageButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+        {
+            if (_loc.getLanguage() == "fr")
+            {
+                _loc.setLanguage("en");
+            }
+            else
+            {
+                _loc.setLanguage("fr");
+            }
+
+            updateTexts();
+            _sounds.play("click");
         }
     }
 }
@@ -138,7 +157,7 @@ void Settings::hover(sf::RenderWindow& window)
 
     _backButton.setWasHovered(isHovered);
 
-    for (int i = 0; i < _labels.size(); i++)
+    for (int i = 0; i < 2; i++)
     {
         bool isHovered2 = _volPlusButtons[i].getGlobalBounds().contains(mousePos.x, mousePos.y);
 
@@ -163,7 +182,7 @@ void Settings::hover(sf::RenderWindow& window)
         _volPlusButtons[i].setWasHovered(isHovered2);
     }
 
-    for (int i = 0; i < _labels.size(); i++)
+    for (int i = 0; i < 2; i++)
     {
         bool isHovered3 = _volMinusButtons[i].getGlobalBounds().contains(mousePos.x, mousePos.y);
 
@@ -187,17 +206,37 @@ void Settings::hover(sf::RenderWindow& window)
 
         _volMinusButtons[i].setWasHovered(isHovered3);
     }
+
+    bool isHovered4 = _languageButton.getGlobalBounds().contains(mousePos.x, mousePos.y);
+
+    if (isHovered4)
+    {
+        _languageButton.setFillColor(Color(255, 255, 0, 225));
+        _languageButton.setScale(1.05f, 1.05f);
+        _languageButton.setTextScale(1.05f, 1.05f);
+
+        if (!_languageButton.wasHovered())
+            _sounds.play("hover");
+    }
+    else
+    {
+        _languageButton.setFillColor(Color(255, 255, 255, 175));
+        _languageButton.setScale(1.f, 1.f);
+        _languageButton.setTextScale(1.f, 1.f);
+    }
+
+    _languageButton.setWasHovered(isHovered4);
 }
 
 void Settings::draw(sf::RenderWindow& window)
 {
     window.draw(_title);
     window.draw(_textBox);
+    _languageButton.draw(window);
     _backButton.draw(window);
 
-    for (int i = 0; i < _labels.size(); i++)
+    for (int i = 0; i < 2; i++)
     {
-        window.draw(_labels[i]);
         _volMinusButtons[i].draw(window);
         _volPlusButtons[i].draw(window);
     }
@@ -205,5 +244,27 @@ void Settings::draw(sf::RenderWindow& window)
     for (int i = 0; i < _labels.size(); i++)
     {
         window.draw(_labels[i]);
+    }
+}
+
+void Settings::updateTexts()
+{
+    _title.setString(_loc.get("menu.settings"));
+
+    _labels[0].setString(_loc.get("settings.sound"));
+    _labels[1].setString(_loc.get("settings.music"));
+    _labels[2].setString(_loc.get("settings.language"));
+
+    _backButton.setText(_loc.get("global.back"));
+
+    if (_loc.getLanguage() == "fr")
+    {
+        _languageButton.setText("Français");
+        _languageButton.setCharacterSize(20);
+    }
+    else
+    {
+        _languageButton.setText("English");
+        _languageButton.setCharacterSize(20);
     }
 }

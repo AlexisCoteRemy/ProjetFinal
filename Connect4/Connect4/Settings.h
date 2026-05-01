@@ -7,20 +7,23 @@
 #include "SoundManager.h"
 #include "MusicManager.h"
 #include "mesConstantes.h"
+#include "Localization.h"
 #include <vector>
 #include <string>
 
 class Settings
 {
 public:
-	Settings(SoundManager& sounds, MusicManager& music);
+	Settings(SoundManager& sounds, MusicManager& music, Localization& loc);
 	void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
 	void hover(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
+	void updateTexts();
 
 private:
 	std::vector<Button> _buttons;
 	Button _backButton;
+	Button _languageButton;
 	sf::Font _font;
 	sf::Text _title;
 	sf::RectangleShape _textBox;
@@ -31,4 +34,6 @@ private:
 
 	SoundManager& _sounds;
 	MusicManager& _music;
+
+	Localization& _loc;
 };
