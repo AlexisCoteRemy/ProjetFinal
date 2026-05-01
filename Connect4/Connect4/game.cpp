@@ -4,7 +4,7 @@
 using namespace sf;
 using namespace std;
 
-Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_joueur, _sounds), _classement(_sounds, _loc), _commentJouer(_sounds, _loc), _saveLoad(_sounds, _loc), _quit(_sounds, _loc), _settings(_sounds, _music, _loc)
+Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_joueur, _sounds, _loc), _classement(_sounds, _loc), _commentJouer(_sounds, _loc), _saveLoad(_sounds, _loc), _quit(_sounds, _loc), _settings(_sounds, _music, _loc)
 {
     _sounds.load("hover", "hoverSound.wav");
     _sounds.load("click", "clickSound.wav");
@@ -194,6 +194,7 @@ void Game::processActions()
     _menu.updateTexts();
     _nameInput.updateTexts();
     _saveLoad.updateTexts();
+    _jeu.updateTexts();
     _classement.updateTexts();
     _commentJouer.updateTexts();
     _quit.updateTexts();

@@ -4,7 +4,7 @@
 
 using namespace sf;
 
-Jeu::Jeu(Joueur& joueur, SoundManager& sounds) : _joueur(joueur), _sounds(sounds)
+Jeu::Jeu(Joueur& joueur, SoundManager& sounds, Localization& loc) : _joueur(joueur), _sounds(sounds), _loc(loc)
 {
 	_font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
@@ -28,7 +28,7 @@ Jeu::Jeu(Joueur& joueur, SoundManager& sounds) : _joueur(joueur), _sounds(sounds
 	_winText.setOrigin(bounds.width / 2, bounds.height / 2);
 	_winText.setPosition(WINDOW_WIDTH / 2, 20);
 
-	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, "Retour", _font);
+	_backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, (WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2)), BACK_BUTTON_WIDTH + 10, 50, _loc.get("global.back"), _font);
 }
 
 void Jeu::handleEvent(sf::Event& event, sf::RenderWindow& window, State& state)
@@ -312,7 +312,7 @@ void Jeu::update(State& state)
 
 			if (_winner == 1)
 			{
-				_winText.setString("Victoire de " + _joueur.getPlayer1Name());
+				_winText.setString(_loc.get("game.win") + _joueur.getPlayer1Name());
 
 				FloatRect bounds = _winText.getLocalBounds();
 				_winText.setOrigin(bounds.width / 2, bounds.height / 2);
@@ -321,7 +321,7 @@ void Jeu::update(State& state)
 			}
 			else if (_winner == 2)
 			{
-				_winText.setString("Victoire de " + _joueur.getPlayer2Name());
+				_winText.setString(_loc.get("game.win") + _joueur.getPlayer2Name());
 
 				FloatRect bounds = _winText.getLocalBounds();
 				_winText.setOrigin(bounds.width / 2, bounds.height / 2);
@@ -330,7 +330,7 @@ void Jeu::update(State& state)
 			}
 			else
 			{
-				_winText.setString("Partie nulle :( !");
+				_winText.setString(_loc.get("game.draw"));
 
 				FloatRect bounds = _winText.getLocalBounds();
 				_winText.setOrigin(bounds.width / 2, bounds.height / 2);
@@ -355,12 +355,12 @@ void Jeu::updateTurnText()
 
 	if (_joueur.getJoueurActuel() == 1)
 	{
-		_winText.setString("Tour de " + _joueur.getPlayer1Name());
+		_winText.setString(_loc.get("game.turn") + _joueur.getPlayer1Name());
 		_winText.setOutlineColor(Color::Red);
 	}
 	else
 	{
-		_winText.setString("Tour de " + _joueur.getPlayer2Name());
+		_winText.setString(_loc.get("game.turn") + _joueur.getPlayer2Name());
 		_winText.setOutlineColor(Color::Yellow);
 	}
 
@@ -369,4 +369,45 @@ void Jeu::updateTurnText()
 	FloatRect bounds = _winText.getLocalBounds();
 	_winText.setOrigin(bounds.width / 2, bounds.height / 2);
 	_winText.setPosition(WINDOW_WIDTH / 2, 20);
+}
+
+void Jeu::updateTexts()
+{
+	if (_winner == 0)
+	{
+		if (_joueur.getJoueurActuel() == 1)
+		{
+			_winText.setString(_loc.get("game.turn") + _joueur.getPlayer1Name());
+		}
+		else
+		{
+			_winText.setString(_loc.get("game.turn") + _joueur.getPlayer2Name());
+		}
+	}
+	else if (_winner == 1)
+	{
+		_winText.setString(_loc.get("game.win") + _joueur.getPlayer1Name());
+
+		FloatRect bounds = _winText.getLocalBounds();
+		_winText.setOrigin(bounds.width / 2, bounds.height / 2);
+		_winText.setPosition(WINDOW_WIDTH / 2, 20);
+	}
+	else if (_winner == 2)
+	{
+		_winText.setString(_loc.get("game.win") + _joueur.getPlayer2Name());
+
+		FloatRect bounds = _winText.getLocalBounds();
+		_winText.setOrigin(bounds.width / 2, bounds.height / 2);
+		_winText.setPosition(WINDOW_WIDTH / 2, 20);
+	}
+	else if (_winner == 3)
+	{
+		_winText.setString(_loc.get("game.draw"));
+
+		FloatRect bounds = _winText.getLocalBounds();
+		_winText.setOrigin(bounds.width / 2, bounds.height / 2);
+		_winText.setPosition(WINDOW_WIDTH / 2, 20);
+	}
+	
+	_backButton.setText(_loc.get("global.back"));
 }

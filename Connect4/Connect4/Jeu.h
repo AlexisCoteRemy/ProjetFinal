@@ -9,11 +9,12 @@
 #include "mesConstantes.h"
 #include "Grid.h"
 #include "FallingToken.h"
+#include "Localization.h"
 
 class Jeu
 {
 public:
-	Jeu(Joueur& joueur, SoundManager& sounds);
+	Jeu(Joueur& joueur, SoundManager& sounds, Localization& loc);
 
 	void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
 	void hover(sf::RenderWindow& window);
@@ -23,6 +24,7 @@ public:
 	bool loadGame();
 	void update(State& state);
 	void updateTurnText();
+	void updateTexts();
 	
 private:
 	bool _gamerOver;
@@ -42,4 +44,6 @@ private:
 	SoundManager& _sounds;
 
 	FallingToken _fallingToken;
+
+	Localization& _loc;
 };
