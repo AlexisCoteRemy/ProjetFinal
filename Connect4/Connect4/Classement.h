@@ -5,6 +5,7 @@
 #include "State.h"
 #include "SoundManager.h"
 #include "mesConstantes.h"
+#include "Localization.h"
 
 class Classement
 {
@@ -25,6 +26,8 @@ private:
 
     SoundManager& _sounds;
 
+    Localization& _loc;
+
     std::vector<std::string> _noms;
     std::vector<int> _victoires;
     std::vector<sf::Text> _texts;
@@ -34,10 +37,11 @@ private:
     int _maxVisible;
 
 public:
-    Classement(SoundManager& sounds);
+    Classement(SoundManager& sounds, Localization& loc);
 
     void handleEvent(sf::Event& event, sf::RenderWindow& window, State& state);
     void hover(sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);
     void loadScores(std::string nameFile);
+    void updateTexts();
 };

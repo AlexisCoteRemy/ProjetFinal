@@ -74,10 +74,12 @@ void Localization::init()
     _en["save.saved"] = "Game saved";
 
     // ===== LEADERBOARD =====
+    _fr["leader.title"] = "Classement";
     _fr["leader.users"] = "Utilisateurs";
     _fr["leader.victories"] = "Victoires";
     _fr["leader.clear"] = "Effacer";
 
+    _en["leader.title"] = "Leaderboard";
     _en["leader.users"] = "Users";
     _en["leader.victories"] = "Wins";
     _en["leader.clear"] = "Clear";

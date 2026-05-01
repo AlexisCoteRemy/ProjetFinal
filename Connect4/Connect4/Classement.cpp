@@ -5,12 +5,12 @@
 using namespace sf;
 using namespace std;
 
-Classement::Classement(SoundManager& sounds) : _sounds(sounds)
+Classement::Classement(SoundManager& sounds, Localization& loc) : _sounds(sounds), _loc(loc)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");
 
     _title.setFont(_font);
-    _title.setString("Classement");
+    _title.setString(_loc.get("leader.title"));
     _title.setCharacterSize(60);
     _title.setFillColor(Color::White);
     _title.setOutlineColor(Color::Red);
@@ -21,7 +21,7 @@ Classement::Classement(SoundManager& sounds) : _sounds(sounds)
     _title.setPosition(WINDOW_WIDTH / 2, 50);
 
     _users.setFont(_font);
-    _users.setString("Utilisateurs");
+    _users.setString(_loc.get("leader.users"));
     _users.setCharacterSize(40);
     _users.setFillColor(Color::Black);
     _users.setOutlineColor(Color::White);
@@ -29,7 +29,7 @@ Classement::Classement(SoundManager& sounds) : _sounds(sounds)
     _users.setPosition((TEXTBOX_W / 2) / 2, 120);
 
     _victories.setFont(_font);
-    _victories.setString("Victoires");
+    _victories.setString(_loc.get("leader.victories"));
     _victories.setCharacterSize(40);
     _victories.setFillColor(Color::Black);
     _victories.setOutlineColor(Color::White);
@@ -43,9 +43,9 @@ Classement::Classement(SoundManager& sounds) : _sounds(sounds)
     _textBox.setOutlineColor(Color::Red);
     _textBox.setOutlineThickness(2);
 
-    _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 10, 50, "Retour", _font);
+    _backButton = Button((WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), (WINDOW_WIDTH - BACK_BUTTON_WIDTH) / 2, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 10, 50, _loc.get("global.back"), _font);
 
-    _effacer = Button(650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), 650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 20, 50, "Effacer", _font);
+    _effacer = Button(650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), 650, WINDOW_HEIGHT + 20 - (MAIN_BUTTON_HEIGHT * 2), BACK_BUTTON_WIDTH + 20, 50, _loc.get("leader.clear"), _font);
 
     _offset = 0;
     _maxVisible = 8;
@@ -342,4 +342,19 @@ void Classement::loadScores(std::string nameFile)
         _texts.push_back(nomText);
         _texts.push_back(scoreText);
     }
+}
+
+void Classement::updateTexts()
+{
+    _title.setString(_loc.get("leader.title"));
+
+    FloatRect bounds = _title.getLocalBounds();
+    _title.setOrigin(bounds.width / 2, bounds.height / 2);
+    _title.setPosition(WINDOW_WIDTH / 2, 50);
+
+    _users.setString(_loc.get("leader.users"));
+    _victories.setString(_loc.get("leader.victories"));
+
+    _backButton.setText(_loc.get("global.back"));
+    _effacer.setText(_loc.get("leader.clear"));
 }
