@@ -32,6 +32,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 
     if (event.type == Event::Closed)
     {
+        _sounds.play("click");
         _previousState = _state;
         _state = QUIT_MENU;
     }
