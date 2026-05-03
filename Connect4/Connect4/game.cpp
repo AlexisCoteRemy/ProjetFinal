@@ -24,6 +24,13 @@ Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_jou
     _previousState = MENU;
     _wantLoad = false;
     _wantSave = false;
+    _fadeRect.setSize(Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+    _fadeRect.setFillColor(Color(0, 0, 0, 0));
+}
+
+void Game::startTransition(State newstate)
+{
+
 }
 
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)

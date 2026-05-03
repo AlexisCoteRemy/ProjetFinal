@@ -30,15 +30,23 @@ private:
     State _state;
     Settings _settings;
     State _previousState;
+    State _nextState;
     SoundManager _sounds;
     MusicManager _music;
     Localization _loc;
+    RectangleShape _fadeRect;
 
     bool _wantSave;
     bool _wantLoad;
+    bool _isTransitioning = false;
+    bool _fadeOut = false;
+
+    float _transitionAlpha = 0.f;
 
 public:
     Game();
+
+    void startTransition(State newstate);
 
     void handleEvent(sf::Event& event, sf::RenderWindow& window);
     void hover(sf::RenderWindow& window);
