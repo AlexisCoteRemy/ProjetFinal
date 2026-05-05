@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "mesFonctions.h"
 
 using namespace sf;
 using namespace std;

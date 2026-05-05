@@ -1,6 +1,5 @@
 #include "Jeu.h"
-#include "mesFonctions.h"
-#include <fstream>
+
 
 using namespace sf;
 

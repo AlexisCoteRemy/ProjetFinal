@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "button.h"
+#include "mesConstantes.h"
 
 
 class Grid

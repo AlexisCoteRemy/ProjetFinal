@@ -1,8 +1,10 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
 #include "Button.h"
 #include "State.h"
 #include "mesConstantes.h"
+
 class FallingToken
 {
 private:

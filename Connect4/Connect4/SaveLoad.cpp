@@ -1,8 +1,4 @@
 #include "SaveLoad.h"
-#include "Classement.h"
-#include "mesConstantes.h"
-#include "mesFonctions.h"
-#include <fstream>
 
 using namespace std;
 

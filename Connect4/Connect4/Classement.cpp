@@ -1,6 +1,4 @@
 #include "Classement.h"
-#include <fstream>
-#include "mesFonctions.h"
 
 using namespace sf;
 using namespace std;

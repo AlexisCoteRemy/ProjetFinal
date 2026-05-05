@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "Joueur.h"
 #include "SoundManager.h"
 #include "Button.h"
@@ -10,6 +9,8 @@
 #include "Grid.h"
 #include "FallingToken.h"
 #include "Localization.h"
+#include "mesFonctions.h"
+#include <fstream>
 
 class Jeu
 {
