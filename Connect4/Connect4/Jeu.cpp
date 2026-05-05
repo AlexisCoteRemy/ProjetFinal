@@ -371,14 +371,7 @@ void Jeu::updateTexts()
 {
 	if (_winner == 0)
 	{
-		if (_joueur.getJoueurActuel() == 1)
-		{
-			updateTurnText();
-		}
-		else
-		{
-			updateTurnText();
-		}
+		updateTurnText();
 	}
 	else if (_winner == 1)
 	{
