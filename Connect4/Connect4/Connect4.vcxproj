@@ -179,6 +179,7 @@
     <Media Include="backSound.wav" />
     <Media Include="backspaceType.wav" />
     <Media Include="clickSound.wav" />
+    <Media Include="enterType.wav" />
     <Media Include="hoverSound.wav" />
     <Media Include="keyboardType.wav" />
     <Media Include="mainMusic.wav" />

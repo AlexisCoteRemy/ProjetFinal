@@ -13,6 +13,7 @@ Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_jou
     _sounds.load("warning", "warningSound.wav");
     _sounds.load("keyboardType", "keyboardType.wav");
     _sounds.load("backspaceType", "backspaceType.wav");
+    _sounds.load("enter", "enterType.wav");
     _sounds.setVolume(20);
 
     _music.load("mainMusic.wav");
@@ -22,6 +23,7 @@ Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_jou
     _state = MENU;
     _previousState = MENU;
     _nextState = MENU;
+    _displayState = MENU;
     _wantLoad = false;
     _wantSave = false;
     _fadeRect.setSize(Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
@@ -94,7 +96,6 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
     if (_state != oldState)
     {
         startTransition(_state);
-        _state = oldState;
     
         if (_state == NAME_INPUT)
         {
@@ -113,37 +114,37 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 
 void Game::draw(sf::RenderWindow& window)
 {
-    if (_state == MENU)
+    if (_displayState == MENU)
     {
         _menu.draw(window);
     }
-    else if (_state == LEADERBOARD)
+    else if (_displayState == LEADERBOARD)
     {
         _classement.draw(window);
     }
-    else if (_state == HOW_TO)
+    else if (_displayState == HOW_TO)
     {
         _commentJouer.draw(window);
     }
-    else if (_state == NAME_INPUT)
+    else if (_displayState == NAME_INPUT)
     {
         _nameInput.draw(window);
     }
-    else if (_state == GAME)
+    else if (_displayState == GAME)
     {
         _jeu.draw(window);
     }
-    else if (_state == QUIT_MENU)
+    else if (_displayState == QUIT_MENU)
     {
         _quit.draw(window);
     }
-    else if (_state == SETTINGS)
+    else if (_displayState == SETTINGS)
     {
         _settings.draw(window);
     }
     else
     {
-        _saveLoad.draw(window, _state);
+        _saveLoad.draw(window, _displayState);
     }
 
     window.draw(_fadeRect);
@@ -224,7 +225,14 @@ void Game::processActions()
             if (_alpha >= 255)
             {
                 _alpha = 255;
+                _displayState = _nextState;
                 _state = _nextState;
+
+                if (_state == GAME)
+                {
+                    _jeu.updateTurnText();
+                }
+
                 _fadingOut = false;
             }
         }

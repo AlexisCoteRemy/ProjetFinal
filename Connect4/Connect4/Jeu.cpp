@@ -205,9 +205,6 @@ void Jeu::reset()
 	_waitingForLeaderboard = false;
 	_winner = 0;
 	_joueur.setJoueurAcutel(1);
-	_joueur.setPlayer1Name("");
-	_joueur.setPlayer2Name("");
-	_joueur.setPlayerName("");
 	_joueur.setCurrentInputPlayer(1);
 	updateTurnText();
 }
@@ -376,11 +373,11 @@ void Jeu::updateTexts()
 	{
 		if (_joueur.getJoueurActuel() == 1)
 		{
-			_winText.setString(_loc.get("game.turn") + _joueur.getPlayer1Name());
+			updateTurnText();
 		}
 		else
 		{
-			_winText.setString(_loc.get("game.turn") + _joueur.getPlayer2Name());
+			updateTurnText();
 		}
 	}
 	else if (_winner == 1)

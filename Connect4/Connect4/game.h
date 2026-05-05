@@ -29,6 +29,7 @@ private:
     Settings _settings;
     State _previousState;
     State _nextState;
+    State _displayState;
     SoundManager _sounds;
     MusicManager _music;
     Localization _loc;
