@@ -14,7 +14,6 @@ Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_jou
     _sounds.load("warning", "warningSound.wav");
     _sounds.load("keyboardType", "keyboardType.wav");
     _sounds.load("backspaceType", "backspaceType.wav");
-    _sounds.load("swoosh", "swooshSound.wav");
     _sounds.setVolume(20);
 
     _music.load("mainMusic.wav");
@@ -35,7 +34,6 @@ void Game::startTransition(State nextState)
     _isTransitioning = true;
     _fadingOut = true;
     _nextState = nextState;
-    _sounds.play("swoosh");
 }
 
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)

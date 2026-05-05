@@ -183,7 +183,6 @@
     <Media Include="keyboardType.wav" />
     <Media Include="mainMusic.wav" />
     <Media Include="saveSound.wav" />
-    <Media Include="swooshSound.wav" />
     <Media Include="victorySound.wav" />
     <Media Include="warningSound.wav" />
   </ItemGroup>
