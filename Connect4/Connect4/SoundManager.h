@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <map>
 #include <string>
+//cleaned
 
 class SoundManager
 {

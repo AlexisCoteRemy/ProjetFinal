@@ -1,10 +1,11 @@
-#include "Classement.h"
 #include <fstream>
-#include "mesFonctions.h"
 
+#include "mesFonctions.h"
+#include "Classement.h"
 using namespace sf;
 using namespace std;
 
+//cleaned
 Classement::Classement(SoundManager& sounds, Localization& loc) : _sounds(sounds), _loc(loc)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");

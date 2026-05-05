@@ -3,6 +3,7 @@
 #include "mesFonctions.h"
 
 using namespace sf;
+//cleaned
 
 void Grid::initializeGrid()
 {

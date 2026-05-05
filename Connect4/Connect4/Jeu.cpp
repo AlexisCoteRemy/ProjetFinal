@@ -1,8 +1,10 @@
 #include "Jeu.h"
 #include "mesFonctions.h"
+
 #include <fstream>
 
 using namespace sf;
+//cleaned
 
 Jeu::Jeu(Joueur& joueur, SoundManager& sounds, Localization& loc) : _joueur(joueur), _sounds(sounds), _loc(loc)
 {

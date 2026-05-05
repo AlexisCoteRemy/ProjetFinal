@@ -10,6 +10,7 @@
 #include "Localization.h"
 #include <vector>
 #include <string>
+//cleaned
 
 class Settings
 {

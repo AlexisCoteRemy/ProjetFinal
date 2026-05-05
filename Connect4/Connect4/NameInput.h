@@ -8,6 +8,7 @@
 #include "Joueur.h"
 #include "mesConstantes.h"
 #include "Localization.h"
+//cleaned
 
 class NameInput
 {

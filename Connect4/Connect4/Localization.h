@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <map>
+//cleaned
 
 class Localization
 {

@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "button.h"
-
+//cleaned
 
 class Grid
 {

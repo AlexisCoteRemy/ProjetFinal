@@ -7,6 +7,7 @@
 #include "mesConstantes.h"
 #include "Localization.h"
 
+//cleaned
 class Classement
 {
 private:

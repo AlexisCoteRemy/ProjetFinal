@@ -14,8 +14,10 @@
 #include "Settings.h"
 #include "SoundManager.h"
 #include "MusicManager.h"
+
 #include <SFML/Graphics.hpp>
 
+//cleaned
 class Game
 {
 private:

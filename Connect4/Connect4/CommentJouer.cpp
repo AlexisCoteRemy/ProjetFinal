@@ -1,7 +1,7 @@
 #include "CommentJouer.h"
 
 using namespace sf;
-
+//cleaned
 CommentJouer::CommentJouer(SoundManager& sounds, Localization& loc) : _sounds(sounds), _loc(loc)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");

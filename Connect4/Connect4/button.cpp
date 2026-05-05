@@ -1,5 +1,6 @@
 #include "button.h"
 
+//cleaned
 Button::Button(int x, int y, int r)
 {
 	_circle.setRadius(r);

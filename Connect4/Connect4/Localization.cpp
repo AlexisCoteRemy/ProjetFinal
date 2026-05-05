@@ -1,5 +1,6 @@
 #include "Localization.h"
 
+//cleaned
 Localization::Localization()
 {
     _currentLanguage = "fr";

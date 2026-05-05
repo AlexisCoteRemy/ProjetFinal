@@ -2,10 +2,12 @@
 #include "Classement.h"
 #include "mesConstantes.h"
 #include "mesFonctions.h"
+
 #include <fstream>
 
 using namespace std;
 
+//cleaned
 SaveLoad::SaveLoad(SoundManager& sounds, Localization& loc) : _sounds(sounds), _loc(loc)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");

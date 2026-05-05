@@ -11,6 +11,7 @@
 #include "FallingToken.h"
 #include "Localization.h"
 
+//cleaned
 class Jeu
 {
 public:

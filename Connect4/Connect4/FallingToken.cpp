@@ -1,5 +1,6 @@
 #include "FallingToken.h"
 
+//cleaned
 bool FallingToken::isFalling() const
 {
 	return _falling;

@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//cleaned
 void addUser(std::string nameFile, std::string username)
 {
     ifstream fileIn(nameFile);

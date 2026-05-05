@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "grid.h"
 #include "Joueur.h"
+//cleaned
 
 void addUser(std::string nameFile, std::string username);
 

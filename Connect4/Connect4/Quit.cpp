@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//cleaned
 Quit::Quit(SoundManager& sounds, Localization& loc) : _sounds(sounds), _loc(loc)
 {
     _font.loadFromFile("ITCAvantGardePro-Md.ttf");

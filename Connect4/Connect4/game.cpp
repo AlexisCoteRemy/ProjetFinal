@@ -4,6 +4,7 @@
 using namespace sf;
 using namespace std;
 
+//cleaned
 Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_joueur, _sounds, _loc), _classement(_sounds, _loc), _commentJouer(_sounds, _loc), _saveLoad(_sounds, _loc), _quit(_sounds, _loc), _settings(_sounds, _music, _loc)
 {
     _sounds.load("hover", "hoverSound.wav");
@@ -31,9 +32,30 @@ Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_jou
 
 void Game::startTransition(State nextState)
 {
+
     _isTransitioning = true;
     _fadingOut = true;
     _nextState = nextState;
+
+    sf::Time dt = _clock.restart();
+
+    if (_fadingOut) {
+        _alpha += _fadeSpeed * dt.asSeconds();
+        if (_alpha >= 255) {
+            _alpha = 255;
+            _fadingOut = false;
+       
+        }
+    }
+    else {
+        _alpha -= _fadeSpeed * dt.asSeconds();
+        if (_alpha <= 0) {
+            _alpha = 0;
+        }
+    }
+
+    _fadeRect.setFillColor(Color(0, 0, 0, _alpha));
+
 }
 
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)

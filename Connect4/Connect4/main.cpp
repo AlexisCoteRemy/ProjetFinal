@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include "Game.h"
 
+//cleaned
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800, 533), "Connect 4");
 	window.setFramerateLimit(60);
