@@ -205,6 +205,12 @@ void Game::processActions()
         _jeu.update(_state);
     }
 
+    if (_state != _lastState)
+    {
+        startTransition(_state);
+        _lastState = _state;
+    }
+
     _settings.updateTexts();
     _menu.updateTexts();
     _nameInput.updateTexts();

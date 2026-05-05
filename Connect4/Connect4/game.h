@@ -30,6 +30,7 @@ private:
     State _previousState;
     State _nextState;
     State _displayState;
+    State _lastState;
     SoundManager _sounds;
     MusicManager _music;
     Localization _loc;
