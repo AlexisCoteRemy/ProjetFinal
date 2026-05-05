@@ -38,19 +38,20 @@ private:
 
     bool _wantSave;
     bool _wantLoad;
-    bool _isTransitioning = false;
     bool _fadingOut = true;
+
+    bool _isTransitioning = false;
 
     float _alpha = 0.f;
 
-    float _fadeSpeed = 500.f;
+    float _fadeSpeed = 1000.f;
 
     sf::Clock _clock;
 
 public:
     Game();
 
-    void startTransition(State newstate);
+    void startTransition(State nextState);
 
     void handleEvent(sf::Event& event, sf::RenderWindow& window);
     void hover(sf::RenderWindow& window);

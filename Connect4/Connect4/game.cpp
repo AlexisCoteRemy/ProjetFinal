@@ -22,32 +22,18 @@ Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_jou
 
     _state = MENU;
     _previousState = MENU;
+    _nextState = MENU;
     _wantLoad = false;
     _wantSave = false;
     _fadeRect.setSize(Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
     _fadeRect.setFillColor(Color(0, 0, 0, 0));
 }
 
-void Game::startTransition(State newstate)
+void Game::startTransition(State nextState)
 {
-    sf::Time dt = _clock.restart();
-
-    if (_fadingOut) {
-        _alpha += _fadeSpeed * dt.asSeconds();
-        if (_alpha >= 255) {
-            _alpha = 255;
-            _fadingOut = false;
-            // change state
-        }
-    }
-    else {
-        _alpha -= _fadeSpeed * dt.asSeconds();
-        if (_alpha <= 0) {
-            _alpha = 0;
-        }
-    }
-
-    _fadeRect.setFillColor(Color(0, 0, 0, _alpha));
+    _isTransitioning = true;
+    _fadingOut = true;
+    _nextState = nextState;
 }
 
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
@@ -58,7 +44,7 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
     {
         _sounds.play("click");
         _previousState = _state;
-        _state = QUIT_MENU;
+        startTransition(QUIT_MENU);
     }
 
     bool needName = (_joueur.getPlayer1Name().isEmpty() || _joueur.getPlayer2Name().isEmpty());;
@@ -109,6 +95,9 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
 
     if (_state != oldState)
     {
+        startTransition(_state);
+        _state = oldState;
+    
         if (_state == NAME_INPUT)
         {
             _joueur.setPlayer1Name("");
@@ -226,4 +215,33 @@ void Game::processActions()
     _classement.updateTexts();
     _commentJouer.updateTexts();
     _quit.updateTexts();
+
+    float dt = _clock.restart().asSeconds();
+
+    if (_isTransitioning)
+    {
+        if (_fadingOut)
+        {
+            _alpha += _fadeSpeed * dt;
+
+            if (_alpha >= 255)
+            {
+                _alpha = 255;
+                _state = _nextState;
+                _fadingOut = false;
+            }
+        }
+        else
+        {
+            _alpha -= _fadeSpeed * dt;
+
+            if (_alpha <= 0)
+            {
+                _alpha = 0;
+                _isTransitioning = false;
+            }
+        }
+
+        _fadeRect.setFillColor(sf::Color(0, 0, 0, _alpha));
+    }
 }
