@@ -1,0 +1,160 @@
+[33me080dae[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Revert "pyiu"
+[33m7b2e5c6[m pyiu
+[33me439a21[m réglages d'un bug
+[33m810f224[m gghjbkl
+[33meaab808[m réglage d'un bug sur les transitions et l'affichage des noms
+[33m772a89f[m nettoyage des includes
+[33mfcd9000[m retrait swoosh
+[33m9f0c3dc[m .h cleaned
+[33m9ef28a9[m aesrdtfyg
+[33mc770e07[m ajout transition
+[33m6c9b2eb[m ajout méthode fadeout
+[33m997b944[m Merge branch 'main' of https://github.com/AlexisCoteRemy/ProjetFinal
+[33m36e51e1[m début transition
+[33m74c74fd[m ajout d'un son pour X
+[33me80078e[m traduction de jeu
+[33mc8ea5a4[m traduction de saveLoad
+[33m6cb4420[m traduction de classement
+[33m6a144b2[m traduction de nameInput
+[33m1217e20[m traduction de commentJouer
+[33m93e4f9a[m bnmbkj
+[33m24b4ce3[m traduction de quit_menu
+[33m4fbce96[m ajout de localisation dans menu et settings
+[33m5615ba0[m hjbklm
+[33m8b2eaed[m ghjbk
+[33m2cfcbef[m hghjknl
+[33m860fe7f[m ghjhjk
+[33m8055b68[m fix d'un bug du wintext
+[33ma8a9852[m centrer le wintext
+[33m5f94121[m ajout d'animation de jetons
+[33m3eeaca7[m hjbkjnkm
+[33m02c8cd5[m fix de bug du name input
+[33ma404f55[m ajout de + et - pour les sons et la musique
+[33m19210b1[m ajout de la classe Settings
+[33m761e2f9[m ajout de SoundManager
+[33m6ac02f4[m ajout du bouton et state settings
+[33mb61b10c[m ajout classe
+[33macf6126[m réglages d'un bug où _previousState n'était pas updaté à chaque changement de state
+[33m66cde49[m retrait du backButton si la partie est gagnée
+[33mc7c0b28[m fghjk
+[33m3c6a52f[m ajout de son pour le name input
+[33m6854923[m agrandissement du texte lors du hover d'un bouton
+[33m99fe4da[m hjn
+[33md6629a8[m ajout d'une classe Quit
+[33m7c4f09f[m ajout de grossissement lors du hover des boutons
+[33m50c7536[m ajout timer après partie gagnée
+[33mbefc9a3[m ajout de esc sur tous les écrans
+[33m6a88b73[m retrait d'une erreur
+[33m140a85e[m Start escape buttons
+[33mcb20c4e[m saveSound ajout
+[33m69f560e[m sdfsdf
+[33m6f1957f[m sdffd
+[33m6ce98d9[m Couleurs Classement
+[33mc2b824e[m fyugkhjl
+[33m61209fb[m changement des sons
+[33mb981cf5[m ghjkl
+[33m7e108a0[m ajout de flèche dans classement
+[33m9842349[m hjk
+[33m6498fae[m correction de bug visuel dans classement
+[33m09f0af3[m dxfcgvh
+[33m4397c81[m ajout d'alternance de couleur dans classement
+[33mffb8e96[m sdf
+[33m1e381d6[m ajout d'animations dans SaveLoad
+[33m3516787[m rajout de vecteurs dans classement
+[33m94cccea[m map
+[33m9208148[m changement du font
+[33mccb52a2[m ajout de scroll dans classement
+[33m57a822f[m kmlbjnk
+[33maab11a3[m correction bug nouvelle partie
+[33md6e43ea[m hbjnkm
+[33mc4f0026[m protection si le fichier save.txt est vide
+[33mbb30b7c[m XZVC
+[33mee2cf4f[m ajout d'un save et d'un load
+[33m5fb3d26[m asfdsgf
+[33m61d0b78[m sadfgdf
+[33m072c68d[m dsdfgf
+[33m3c17373[m fghjkl
+[33md19d30b[m ASRDGFHN
+[33m4b964dc[m nom de fenetre
+[33m30694c5[m Update classement.txt
+[33m1cf94e2[m resize pas mal de choses
+[33m1c74740[m sfdsg
+[33m1e0cfa2[m ghjk
+[33ma77d88c[m hjk
+[33m953c2c5[m HBHJKJ
+[33mc6b5b9e[m clear leaderboard
+[33m21f6b0b[m ajout users au leaderboard
+[33m6cee058[m sadsf
+[33m8cc0995[m allignement de winText
+[33m6fab0d3[m vhjbkn
+[33m6b78060[m asfdsf
+[33mb8a747d[m changement de la musique
+[33m802346d[m changement de dimensions de la fenêtre et fond d'écran
+[33m932fdcd[m sdadfd
+[33m56e6b69[m uniformisation des textboxes
+[33mbaaaef3[m ajout de constantes
+[33ma2611e8[m gvhjbjnk
+[33m688f7d6[m sfdsgdf
+[33mdcd67b4[m SFzdgx
+[33maff10dd[m Gros ménage du code
+[33md58fd36[m szfdsgf
+[33m639c770[m ajout de fonctions pour fichier
+[33m78ec3ef[m alléger le code
+[33mdbe8924[m DSFDGFH
+[33mf0a9804[m ajout centerText()
+[33me0ed203[m couleurs usernames
+[33m640b6f6[m changement couleur
+[33m94fdc26[m inclusion du fichier des classements
+[33m2754f13[m jvghbkn
+[33m66c1154[m dsfzgfx
+[33mfeded0a[m Ajout d'utilisateurs
+[33mee3bb7f[m dsdtgy
+[33m8366414[m Colors n shit
+[33mecca2ae[m Section HOW TO PLAY
+[33m9885e26[m resize de la fenêtre
+[33mcdc2d5d[m dsfgf
+[33m2e1dbce[m dsffg
+[33ma05225f[m fsdgf
+[33mff26636[m changement de couleur du joueur gagant
+[33m8e09c24[m changement de victorySound
+[33m3168046[m ajout de victory sound
+[33ma95b66d[m ajout d'un save/load
+[33mb953082[m nettoyage du code
+[33m497a88a[m ajout de constantes, migration du bouton dans grid vers Button
+[33m6bd564a[m ajout partie nulle
+[33m43cd3cf[m ajout de sons et musique
+[33m4f5663e[m dsfgdf
+[33m2f36f32[m ajout de commentaires
+[33mcea07ce[m ajustement des mesures de la fenêtre
+[33md954e6a[m dsfg
+[33m8674f32[m jhbkn
+[33m47bfa8b[m sfdfb
+[33mb2cc11c[m conversion en français
+[33m1091f27[m ajout d'un hover sur les boutons du board
+[33m13b8828[m ajout de w et h pour les boutons
+[33m0c3442c[m clignotement du message de victoire
+[33m2c160ff[m ajout de texte pour les joueurs
+[33m024f61b[m changement de couleur hover
+[33m0528b4e[m HJKJ
+[33m475c54e[m GHJBK
+[33mde93580[m jvhbkj
+[33mc4c87d5[m création d'objets
+[33m7f557b9[m systeme de selection
+[33me5b244b[m saddf
+[33m88b3942[m changement bouton
+[33m49d8c30[m Menu
+[33m4367771[m class button
+[33m64afca0[m ajout font
+[33mbcd5423[m ajout de fichiers
+[33mc5bc3a8[m dsgdgf
+[33mb4941fc[m Update main.cpp
+[33mc6be8f6[m Update main.cpp
+[33m398ac7c[m this
+[33mf7277f3[m RenderWindow
+[33m3fa196a[m wtf
+[33m8ab1d9e[m Update main.cpp
+[33m77ca119[m Objets
+[33m7b09ef0[m Update main.cpp
+[33m6e1f301[m test2
+[33mad7f405[m test
+[33mf4e1fac[m GitIgnore + DossierProjet
