@@ -30,7 +30,24 @@ Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_jou
 
 void Game::startTransition(State newstate)
 {
+    sf::Time dt = _clock.restart();
 
+    if (_fadingOut) {
+        _alpha += _fadeSpeed * dt.asSeconds();
+        if (_alpha >= 255) {
+            _alpha = 255;
+            _fadingOut = false;
+            // change state
+        }
+    }
+    else {
+        _alpha -= _fadeSpeed * dt.asSeconds();
+        if (_alpha <= 0) {
+            _alpha = 0;
+        }
+    }
+
+    _fadeRect.setFillColor(Color(0, 0, 0, _alpha));
 }
 
 void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
@@ -141,6 +158,8 @@ void Game::draw(sf::RenderWindow& window)
     {
         _saveLoad.draw(window, _state);
     }
+
+    window.draw(_fadeRect);
 }
 
 void Game::hover(sf::RenderWindow& window)
@@ -197,6 +216,7 @@ void Game::processActions()
     {
         _jeu.update(_state);
     }
+ 
 
     _settings.updateTexts();
     _menu.updateTexts();

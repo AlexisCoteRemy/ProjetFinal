@@ -39,9 +39,13 @@ private:
     bool _wantSave;
     bool _wantLoad;
     bool _isTransitioning = false;
-    bool _fadeOut = false;
+    bool _fadingOut = true;
 
-    float _transitionAlpha = 0.f;
+    float _alpha = 0.f;
+
+    float _fadeSpeed = 500.f;
+
+    sf::Clock _clock;
 
 public:
     Game();

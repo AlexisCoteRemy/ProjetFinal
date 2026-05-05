@@ -2,3 +2,10 @@ a 4
 b 0
 moi 16
 toi 0
+Alexis 0
+Charles-Etienne 0
+Jeremy 0
+Felix-Antoine 0
+Eve 0
+Katrine 0
+Jean Paul 0
