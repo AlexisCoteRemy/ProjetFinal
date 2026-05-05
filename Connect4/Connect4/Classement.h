@@ -1,11 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "Button.h"
 #include "State.h"
 #include "SoundManager.h"
 #include "mesConstantes.h"
 #include "Localization.h"
+#include <fstream>
+#include "mesFonctions.h"
 
 //cleaned
 class Classement

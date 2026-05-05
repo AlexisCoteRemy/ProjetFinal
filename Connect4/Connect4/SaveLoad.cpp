@@ -1,9 +1,12 @@
 #include "SaveLoad.h"
+<<<<<<< HEAD
 #include "Classement.h"
 #include "mesConstantes.h"
 #include "mesFonctions.h"
 
 #include <fstream>
+=======
+>>>>>>> e439a21de4660e41943f2166912786e63d2aeb55
 
 using namespace std;
 

@@ -1,14 +1,17 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "Button.h"
 #include "SoundManager.h"
 #include "State.h"
 #include "Joueur.h"
 #include "mesConstantes.h"
 #include "Localization.h"
+<<<<<<< HEAD
 //cleaned
+=======
+#include "mesFonctions.h"
+>>>>>>> e439a21de4660e41943f2166912786e63d2aeb55
 
 class NameInput
 {

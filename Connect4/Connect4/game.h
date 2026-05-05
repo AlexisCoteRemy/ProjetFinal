@@ -6,9 +6,7 @@
 #include "NameInput.h"
 #include "Joueur.h"
 #include "Jeu.h"
-#include "Button.h"
 #include "Quit.h"
-#include "mesConstantes.h"
 #include "SaveLoad.h"
 #include "State.h"
 #include "Settings.h"
@@ -33,6 +31,8 @@ private:
     Settings _settings;
     State _previousState;
     State _nextState;
+    State _displayState;
+    State _lastState;
     SoundManager _sounds;
     MusicManager _music;
     Localization _loc;

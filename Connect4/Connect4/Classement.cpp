@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #include <fstream>
+=======
+#include "Classement.h"
+>>>>>>> e439a21de4660e41943f2166912786e63d2aeb55
 
 #include "mesFonctions.h"
 #include "Classement.h"
@@ -304,10 +308,13 @@ void Classement::loadScores(std::string nameFile)
         }
             
         else
+        {
             nomText.setFillColor(Color::Black);
+            nomText.setOutlineColor(Color::White);
+            nomText.setOutlineThickness(2);
+        }  
         
         nomText.setPosition((TEXTBOX_W / 2) / 2, 180 + i * 30);
-
 
         Text scoreText;
         scoreText.setFont(_font);
@@ -336,7 +343,11 @@ void Classement::loadScores(std::string nameFile)
         }
             
         else
+        {
             scoreText.setFillColor(Color::Black);
+            scoreText.setOutlineColor(Color::White);
+            scoreText.setOutlineThickness(2);
+        }
 
         scoreText.setPosition((TEXTBOX_W / 2) + (TEXTBOX_W / 4) + (TEXTBOX_W / 8), 180 + i * 30);
 

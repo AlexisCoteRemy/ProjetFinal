@@ -1,5 +1,4 @@
 #include "NameInput.h"
-#include "mesFonctions.h"
 
 using namespace sf;
 using namespace std;
@@ -81,6 +80,7 @@ void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& s
 		{
 			if (_joueur.getCurrentInputPlayer() == 1)
 			{
+				_sounds.play("enter");
 				_joueur.setPlayer1Name(_joueur.getPlayerName());
 				addUser("classement.txt", _joueur.getPlayerName());
 				_joueur.setPlayerName("");
@@ -88,6 +88,7 @@ void NameInput::handleEvent(sf::Event& event, sf::RenderWindow& window, State& s
 			}
 			else
 			{
+				_sounds.play("enter");
 				_joueur.setPlayer2Name(_joueur.getPlayerName());
 				addUser("classement.txt", _joueur.getPlayerName());
 				state = GAME;

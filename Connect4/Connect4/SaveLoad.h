@@ -1,12 +1,15 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "SoundManager.h"
 #include "Localization.h"
 #include "button.h"
 #include "State.h"
 #include "Jeu.h"
+#include "Classement.h"
+#include "mesConstantes.h"
+#include "mesFonctions.h"
+#include <fstream>
 
 //cleaned
 class SaveLoad

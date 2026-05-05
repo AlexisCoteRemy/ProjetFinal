@@ -1,6 +1,4 @@
 #include "grid.h"
-#include "mesConstantes.h"
-#include "mesFonctions.h"
 
 using namespace sf;
 //cleaned

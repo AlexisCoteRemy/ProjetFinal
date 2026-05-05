@@ -1,7 +1,11 @@
 #include "Jeu.h"
+<<<<<<< HEAD
 #include "mesFonctions.h"
 
 #include <fstream>
+=======
+
+>>>>>>> e439a21de4660e41943f2166912786e63d2aeb55
 
 using namespace sf;
 //cleaned
@@ -208,9 +212,6 @@ void Jeu::reset()
 	_waitingForLeaderboard = false;
 	_winner = 0;
 	_joueur.setJoueurAcutel(1);
-	_joueur.setPlayer1Name("");
-	_joueur.setPlayer2Name("");
-	_joueur.setPlayerName("");
 	_joueur.setCurrentInputPlayer(1);
 	updateTurnText();
 }
@@ -377,14 +378,7 @@ void Jeu::updateTexts()
 {
 	if (_winner == 0)
 	{
-		if (_joueur.getJoueurActuel() == 1)
-		{
-			_winText.setString(_loc.get("game.turn") + _joueur.getPlayer1Name());
-		}
-		else
-		{
-			_winText.setString(_loc.get("game.turn") + _joueur.getPlayer2Name());
-		}
+		updateTurnText();
 	}
 	else if (_winner == 1)
 	{
