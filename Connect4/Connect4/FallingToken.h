@@ -4,11 +4,11 @@
 #include "Button.h"
 #include "State.h"
 #include "mesConstantes.h"
-<<<<<<< HEAD
-//cleaned
-=======
 
->>>>>>> e439a21de4660e41943f2166912786e63d2aeb55
+//cleaned
+
+
+
 class FallingToken
 {
 private:
