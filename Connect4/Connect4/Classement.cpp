@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 #include <fstream>
-=======
+
 #include "Classement.h"
->>>>>>> e439a21de4660e41943f2166912786e63d2aeb55
+
 
 #include "mesFonctions.h"
-#include "Classement.h"
+
 using namespace sf;
 using namespace std;
 
