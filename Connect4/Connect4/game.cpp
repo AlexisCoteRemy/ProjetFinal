@@ -126,11 +126,6 @@ void Game::handleEvent(sf::Event& event, sf::RenderWindow& window)
             _joueur.setPlayerName("");
             _joueur.setCurrentInputPlayer(1);
         }
-
-        if (_state == GAME && oldState != NAME_INPUT)
-        {
-            _jeu.reset();
-        }
     }
 }
 

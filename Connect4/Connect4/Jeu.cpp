@@ -271,6 +271,8 @@ bool Jeu::loadGame()
 
 	fileIn.close();
 
+	updateTurnText();
+
 	return true;
 }
 
@@ -280,6 +282,12 @@ void Jeu::update(State& state)
 	{
 		if (_endClock.getElapsedTime().asSeconds() >= 3)
 		{
+			reset();
+
+			_joueur.setPlayer1Name("");
+			_joueur.setPlayer2Name("");
+			_joueur.setPlayerName("");
+
 			state = LEADERBOARD;
 			_waitingForLeaderboard = false;
 		}
@@ -404,4 +412,11 @@ void Jeu::updateTexts()
 	}
 	
 	_backButton.setText(_loc.get("global.back"));
+}
+
+bool Jeu::hasSave()
+{
+	std::ifstream fileIn("save.txt");
+
+	return fileIn.peek() != EOF;
 }

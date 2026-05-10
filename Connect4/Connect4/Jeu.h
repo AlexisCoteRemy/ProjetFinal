@@ -27,11 +27,13 @@ public:
 	void update(State& state);
 	void updateTurnText();
 	void updateTexts();
+	bool hasSave();
 	
 private:
 	bool _gamerOver;
 	bool _gameStarted;
 	bool _blinkState;
+	bool _hasSave;
 	int _winner;
 	bool _waitingForLeaderboard;
 	sf::Clock _endClock;

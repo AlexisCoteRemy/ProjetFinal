@@ -119,11 +119,14 @@ void SaveLoad::handleEvent(sf::Event& event, sf::RenderWindow& window, State& st
                     }
                     else if (i == 1)
                     {
-                        bool hasGame = jeu.loadGame();
+                        bool hasGame = jeu.hasSave();
+
                         _sounds.play("click");
 
                         if (hasGame)
                         {
+                            wantLoad = true;
+
                             _showWarning = false;
                             state = GAME;
                         }
