@@ -4,11 +4,8 @@ Eve 0
 Felix-Antoine 0
 Jeremy 0
 Katrine 0
-a 4
-alexis 2
-b 0
-kotwine 2
-moi 18
-toi 0
-A 0
-B 0
+Chose 0
+Binouche 0
+Patente 0
+Camille 0
+Nicolas 0
