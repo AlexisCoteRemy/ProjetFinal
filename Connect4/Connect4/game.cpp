@@ -25,6 +25,7 @@ Game::Game() : _menu(_sounds, _loc),_nameInput(_joueur, _sounds, _loc),_jeu(_jou
     _previousState = MENU;
     _nextState = MENU;
     _displayState = MENU;
+    _lastState = MENU;
     _wantLoad = false;
     _wantSave = false;
     _fadeRect.setSize(Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
